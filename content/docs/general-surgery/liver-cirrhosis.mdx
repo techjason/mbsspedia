@@ -1,0 +1,39 @@
+---
+title: Liver Cirrhosis
+description: Chronic liver disease characterized by fibrosis, regenerative nodules, and loss of hepatic function.
+---
+
+import EtiologySection from "../../fragments/general-surgery/liver-cirrhosis/etiology.mdx";
+import DdxSection from "../../fragments/general-surgery/liver-cirrhosis/ddx.mdx";
+import DxSection from "../../fragments/general-surgery/liver-cirrhosis/dx.mdx";
+import MxSection from "../../fragments/general-surgery/liver-cirrhosis/mx.mdx";
+import ComplicationsSection from "../../fragments/general-surgery/liver-cirrhosis/complications.mdx";
+
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+
+<Tab value="Etiology">
+  <EtiologySection components={props.components} />
+
+</Tab>
+
+<Tab value="DDx">
+  <DdxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Dx">
+  <DxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Mx">
+  <MxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Complications">
+  <ComplicationsSection components={props.components} />
+
+</Tab>
+
+</Tabs>
