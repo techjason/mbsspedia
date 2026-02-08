@@ -89,10 +89,11 @@ var SKIP_REWRITE_IN_PARENT = /* @__PURE__ */ new Set([
   "link",
   "linkReference",
   "definition",
+  "heading",
   "inlineCode",
   "code"
 ]);
-var SKIP_DESCEND = /* @__PURE__ */ new Set(["inlineCode", "code", "mdxjsEsm"]);
+var SKIP_DESCEND = /* @__PURE__ */ new Set(["inlineCode", "code", "mdxjsEsm", "heading"]);
 function splitTextWithCitations(value) {
   const nodes = [];
   let cursor = 0;

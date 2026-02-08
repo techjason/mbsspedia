@@ -124,11 +124,12 @@ const SKIP_REWRITE_IN_PARENT = new Set([
   "link",
   "linkReference",
   "definition",
+  "heading",
   "inlineCode",
   "code",
 ]);
 
-const SKIP_DESCEND = new Set(["inlineCode", "code", "mdxjsEsm"]);
+const SKIP_DESCEND = new Set(["inlineCode", "code", "mdxjsEsm", "heading"]);
 
 function splitTextWithCitations(value: string): UnknownNode[] {
   const nodes: UnknownNode[] = [];
