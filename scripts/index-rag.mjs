@@ -32,21 +32,28 @@ import {
 
 const execFileAsync = promisify(execFile);
 
+const DEFAULT_SPECIALTY = "general-surgery";
 const DEFAULT_SLIDES_DIR = "/Users/jason/Documents/BlockBSlides";
 const DEFAULT_CACHE_DIR = ".cache/rag";
 const DEFAULT_OCR_POLICY = "smart";
 const SUMMARY_MAX_CHARS = 7000;
 
-const NOTE_PATHS = {
-  felix: "scripts/felixlai.md",
-  maxim: "scripts/maxim.md",
-};
+const DEFAULT_SENIOR_NOTES = [
+  { id: "felix", path: "scripts/felixlai.md", label: "Felix Lai" },
+  { id: "maxim", path: "scripts/maxim.md", label: "Maxim" },
+];
 
 function printUsage() {
   console.log(`Usage:
   npm run index:rag -- [options]
 
 Options:
+  --specialty "<name>"         Default: ${DEFAULT_SPECIALTY}
+  --senior-note "<path>"       Add a senior note (repeatable).
+                               Format: "<label>=<path>" or "<path>".
+  --felix-note "<path>"        Backward-compatible alias for senior note slot #1.
+  --maxim-note "<path>"        Backward-compatible alias for senior note slot #2.
+  --psychiatry                 Shortcut for --specialty psychiatry
   --slides-dir "<path>"         Default: ${DEFAULT_SLIDES_DIR}
   --embedding-model "<id>"      Default: ${DEFAULT_EMBEDDING_MODEL}
   --cache-dir "<path>"          Default: ${DEFAULT_CACHE_DIR}
@@ -56,15 +63,65 @@ Options:
 
 Examples:
   npm run index:rag -- --slides-dir "/Users/jason/Documents/BlockBSlides"
+  npm run index:rag -- --specialty psychiatry --senior-note "/path/to/psychiatry-senior.md" --slides-dir "/path/to/psychiatry/slides"
   npm run index:rag -- --force --ocr-policy always
 `);
 }
 
+function slugify(value) {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .replace(/-{2,}/g, "-");
+}
+
+function parseSeniorNoteSpec(rawValue, fallbackIndex) {
+  const raw = String(rawValue ?? "").trim();
+  if (!raw) {
+    throw new Error("--senior-note requires a value");
+  }
+
+  let label = "";
+  let notePath = raw;
+  const separatorIndex = raw.indexOf("=");
+  if (separatorIndex > 0) {
+    label = raw.slice(0, separatorIndex).trim();
+    notePath = raw.slice(separatorIndex + 1).trim();
+  }
+
+  if (!notePath) {
+    throw new Error(`Invalid --senior-note value: ${rawValue}`);
+  }
+
+  const fallbackLabel =
+    label || path.basename(notePath, path.extname(notePath)) || `note-${fallbackIndex + 1}`;
+  const id = slugify(fallbackLabel) || `note-${fallbackIndex + 1}`;
+  return { id, path: notePath, label: fallbackLabel };
+}
+
+function upsertSeniorNote(notes, entry) {
+  const next = Array.isArray(notes) ? notes.slice() : [];
+  const index = next.findIndex((note) => note.id === entry.id);
+  if (index >= 0) {
+    next[index] = entry;
+    return next;
+  }
+  next.push(entry);
+  return next;
+}
+
 function parseArgs(argv) {
   const options = {
+    specialty: DEFAULT_SPECIALTY,
     slidesDir: DEFAULT_SLIDES_DIR,
     embeddingModel: DEFAULT_EMBEDDING_MODEL,
     cacheDir: DEFAULT_CACHE_DIR,
+    cacheDirExplicit: false,
+    slidesDirExplicit: false,
+    seniorNotesExplicit: false,
+    seniorNotes: DEFAULT_SENIOR_NOTES.slice(),
     ocrPolicy: DEFAULT_OCR_POLICY,
     force: false,
     help: false,
@@ -78,8 +135,64 @@ function parseArgs(argv) {
       continue;
     }
 
+    if (arg === "--specialty") {
+      options.specialty = argv[i + 1];
+      i += 1;
+      continue;
+    }
+
+    if (arg === "--psychiatry" || arg === "-psychiatry") {
+      options.specialty = "psychiatry";
+      options.seniorNotes = [];
+      options.seniorNotesExplicit = true;
+      continue;
+    }
+
+    if (arg === "--surgery" || arg === "-surgery") {
+      options.specialty = DEFAULT_SPECIALTY;
+      options.seniorNotes = DEFAULT_SENIOR_NOTES.slice();
+      options.seniorNotesExplicit = false;
+      options.slidesDir = DEFAULT_SLIDES_DIR;
+      options.slidesDirExplicit = false;
+      continue;
+    }
+
+    if (arg === "--senior-note") {
+      if (!options.seniorNotesExplicit) {
+        options.seniorNotes = [];
+        options.seniorNotesExplicit = true;
+      }
+      const note = parseSeniorNoteSpec(argv[i + 1], options.seniorNotes.length);
+      options.seniorNotes = upsertSeniorNote(options.seniorNotes, note);
+      i += 1;
+      continue;
+    }
+
+    if (arg === "--felix-note") {
+      options.seniorNotesExplicit = true;
+      options.seniorNotes = upsertSeniorNote(options.seniorNotes, {
+        id: "felix",
+        path: argv[i + 1],
+        label: "Felix Lai",
+      });
+      i += 1;
+      continue;
+    }
+
+    if (arg === "--maxim-note") {
+      options.seniorNotesExplicit = true;
+      options.seniorNotes = upsertSeniorNote(options.seniorNotes, {
+        id: "maxim",
+        path: argv[i + 1],
+        label: "Maxim",
+      });
+      i += 1;
+      continue;
+    }
+
     if (arg === "--slides-dir") {
       options.slidesDir = argv[i + 1];
+      options.slidesDirExplicit = true;
       i += 1;
       continue;
     }
@@ -92,6 +205,7 @@ function parseArgs(argv) {
 
     if (arg === "--cache-dir") {
       options.cacheDir = argv[i + 1];
+      options.cacheDirExplicit = true;
       i += 1;
       continue;
     }
@@ -112,6 +226,34 @@ function parseArgs(argv) {
     }
 
     throw new Error(`Unknown argument: ${arg}`);
+  }
+
+  if (options.help) {
+    return options;
+  }
+
+  const normalizedSpecialty = slugify(options.specialty) || DEFAULT_SPECIALTY;
+  options.specialty = normalizedSpecialty;
+
+  if (!options.cacheDirExplicit && normalizedSpecialty !== DEFAULT_SPECIALTY) {
+    options.cacheDir = `${DEFAULT_CACHE_DIR}/${normalizedSpecialty}`;
+  }
+
+  if (options.seniorNotes.length === 0) {
+    throw new Error("At least one senior note is required. Use --senior-note.");
+  }
+
+  if (normalizedSpecialty !== DEFAULT_SPECIALTY) {
+    if (!options.seniorNotesExplicit) {
+      throw new Error(
+        `Specialty "${normalizedSpecialty}" requires explicit senior notes. Use --senior-note "<path>".`,
+      );
+    }
+    if (!options.slidesDirExplicit) {
+      throw new Error(
+        `Specialty "${normalizedSpecialty}" requires an explicit slides directory. Use --slides-dir "<path>".`,
+      );
+    }
   }
 
   return options;
@@ -549,6 +691,7 @@ async function indexNote({ noteName, notePath, options, cacheBaseDir }) {
 function buildManifestEntryBase({ fingerprint, options, type }) {
   return {
     type,
+    specialty: options.specialty,
     size: fingerprint.size,
     mtimeMs: fingerprint.mtimeMs,
     sha256: fingerprint.sha256,
@@ -566,6 +709,13 @@ async function main() {
     printUsage();
     return;
   }
+
+  console.log(`[Index] Specialty: ${options.specialty}`);
+  console.log(`[Index] Slides dir: ${options.slidesDir}`);
+  console.log(`[Index] Cache dir: ${options.cacheDir}`);
+  console.log(
+    `[Index] Senior notes: ${options.seniorNotes.map((note) => `${note.id}=${note.path}`).join(", ")}`,
+  );
 
   const mutoolAvailable = await commandExists("mutool", ["-v"]);
   if (!mutoolAvailable) {
@@ -611,6 +761,7 @@ async function main() {
       !options.force &&
       existing &&
       existing.type === "pdf" &&
+      existing.specialty === options.specialty &&
       existing.modelId === options.embeddingModel &&
       existing.chunkingVersion === CHUNKING_VERSION &&
       isFingerprintMatch(existing, fingerprint) &&
@@ -640,7 +791,9 @@ async function main() {
     report.pdf.chunks += result.chunks;
   }
 
-  for (const [noteName, notePath] of Object.entries(NOTE_PATHS)) {
+  for (const note of options.seniorNotes) {
+    const noteName = note.id;
+    const notePath = note.path;
     const absolutePath = path.resolve(process.cwd(), notePath);
     const fingerprint = await fingerprintFile(absolutePath);
     const existing = manifest.sources[absolutePath];
@@ -655,6 +808,7 @@ async function main() {
       !options.force &&
       existing &&
       existing.type === "note" &&
+      existing.specialty === options.specialty &&
       existing.modelId === options.embeddingModel &&
       existing.chunkingVersion === CHUNKING_VERSION &&
       isFingerprintMatch(existing, fingerprint) &&
@@ -676,6 +830,7 @@ async function main() {
     manifest.sources[absolutePath] = {
       ...buildManifestEntryBase({ fingerprint, options, type: "note" }),
       noteName,
+      noteLabel: note.label,
       artifactDir: result.artifactDir,
     };
 
@@ -686,6 +841,7 @@ async function main() {
   await writeManifest(manifestPath, manifest);
 
   console.log("[Index] Completed");
+  console.log(`  Specialty: ${options.specialty}`);
   console.log(`  PDFs indexed: ${report.pdf.indexed}`);
   console.log(`  PDFs skipped (cache hit): ${report.pdf.skipped}`);
   console.log(`  PDF chunks generated: ${report.pdf.chunks}`);

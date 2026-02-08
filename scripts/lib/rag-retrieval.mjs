@@ -99,26 +99,31 @@ export function rankChunksHybrid({
 }
 
 export function mergeSourceBalanced({
+  rankedSources,
   rankedFelix,
   rankedMaxim,
   rankedSlides,
   perSourceCap = 12,
   candidateLimit = 60,
 }) {
-  const topFelix = rankedFelix.slice(0, perSourceCap).map((item) => ({
-    ...item,
-    sourceGroup: "felix",
-  }));
-  const topMaxim = rankedMaxim.slice(0, perSourceCap).map((item) => ({
-    ...item,
-    sourceGroup: "maxim",
-  }));
-  const topSlides = rankedSlides.slice(0, perSourceCap).map((item) => ({
-    ...item,
-    sourceGroup: "slides",
-  }));
+  const sources = Array.isArray(rankedSources) && rankedSources.length > 0
+    ? rankedSources
+    : [
+        { sourceGroup: "felix", items: rankedFelix ?? [] },
+        { sourceGroup: "maxim", items: rankedMaxim ?? [] },
+        { sourceGroup: "slides", items: rankedSlides ?? [] },
+      ];
 
-  const merged = [...topFelix, ...topMaxim, ...topSlides];
+  const merged = [];
+  for (const source of sources) {
+    const sourceGroup = String(source?.sourceGroup ?? "unknown");
+    const items = Array.isArray(source?.items) ? source.items : [];
+    const topItems = items.slice(0, perSourceCap).map((item) => ({
+      ...item,
+      sourceGroup: item.sourceGroup ?? sourceGroup,
+    }));
+    merged.push(...topItems);
+  }
   merged.sort((a, b) => b.score - a.score || a.id.localeCompare(b.id));
 
   return merged.slice(0, candidateLimit);
@@ -127,11 +132,17 @@ export function mergeSourceBalanced({
 export function assembleSectionContext({
   selectedChunks,
   contextBudgetChars = 28000,
+  groupedTitles,
+  groupOrder,
 }) {
-  const groupedTitles = {
+  const defaultGroupedTitles = {
     felix: "### Felix Scout (Indexed)",
     maxim: "### Maxim Scout (Indexed)",
     slides: "### BlockB Slides (Indexed)",
+  };
+  const titleByGroup = {
+    ...defaultGroupedTitles,
+    ...(groupedTitles ?? {}),
   };
 
   const selected = [];
@@ -147,15 +158,24 @@ export function assembleSectionContext({
     usedChars += estimatedSize;
   }
 
-  const groupOrder = ["felix", "maxim", "slides"];
+  const resolvedGroupOrder =
+    Array.isArray(groupOrder) && groupOrder.length > 0
+      ? groupOrder
+      : Array.from(new Set(selected.map((item) => item.sourceGroup)));
+
   const parts = [];
-  for (const group of groupOrder) {
+  for (const group of resolvedGroupOrder) {
     const groupItems = selected.filter((item) => item.sourceGroup === group);
     if (groupItems.length === 0) {
       continue;
     }
 
-    parts.push(groupedTitles[group]);
+    const title =
+      titleByGroup[group] ??
+      `### ${String(group)
+        .replace(/[-_]+/g, " ")
+        .replace(/\b\w/g, (ch) => ch.toUpperCase())}`;
+    parts.push(title);
     for (const item of groupItems) {
       parts.push(`#### [${item.id}] Source: ${item.sourceName}\n${item.text}`);
     }

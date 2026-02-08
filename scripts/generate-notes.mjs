@@ -116,8 +116,13 @@ const FOLLOW_UP_PROMPTS = [
 const SECTION_FILE_NAMES = ["etiology", "ddx", "dx", "mx", "complications"];
 const SECTION_TAB_NAMES = ["Etiology", "DDx", "Dx", "Mx", "Complications"];
 
+const DEFAULT_SPECIALTY = "general-surgery";
 const SURGERY_SAMPLE_NOTE_PATH = "scripts/felixlai.md";
-const DEFAULT_MAXIM_NOTE_PATH = "scripts/maxim.md";
+const SURGERY_SECONDARY_NOTE_PATH = "scripts/maxim.md";
+const DEFAULT_SENIOR_NOTES = [
+  { id: "felix", path: SURGERY_SAMPLE_NOTE_PATH, label: "Felix Lai" },
+  { id: "maxim", path: SURGERY_SECONDARY_NOTE_PATH, label: "Maxim" },
+];
 const DEFAULT_SLIDES_DIR = "/Users/jason/Documents/BlockBSlides";
 const DEFAULT_CACHE_DIR = ".cache/rag";
 
@@ -189,11 +194,13 @@ function printUsage() {
 Options:
   --topics "<topic1,topic2>"   Comma-separated topics.
   -surgery, --surgery          Use surgery preset defaults.
+  -psychiatry, --psychiatry    Shortcut for --specialty psychiatry (requires explicit --senior-note and --slides-dir).
   --model "<provider/model>"   Generation model. Default: deepseek/deepseek-v3.2-thinking
   --selection-model "<provider/model>" Selection model for scouts/slides. Default: anthropic/claude-opus-4.6
-  --specialty "<folder-name>"  Default: general-surgery
-  --felix-note "<path>"         Default: scripts/felixlai.md
-  --maxim-note "<path>"         Default: scripts/maxim.md
+  --specialty "<folder-name>"  Default: ${DEFAULT_SPECIALTY}
+  --senior-note "<path>"       Add a senior note source (repeatable). Format: "<label>=<path>" or "<path>".
+  --felix-note "<path>"        Backward-compatible alias for senior note slot #1.
+  --maxim-note "<path>"        Backward-compatible alias for senior note slot #2.
   --slides-dir "<path>"         Default: /Users/jason/Documents/BlockBSlides
   --top-slides <n>              Number of slide PDFs to select. Default: ${DEFAULT_TOP_SLIDES}
   --topic-concurrency <n>       Number of topics to generate in parallel. Default: 2
@@ -210,6 +217,7 @@ Examples:
   npm run generate:notes -- "acute pancreatitis"
   npm run generate:notes -- --topic-concurrency 3 "acute pancreatitis" "appendicitis"
   npm run generate:notes -- --selection-model "anthropic/claude-opus-4.6" --top-slides 5 "acute pancreatitis"
+  npm run generate:notes -- --specialty psychiatry --senior-note "/path/to/psychiatry-senior.md" --slides-dir "/path/to/psychiatry/slides" "major depressive disorder"
 `);
 }
 
@@ -227,20 +235,57 @@ function envInt(name, fallback) {
   return parsed;
 }
 
+function parseSeniorNoteSpec(rawValue, fallbackIndex) {
+  const raw = String(rawValue ?? "").trim();
+  if (!raw) {
+    throw new Error("--senior-note requires a value");
+  }
+
+  let label = "";
+  let notePath = raw;
+  const separatorIndex = raw.indexOf("=");
+  if (separatorIndex > 0) {
+    label = raw.slice(0, separatorIndex).trim();
+    notePath = raw.slice(separatorIndex + 1).trim();
+  }
+
+  if (!notePath) {
+    throw new Error(`Invalid --senior-note value: ${rawValue}`);
+  }
+
+  const fallbackLabel =
+    label || path.basename(notePath, path.extname(notePath)) || `note-${fallbackIndex + 1}`;
+  const id = slugify(fallbackLabel) || `note-${fallbackIndex + 1}`;
+  return { id, path: notePath, label: fallbackLabel };
+}
+
+function upsertSeniorNote(notes, entry) {
+  const next = Array.isArray(notes) ? notes.slice() : [];
+  const index = next.findIndex((note) => note.id === entry.id);
+  if (index >= 0) {
+    next[index] = entry;
+    return next;
+  }
+  next.push(entry);
+  return next;
+}
+
 function parseArgs(argv) {
   const options = {
     model: "deepseek/deepseek-v3.2-thinking",
     selectionModel: "anthropic/claude-opus-4.6",
-    specialty: "general-surgery",
+    specialty: DEFAULT_SPECIALTY,
     contextScouts: true,
     sampleNotePath: SURGERY_SAMPLE_NOTE_PATH,
     slidesPath: undefined,
-    felixNotePath: SURGERY_SAMPLE_NOTE_PATH,
-    maximNotePath: DEFAULT_MAXIM_NOTE_PATH,
+    seniorNotes: DEFAULT_SENIOR_NOTES.slice(),
+    seniorNotesExplicit: false,
     slidesDir: DEFAULT_SLIDES_DIR,
+    slidesDirExplicit: false,
     topSlides: DEFAULT_TOP_SLIDES,
     topicConcurrency: 2,
     cacheDir: DEFAULT_CACHE_DIR,
+    cacheDirExplicit: false,
     allowStaleIndex: false,
     devtools: true,
     topics: [],
@@ -273,9 +318,19 @@ function parseArgs(argv) {
     }
 
     if (arg === "-surgery" || arg === "--surgery") {
-      options.specialty = "general-surgery";
+      options.specialty = DEFAULT_SPECIALTY;
       options.sampleNotePath = SURGERY_SAMPLE_NOTE_PATH;
-      options.felixNotePath = SURGERY_SAMPLE_NOTE_PATH;
+      options.seniorNotes = DEFAULT_SENIOR_NOTES.slice();
+      options.seniorNotesExplicit = false;
+      options.slidesDir = DEFAULT_SLIDES_DIR;
+      options.slidesDirExplicit = false;
+      continue;
+    }
+
+    if (arg === "-psychiatry" || arg === "--psychiatry") {
+      options.specialty = "psychiatry";
+      options.seniorNotes = [];
+      options.seniorNotesExplicit = true;
       continue;
     }
 
@@ -296,20 +351,42 @@ function parseArgs(argv) {
       continue;
     }
 
+    if (arg === "--senior-note") {
+      if (!options.seniorNotesExplicit) {
+        options.seniorNotes = [];
+        options.seniorNotesExplicit = true;
+      }
+      const note = parseSeniorNoteSpec(argv[i + 1], options.seniorNotes.length);
+      options.seniorNotes = upsertSeniorNote(options.seniorNotes, note);
+      i += 1;
+      continue;
+    }
+
     if (arg === "--felix-note") {
-      options.felixNotePath = argv[i + 1];
+      options.seniorNotesExplicit = true;
+      options.seniorNotes = upsertSeniorNote(options.seniorNotes, {
+        id: "felix",
+        path: argv[i + 1],
+        label: "Felix Lai",
+      });
       i += 1;
       continue;
     }
 
     if (arg === "--maxim-note") {
-      options.maximNotePath = argv[i + 1];
+      options.seniorNotesExplicit = true;
+      options.seniorNotes = upsertSeniorNote(options.seniorNotes, {
+        id: "maxim",
+        path: argv[i + 1],
+        label: "Maxim",
+      });
       i += 1;
       continue;
     }
 
     if (arg === "--slides-dir") {
       options.slidesDir = argv[i + 1];
+      options.slidesDirExplicit = true;
       i += 1;
       continue;
     }
@@ -336,6 +413,7 @@ function parseArgs(argv) {
 
     if (arg === "--cache-dir") {
       options.cacheDir = argv[i + 1];
+      options.cacheDirExplicit = true;
       i += 1;
       continue;
     }
@@ -374,6 +452,34 @@ function parseArgs(argv) {
   }
 
   options.topics = Array.from(new Set(options.topics.filter(Boolean)));
+
+  if (options.help) {
+    return options;
+  }
+
+  const normalizedSpecialty = slugify(options.specialty) || DEFAULT_SPECIALTY;
+  options.specialty = normalizedSpecialty;
+
+  if (!options.cacheDirExplicit && normalizedSpecialty !== DEFAULT_SPECIALTY) {
+    options.cacheDir = `${DEFAULT_CACHE_DIR}/${normalizedSpecialty}`;
+  }
+
+  if (options.seniorNotes.length === 0) {
+    throw new Error("At least one senior note is required. Use --senior-note.");
+  }
+
+  if (normalizedSpecialty !== DEFAULT_SPECIALTY) {
+    if (!options.seniorNotesExplicit) {
+      throw new Error(
+        `Specialty "${normalizedSpecialty}" requires explicit senior notes. Use --senior-note "<path>".`,
+      );
+    }
+    if (!options.slidesDirExplicit) {
+      throw new Error(
+        `Specialty "${normalizedSpecialty}" requires an explicit slides directory. Use --slides-dir "<path>".`,
+      );
+    }
+  }
 
   return options;
 }
@@ -948,17 +1054,19 @@ async function selectSlideFilesWithScout({
 }
 
 function assembleContextForPromptOne({
-  felixChunks,
-  maximChunks,
+  noteSelections,
   slideChunks,
   contextBudgetChars = CONTEXT_CHAR_BUDGET,
 }) {
   const groups = [
-    { key: "felix", title: "### Felix Scout (Verbatim)", items: felixChunks },
-    { key: "maxim", title: "### Maxim Scout (Verbatim)", items: maximChunks },
+    ...noteSelections.map((selection) => ({
+      key: selection.groupKey,
+      title: `### Senior Note: ${selection.label} (Verbatim)`,
+      items: selection.chunks,
+    })),
     {
       key: "slides",
-      title: "### BlockB Slides (Extracted Verbatim Text)",
+      title: "### Lecture Slides (Extracted Verbatim Text)",
       items: slideChunks,
     },
   ];
@@ -1030,45 +1138,46 @@ function assembleContextForPromptOne({
 }
 
 async function prepareContextSources(options) {
-  const felixSource = await readTextFileOrEmpty(
-    options.felixNotePath,
-    "Felix note",
-  );
-  const maximSource = await readTextFileOrEmpty(
-    options.maximNotePath,
-    "Maxim note",
-  );
-  const slideFiles = await listSlidePdfs(options.slidesDir);
-
-  const felixChunks = felixSource.content
-    ? buildChunksFromText({
-        text: felixSource.content,
-        prefix: "felix",
-        sourceName: path.basename(felixSource.absolutePath),
-        sourcePath: felixSource.absolutePath,
-      })
-    : [];
-
-  const maximChunks = maximSource.content
-    ? buildChunksFromText({
-        text: maximSource.content,
-        prefix: "maxim",
-        sourceName: path.basename(maximSource.absolutePath),
-        sourcePath: maximSource.absolutePath,
-      })
-    : [];
-
+  const noteSources = [];
   const chunkById = new Map();
-  for (const chunk of [...felixChunks, ...maximChunks]) {
-    chunkById.set(chunk.id, chunk);
+
+  for (const note of options.seniorNotes) {
+    const source = await readTextFileOrEmpty(
+      note.path,
+      `Senior note (${note.label})`,
+    );
+    const groupKey = `note:${note.id}`;
+    const chunks = source.content
+      ? buildChunksFromText({
+          text: source.content,
+          prefix: `note-${note.id}`,
+          sourceName: path.basename(source.absolutePath),
+          sourcePath: source.absolutePath,
+        }).map((chunk) => ({
+          ...chunk,
+          sourceGroup: groupKey,
+        }))
+      : [];
+
+    for (const chunk of chunks) {
+      chunkById.set(chunk.id, chunk);
+    }
+
+    noteSources.push({
+      id: note.id,
+      label: note.label,
+      path: note.path,
+      absolutePath: source.absolutePath,
+      chunks,
+      groupKey,
+    });
   }
 
+  const slideFiles = await listSlidePdfs(options.slidesDir);
+
   return {
-    felixSource,
-    maximSource,
+    noteSources,
     slideFiles,
-    felixChunks,
-    maximChunks,
     chunkById,
   };
 }
@@ -1113,86 +1222,57 @@ async function buildRetrievedContextForTopic({
   selectionModel,
   topSlides,
 }) {
-  const felixCandidates = rankCandidates(contextSources.felixChunks, topic);
-  const maximCandidates = rankCandidates(contextSources.maximChunks, topic);
+  const noteSelections = [];
+  for (const noteSource of contextSources.noteSources) {
+    const candidates = rankCandidates(noteSource.chunks, topic);
+    const selection = await selectChunkIdsWithScout({
+      topic,
+      sourceLabel: noteSource.label,
+      candidates,
+      selectionModel,
+    });
 
-  const felixSelection = await selectChunkIdsWithScout({
-    topic,
-    sourceLabel: "felix",
-    candidates: felixCandidates,
-    selectionModel,
-  });
+    const fallbackIds = candidates
+      .slice(0, Math.min(SCOUT_SELECTION_LIMIT, candidates.length))
+      .map((chunk) => chunk.id);
+    const selectedIds =
+      selection.selectedChunkIds.length > 0
+        ? selection.selectedChunkIds
+        : fallbackIds;
 
-  const maximSelection = await selectChunkIdsWithScout({
-    topic,
-    sourceLabel: "maxim",
-    candidates: maximCandidates,
-    selectionModel,
-  });
-
-  const fallbackFelixIds = felixCandidates
-    .slice(0, Math.min(SCOUT_SELECTION_LIMIT, felixCandidates.length))
-    .map((chunk) => chunk.id);
-  const fallbackMaximIds = maximCandidates
-    .slice(0, Math.min(SCOUT_SELECTION_LIMIT, maximCandidates.length))
-    .map((chunk) => chunk.id);
-
-  const felixIds =
-    felixSelection.selectedChunkIds.length > 0
-      ? felixSelection.selectedChunkIds
-      : fallbackFelixIds;
-  const maximIds =
-    maximSelection.selectedChunkIds.length > 0
-      ? maximSelection.selectedChunkIds
-      : fallbackMaximIds;
-
-  const candidateScoreById = new Map([
-    ...felixCandidates.map((candidate) => [candidate.id, candidate.score]),
-    ...maximCandidates.map((candidate) => [candidate.id, candidate.score]),
-  ]);
-
-  const felixChunks = felixIds
-    .map((id) => {
-      const chunk = contextSources.chunkById.get(id);
-      if (!chunk) {
-        return undefined;
-      }
-      return {
-        ...chunk,
-        score: candidateScoreById.get(id) ?? 0,
-      };
-    })
-    .filter(Boolean);
-
-  const maximChunks = maximIds
-    .map((id) => {
-      const chunk = contextSources.chunkById.get(id);
-      if (!chunk) {
-        return undefined;
-      }
-      return {
-        ...chunk,
-        score: candidateScoreById.get(id) ?? 0,
-      };
-    })
-    .filter(Boolean);
-
-  console.log(
-    `[Context][${topic}] Felix IDs: ${felixChunks.map((c) => c.id).join(", ") || "none"}`,
-  );
-  for (const chunk of felixChunks) {
-    console.log(
-      `[Context][${topic}] Felix preview ${chunk.id}: ${previewText(chunk.text)}`,
+    const candidateScoreById = new Map(
+      candidates.map((candidate) => [candidate.id, candidate.score]),
     );
-  }
+    const chunks = selectedIds
+      .map((id) => {
+        const chunk = contextSources.chunkById.get(id);
+        if (!chunk) {
+          return undefined;
+        }
+        return {
+          ...chunk,
+          score: candidateScoreById.get(id) ?? 0,
+        };
+      })
+      .filter(Boolean);
 
-  console.log(
-    `[Context][${topic}] Maxim IDs: ${maximChunks.map((c) => c.id).join(", ") || "none"}`,
-  );
-  for (const chunk of maximChunks) {
     console.log(
-      `[Context][${topic}] Maxim preview ${chunk.id}: ${previewText(chunk.text)}`,
+      `[Context][${topic}] ${noteSource.label} IDs: ${
+        chunks.map((chunk) => chunk.id).join(", ") || "none"
+      }`,
     );
+    for (const chunk of chunks) {
+      console.log(
+        `[Context][${topic}] ${noteSource.label} preview ${chunk.id}: ${previewText(chunk.text)}`,
+      );
+    }
+
+    noteSelections.push({
+      groupKey: noteSource.groupKey,
+      label: noteSource.label,
+      chunks,
+      sourceName: path.basename(noteSource.absolutePath),
+    });
   }
 
   const slideSelection = await selectSlideFilesWithScout({
@@ -1232,8 +1312,7 @@ async function buildRetrievedContextForTopic({
   }
 
   const assembled = assembleContextForPromptOne({
-    felixChunks,
-    maximChunks,
+    noteSelections,
     slideChunks,
   });
 
@@ -1244,22 +1323,11 @@ async function buildRetrievedContextForTopic({
   return {
     contextText: assembled.contextText,
     contextLabel: [
-      path.basename(contextSources.felixSource.absolutePath),
-      path.basename(contextSources.maximSource.absolutePath),
+      ...noteSelections.map((selection) => selection.sourceName),
       ...selectedSlideFiles.map((file) => file.fileName),
     ].join(" + "),
     selectedSlideFileNames: selectedSlideFiles.map((file) => file.fileName),
   };
-}
-
-function noteSourceLabel(noteName) {
-  if (noteName === "felix") {
-    return "Felix";
-  }
-  if (noteName === "maxim") {
-    return "Maxim";
-  }
-  return noteName;
 }
 
 function formatPromptArray(values) {
@@ -1443,23 +1511,50 @@ async function readIndexedSlideArtifacts(cacheBaseDir, artifactDir) {
   };
 }
 
+function buildIndexCommandHint(options) {
+  const notesArgs = options.seniorNotes
+    .map((note) => `--senior-note ${JSON.stringify(note.path)}`)
+    .join(" ");
+  return `npm run index:rag -- --specialty "${options.specialty}" --slides-dir "${options.slidesDir}" ${notesArgs}`.trim();
+}
+
 async function listCacheReadinessIssues(options, manifest) {
   const issues = [];
-  const requiredPaths = [];
+  const requiredByPath = new Map();
 
-  const requiredNotes = [
-    path.resolve(process.cwd(), options.felixNotePath),
-    path.resolve(process.cwd(), options.maximNotePath),
-  ];
-  requiredPaths.push(...requiredNotes);
+  const requiredNotes = options.seniorNotes.map((note) =>
+    path.resolve(process.cwd(), note.path),
+  );
+  for (const notePath of requiredNotes) {
+    requiredByPath.set(notePath, "note");
+  }
 
   const slides = await listSlidePdfs(options.slidesDir);
-  requiredPaths.push(...slides.map((file) => file.absolutePath));
+  for (const slide of slides) {
+    requiredByPath.set(slide.absolutePath, "pdf");
+  }
 
-  for (const absolutePath of requiredPaths) {
+  for (const [absolutePath, expectedType] of requiredByPath.entries()) {
     const entry = manifest.sources[absolutePath];
     if (!entry) {
       issues.push({ path: absolutePath, reason: "missing_manifest_entry" });
+      continue;
+    }
+
+    if (entry.type !== expectedType) {
+      issues.push({
+        path: absolutePath,
+        reason: `type_mismatch_expected_${expectedType}`,
+      });
+      continue;
+    }
+
+    const entrySpecialty = String(entry.specialty ?? "");
+    if (entrySpecialty !== options.specialty) {
+      issues.push({
+        path: absolutePath,
+        reason: `specialty_mismatch:${entrySpecialty || "missing"}!=${options.specialty}`,
+      });
       continue;
     }
 
@@ -1519,7 +1614,7 @@ async function prepareIndexedContextSources(options) {
     throw new Error(
       [
         "RAG index is missing or stale.",
-        `Run: npm run index:rag -- --slides-dir \"${options.slidesDir}\"`,
+        `Run: ${buildIndexCommandHint(options)}`,
         reasons,
       ].join("\n"),
     );
@@ -1531,33 +1626,42 @@ async function prepareIndexedContextSources(options) {
     );
   }
 
-  const felixPath = path.resolve(process.cwd(), options.felixNotePath);
-  const maximPath = path.resolve(process.cwd(), options.maximNotePath);
-  const felixEntry = manifest.sources[felixPath];
-  const maximEntry = manifest.sources[maximPath];
+  const indexedNotes = [];
+  for (const note of options.seniorNotes) {
+    const notePath = path.resolve(process.cwd(), note.path);
+    const entry = manifest.sources[notePath];
+    if (!entry?.artifactDir || entry.specialty !== options.specialty) {
+      return null;
+    }
 
-  if (!felixEntry?.artifactDir || !maximEntry?.artifactDir) {
-    return null;
-  }
+    const indexed = await readIndexedChunksAndEmbeddings(
+      cacheBaseDir,
+      entry.artifactDir,
+    );
+    if (!indexed) {
+      return null;
+    }
 
-  const felixIndexed = await readIndexedChunksAndEmbeddings(
-    cacheBaseDir,
-    felixEntry.artifactDir,
-  );
-  const maximIndexed = await readIndexedChunksAndEmbeddings(
-    cacheBaseDir,
-    maximEntry.artifactDir,
-  );
-
-  if (!felixIndexed || !maximIndexed) {
-    return null;
+    const groupKey = `note:${note.id}`;
+    indexedNotes.push({
+      id: note.id,
+      label: note.label,
+      sourcePath: notePath,
+      groupKey,
+      chunks: indexed.chunks.map((chunk) => ({
+        ...chunk,
+        sourceGroup: groupKey,
+        sourceName: chunk.sourceName || path.basename(notePath),
+      })),
+      embeddingById: indexed.embeddingById,
+    });
   }
 
   const slideFiles = await listSlidePdfs(options.slidesDir);
   const indexedSlides = [];
   for (const slideFile of slideFiles) {
     const entry = manifest.sources[slideFile.absolutePath];
-    if (!entry?.artifactDir) {
+    if (!entry?.artifactDir || entry.specialty !== options.specialty) {
       continue;
     }
     const indexed = await readIndexedSlideArtifacts(
@@ -1581,29 +1685,12 @@ async function prepareIndexedContextSources(options) {
     });
   }
 
-  const felixChunks = felixIndexed.chunks.map((chunk) => ({
-    ...chunk,
-    sourceGroup: "felix",
-    sourceName: chunk.sourceName || noteSourceLabel("felix"),
-  }));
-  const maximChunks = maximIndexed.chunks.map((chunk) => ({
-    ...chunk,
-    sourceGroup: "maxim",
-    sourceName: chunk.sourceName || noteSourceLabel("maxim"),
-  }));
-
   return {
     manifest,
     cacheBaseDir,
     embeddingModel,
-    felix: {
-      chunks: felixChunks,
-      embeddingById: felixIndexed.embeddingById,
-    },
-    maxim: {
-      chunks: maximChunks,
-      embeddingById: maximIndexed.embeddingById,
-    },
+    specialty: options.specialty,
+    notes: indexedNotes,
     slides: indexedSlides,
   };
 }
@@ -1647,29 +1734,27 @@ async function buildRetrievedContextForSectionFromIndex({
     }
   }
 
-  const rankedFelix = rankChunksHybrid({
-    query,
-    chunks: indexedContext.felix.chunks,
-    embeddingById: indexedContext.felix.embeddingById,
-    queryEmbedding,
-  }).slice(0, SECTION_PER_SOURCE_RANK_LIMIT);
-  const rankedMaxim = rankChunksHybrid({
-    query,
-    chunks: indexedContext.maxim.chunks,
-    embeddingById: indexedContext.maxim.embeddingById,
-    queryEmbedding,
-  }).slice(0, SECTION_PER_SOURCE_RANK_LIMIT);
-  const rankedSlides = rankChunksHybrid({
+  const rankedSources = indexedContext.notes.map((note) => ({
+    sourceGroup: note.groupKey,
+    items: rankChunksHybrid({
+      query,
+      chunks: note.chunks,
+      embeddingById: note.embeddingById,
+      queryEmbedding,
+    }).slice(0, SECTION_PER_SOURCE_RANK_LIMIT),
+  }));
+  rankedSources.push({
+    sourceGroup: "slides",
+    items: rankChunksHybrid({
     query,
     chunks: slideChunks,
     embeddingById: slideEmbeddingById,
     queryEmbedding,
-  }).slice(0, SECTION_PER_SOURCE_RANK_LIMIT);
+    }).slice(0, SECTION_PER_SOURCE_RANK_LIMIT),
+  });
 
   const mergedCandidates = mergeSourceBalanced({
-    rankedFelix,
-    rankedMaxim,
-    rankedSlides,
+    rankedSources,
     perSourceCap: SECTION_MERGE_PER_SOURCE_CAP,
     candidateLimit: SECTION_MERGE_CANDIDATE_LIMIT,
   });
@@ -1704,6 +1789,16 @@ async function buildRetrievedContextForSectionFromIndex({
   const assembled = assembleSectionContext({
     selectedChunks,
     contextBudgetChars: SECTION_CONTEXT_CHAR_BUDGET,
+    groupOrder: [...indexedContext.notes.map((note) => note.groupKey), "slides"],
+    groupedTitles: {
+      ...Object.fromEntries(
+        indexedContext.notes.map((note) => [
+          note.groupKey,
+          `### Senior Note: ${note.label} (Indexed)`,
+        ]),
+      ),
+      slides: "### Lecture Slides (Indexed)",
+    },
   });
 
   console.log(
@@ -2021,12 +2116,12 @@ async function main() {
     `Allow stale index: ${options.allowStaleIndex ? "enabled" : "disabled"}`,
   );
   console.log(`Topics: ${options.topics.join(", ")}`);
+  console.log(
+    `Senior notes: ${options.seniorNotes.map((note) => `${note.id}=${note.path}`).join(", ")}`,
+  );
 
   const promptNoteFileNames = Array.from(
-    new Set([
-      path.basename(options.felixNotePath),
-      path.basename(options.maximNotePath),
-    ]),
+    new Set(options.seniorNotes.map((note) => path.basename(note.path))),
   );
 
   if (!options.contextScouts) {
@@ -2057,8 +2152,9 @@ async function main() {
   const indexedContext = await prepareIndexedContextSources(options);
 
   if (indexedContext) {
-    console.log(`Indexed Felix chunks: ${indexedContext.felix.chunks.length}`);
-    console.log(`Indexed Maxim chunks: ${indexedContext.maxim.chunks.length}`);
+    for (const note of indexedContext.notes) {
+      console.log(`Indexed ${note.label} chunks: ${note.chunks.length}`);
+    }
     console.log(`Indexed slide files: ${indexedContext.slides.length}`);
     console.log(`Embedding model: ${indexedContext.embeddingModel}`);
 
@@ -2101,8 +2197,9 @@ async function main() {
     );
     const contextSources = await prepareContextSources(options);
 
-    console.log(`Felix chunks: ${contextSources.felixChunks.length}`);
-    console.log(`Maxim chunks: ${contextSources.maximChunks.length}`);
+    for (const noteSource of contextSources.noteSources) {
+      console.log(`${noteSource.label} chunks: ${noteSource.chunks.length}`);
+    }
     console.log(`Slide PDFs: ${contextSources.slideFiles.length}`);
 
     await runWithConcurrency(
@@ -2134,7 +2231,7 @@ async function main() {
   }
 
   throw new Error(
-    `RAG index unavailable. Run: npm run index:rag -- --slides-dir "${options.slidesDir}"`,
+    `RAG index unavailable. Run: ${buildIndexCommandHint(options)}`,
   );
 }
 
