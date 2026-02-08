@@ -6,6 +6,7 @@ import { RootProvider } from "fumadocs-ui/provider/next";
 import { source } from "@/lib/source";
 import { DocsLayout } from "fumadocs-ui/layouts/notebook";
 import { baseOptions } from "@/lib/layout.shared";
+import { SearchWarmup } from "@/components/layout/search-warmup";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,7 +35,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
-        <RootProvider>
+        <RootProvider
+          search={{
+            options: {
+              api: "/api/search",
+              delayMs: 180,
+            },
+          }}
+        >
+          <SearchWarmup />
           <DocsLayout
             {...base}
             nav={{ ...nav, mode: "top" }}
