@@ -49,11 +49,14 @@ function getDepth(heading: Element): number {
   return Number.isFinite(parsed) ? parsed : 2;
 }
 
-function readActiveTabToc(): TOCItemType[] {
-  const panel = document.querySelector<HTMLElement>(
+function readActiveTabToc(): TOCItemType[] | null {
+  const pageRoot = document.getElementById("nd-page");
+  if (!pageRoot) return null;
+
+  const panel = pageRoot.querySelector<HTMLElement>(
     '[role="tabpanel"][data-state="active"]',
   );
-  if (!panel) return [];
+  if (!panel) return null;
 
   const headings = panel.querySelectorAll("h1, h2, h3, h4, h5, h6");
   const usedIds = new Set<string>();
@@ -73,16 +76,21 @@ function readActiveTabToc(): TOCItemType[] {
   return items;
 }
 
-export function TabAwareTOC() {
+interface TabAwareTOCProps {
+  fallbackItems?: readonly TOCItemType[];
+}
+
+export function TabAwareTOC({ fallbackItems = [] }: TabAwareTOCProps) {
   const pathname = usePathname();
-  const [items, setItems] = useState<TOCItemType[]>([]);
+  const [items, setItems] = useState<TOCItemType[]>([...fallbackItems]);
 
   useEffect(() => {
     let frame = 0;
 
     const update = () => {
       frame = window.requestAnimationFrame(() => {
-        setItems(readActiveTabToc());
+        const tabItems = readActiveTabToc();
+        setItems(tabItems ?? [...fallbackItems]);
       });
     };
 
@@ -100,7 +108,7 @@ export function TabAwareTOC() {
       observer.disconnect();
       window.cancelAnimationFrame(frame);
     };
-  }, [pathname]);
+  }, [fallbackItems, pathname]);
 
   return (
     <TOCProvider toc={items}>

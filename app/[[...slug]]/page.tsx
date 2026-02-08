@@ -9,7 +9,6 @@ import { notFound } from "next/navigation";
 import { getMDXComponents } from "@/mdx-components";
 import type { Metadata } from "next";
 import { createRelativeLink } from "fumadocs-ui/mdx";
-import { getTabSectionsForSlug } from "@/lib/tab-routes";
 import { TabAwareTOC } from "@/components/mdx/tab-aware-toc";
 import { LLMCopyButton, ViewOptions } from "@/components/page-actions";
 
@@ -18,23 +17,16 @@ export default async function Page(props: PageProps<"/[[...slug]]">) {
   const page = source.getPage(params.slug);
   if (!page) notFound();
 
-  const tabSections = getTabSectionsForSlug(params.slug);
-  const isTabbedPage = Boolean(tabSections);
-
   const MDX = page.data.body;
 
   return (
     <DocsPage
-      toc={isTabbedPage ? [] : page.data.toc}
+      toc={[]}
       full={page.data.full}
-      tableOfContent={
-        isTabbedPage
-          ? {
-              enabled: true,
-              component: <TabAwareTOC />,
-            }
-          : undefined
-      }
+      tableOfContent={{
+        enabled: true,
+        component: <TabAwareTOC fallbackItems={page.data.toc ?? []} />,
+      }}
     >
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
