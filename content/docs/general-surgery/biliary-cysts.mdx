@@ -1,0 +1,39 @@
+---
+title: Biliary Cysts
+description: "Biliary cysts are congenital cystic dilatations of the intrahepatic and/or extrahepatic bile ducts that predispose to cholangitis, stone formation, and cholangiocarcinoma."
+---
+
+import EtiologySection from "../../fragments/general-surgery/biliary-cysts/etiology.mdx";
+import DdxSection from "../../fragments/general-surgery/biliary-cysts/ddx.mdx";
+import DxSection from "../../fragments/general-surgery/biliary-cysts/dx.mdx";
+import MxSection from "../../fragments/general-surgery/biliary-cysts/mx.mdx";
+import ComplicationsSection from "../../fragments/general-surgery/biliary-cysts/complications.mdx";
+
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+
+<Tab value="Etiology">
+  <EtiologySection components={props.components} />
+
+</Tab>
+
+<Tab value="DDx">
+  <DdxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Dx">
+  <DxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Mx">
+  <MxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Complications">
+  <ComplicationsSection components={props.components} />
+
+</Tab>
+
+</Tabs>

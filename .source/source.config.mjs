@@ -156,6 +156,8 @@ function remarkCitations() {
 }
 
 // source.config.ts
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 var docs = defineDocs({
   dir: "content/docs",
   docs: {
@@ -166,7 +168,8 @@ var docs = defineDocs({
 });
 var source_config_default = defineConfig({
   mdxOptions: {
-    remarkPlugins: [remarkMdxMermaid, remarkCitations]
+    remarkPlugins: [remarkMath, remarkMdxMermaid, remarkCitations],
+    rehypePlugins: (v) => [rehypeKatex, ...v]
   }
 });
 export {

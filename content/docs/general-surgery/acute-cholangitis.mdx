@@ -1,0 +1,39 @@
+---
+title: Acute Cholangitis
+description: "Acute bacterial infection of the biliary tract due to obstruction, classically presenting with Charcot's triad of fever, jaundice, and right upper quadrant pain."
+---
+
+import EtiologySection from "../../fragments/general-surgery/acute-cholangitis/etiology.mdx";
+import DdxSection from "../../fragments/general-surgery/acute-cholangitis/ddx.mdx";
+import DxSection from "../../fragments/general-surgery/acute-cholangitis/dx.mdx";
+import MxSection from "../../fragments/general-surgery/acute-cholangitis/mx.mdx";
+import ComplicationsSection from "../../fragments/general-surgery/acute-cholangitis/complications.mdx";
+
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+
+<Tab value="Etiology">
+  <EtiologySection components={props.components} />
+
+</Tab>
+
+<Tab value="DDx">
+  <DdxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Dx">
+  <DxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Mx">
+  <MxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Complications">
+  <ComplicationsSection components={props.components} />
+
+</Tab>
+
+</Tabs>

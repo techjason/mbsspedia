@@ -1,0 +1,39 @@
+---
+title: Primary Sclerosing Cholangitis
+description: "Primary sclerosing cholangitis is a chronic cholestatic liver disease characterized by progressive inflammation, fibrosis, and stricturing of the intrahepatic and extrahepatic bile ducts, often associated with inflammatory bowel disease."
+---
+
+import EtiologySection from "../../fragments/general-surgery/primary-sclerosing-cholangitis/etiology.mdx";
+import DdxSection from "../../fragments/general-surgery/primary-sclerosing-cholangitis/ddx.mdx";
+import DxSection from "../../fragments/general-surgery/primary-sclerosing-cholangitis/dx.mdx";
+import MxSection from "../../fragments/general-surgery/primary-sclerosing-cholangitis/mx.mdx";
+import ComplicationsSection from "../../fragments/general-surgery/primary-sclerosing-cholangitis/complications.mdx";
+
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+
+<Tab value="Etiology">
+  <EtiologySection components={props.components} />
+
+</Tab>
+
+<Tab value="DDx">
+  <DdxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Dx">
+  <DxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Mx">
+  <MxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Complications">
+  <ComplicationsSection components={props.components} />
+
+</Tab>
+
+</Tabs>

@@ -1,0 +1,39 @@
+---
+title: Gallstones
+description: "Solid deposits, primarily of cholesterol or bilirubin, that form within the gallbladder and can obstruct biliary flow, causing biliary colic, cholecystitis, or other complications."
+---
+
+import EtiologySection from "../../fragments/general-surgery/gallstones/etiology.mdx";
+import DdxSection from "../../fragments/general-surgery/gallstones/ddx.mdx";
+import DxSection from "../../fragments/general-surgery/gallstones/dx.mdx";
+import MxSection from "../../fragments/general-surgery/gallstones/mx.mdx";
+import ComplicationsSection from "../../fragments/general-surgery/gallstones/complications.mdx";
+
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+
+<Tab value="Etiology">
+  <EtiologySection components={props.components} />
+
+</Tab>
+
+<Tab value="DDx">
+  <DdxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Dx">
+  <DxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Mx">
+  <MxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Complications">
+  <ComplicationsSection components={props.components} />
+
+</Tab>
+
+</Tabs>

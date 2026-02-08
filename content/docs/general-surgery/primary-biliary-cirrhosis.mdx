@@ -1,0 +1,39 @@
+---
+title: Primary Biliary Cirrhosis
+description: "Primary biliary cirrhosis is a chronic autoimmune liver disease characterized by progressive destruction of intrahepatic bile ducts, leading to cholestasis, fibrosis, and eventually cirrhosis."
+---
+
+import EtiologySection from "../../fragments/general-surgery/primary-biliary-cirrhosis/etiology.mdx";
+import DdxSection from "../../fragments/general-surgery/primary-biliary-cirrhosis/ddx.mdx";
+import DxSection from "../../fragments/general-surgery/primary-biliary-cirrhosis/dx.mdx";
+import MxSection from "../../fragments/general-surgery/primary-biliary-cirrhosis/mx.mdx";
+import ComplicationsSection from "../../fragments/general-surgery/primary-biliary-cirrhosis/complications.mdx";
+
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+
+<Tab value="Etiology">
+  <EtiologySection components={props.components} />
+
+</Tab>
+
+<Tab value="DDx">
+  <DdxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Dx">
+  <DxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Mx">
+  <MxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Complications">
+  <ComplicationsSection components={props.components} />
+
+</Tab>
+
+</Tabs>
