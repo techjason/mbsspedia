@@ -1,0 +1,39 @@
+---
+title: Cholangiocarcinoma
+description: "Cholangiocarcinoma is a malignant neoplasm arising from the epithelial cells of the intrahepatic or extrahepatic bile ducts, often presenting with obstructive jaundice and carrying a poor prognosis."
+---
+
+import EtiologySection from "../../fragments/general-surgery/cholangiocarcinoma/etiology.mdx";
+import DdxSection from "../../fragments/general-surgery/cholangiocarcinoma/ddx.mdx";
+import DxSection from "../../fragments/general-surgery/cholangiocarcinoma/dx.mdx";
+import MxSection from "../../fragments/general-surgery/cholangiocarcinoma/mx.mdx";
+import ComplicationsSection from "../../fragments/general-surgery/cholangiocarcinoma/complications.mdx";
+
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+
+<Tab value="Etiology">
+  <EtiologySection components={props.components} />
+
+</Tab>
+
+<Tab value="DDx">
+  <DdxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Dx">
+  <DxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Mx">
+  <MxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Complications">
+  <ComplicationsSection components={props.components} />
+
+</Tab>
+
+</Tabs>
