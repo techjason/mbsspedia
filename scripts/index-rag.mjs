@@ -34,6 +34,7 @@ const execFileAsync = promisify(execFile);
 
 const DEFAULT_SPECIALTY = "general-surgery";
 const DEFAULT_SLIDES_DIR = "/Users/jason/Documents/BlockBSlides";
+const DEFAULT_PSYCHIATRY_SLIDES_DIR = "/Users/jason/Documents/PyschiatrySlides";
 const DEFAULT_CACHE_DIR = ".cache/rag";
 const DEFAULT_OCR_POLICY = "smart";
 const SUMMARY_MAX_CHARS = 7000;
@@ -41,6 +42,13 @@ const SUMMARY_MAX_CHARS = 7000;
 const DEFAULT_SENIOR_NOTES = [
   { id: "felix", path: "scripts/felixlai.md", label: "Felix Lai" },
   { id: "maxim", path: "scripts/maxim.md", label: "Maxim" },
+];
+const DEFAULT_PSYCHIATRY_SENIOR_NOTES = [
+  {
+    id: "ryanho-psych",
+    path: "scripts/ryanho-psych.md",
+    label: "Ryan Ho (Psychiatry)",
+  },
 ];
 
 function printUsage() {
@@ -53,7 +61,10 @@ Options:
                                Format: "<label>=<path>" or "<path>".
   --felix-note "<path>"        Backward-compatible alias for senior note slot #1.
   --maxim-note "<path>"        Backward-compatible alias for senior note slot #2.
-  --psychiatry                 Shortcut for --specialty psychiatry
+  --psychiatry                 Shortcut preset:
+                               specialty=psychiatry
+                               slides-dir=${DEFAULT_PSYCHIATRY_SLIDES_DIR}
+                               senior-note=${DEFAULT_PSYCHIATRY_SENIOR_NOTES[0].path}
   --slides-dir "<path>"         Default: ${DEFAULT_SLIDES_DIR}
   --embedding-model "<id>"      Default: ${DEFAULT_EMBEDDING_MODEL}
   --cache-dir "<path>"          Default: ${DEFAULT_CACHE_DIR}
@@ -63,6 +74,7 @@ Options:
 
 Examples:
   npm run index:rag -- --slides-dir "/Users/jason/Documents/BlockBSlides"
+  npm run index:rag -- --psychiatry
   npm run index:rag -- --specialty psychiatry --senior-note "/path/to/psychiatry-senior.md" --slides-dir "/path/to/psychiatry/slides"
   npm run index:rag -- --force --ocr-policy always
 `);
@@ -143,8 +155,10 @@ function parseArgs(argv) {
 
     if (arg === "--psychiatry" || arg === "-psychiatry") {
       options.specialty = "psychiatry";
-      options.seniorNotes = [];
-      options.seniorNotesExplicit = true;
+      options.seniorNotes = DEFAULT_PSYCHIATRY_SENIOR_NOTES.slice();
+      options.seniorNotesExplicit = false;
+      options.slidesDir = DEFAULT_PSYCHIATRY_SLIDES_DIR;
+      options.slidesDirExplicit = false;
       continue;
     }
 
@@ -239,17 +253,26 @@ function parseArgs(argv) {
     options.cacheDir = `${DEFAULT_CACHE_DIR}/${normalizedSpecialty}`;
   }
 
+  if (normalizedSpecialty === "psychiatry") {
+    if (!options.seniorNotesExplicit) {
+      options.seniorNotes = DEFAULT_PSYCHIATRY_SENIOR_NOTES.slice();
+    }
+    if (!options.slidesDirExplicit) {
+      options.slidesDir = DEFAULT_PSYCHIATRY_SLIDES_DIR;
+    }
+  }
+
   if (options.seniorNotes.length === 0) {
     throw new Error("At least one senior note is required. Use --senior-note.");
   }
 
   if (normalizedSpecialty !== DEFAULT_SPECIALTY) {
-    if (!options.seniorNotesExplicit) {
+    if (normalizedSpecialty !== "psychiatry" && !options.seniorNotesExplicit) {
       throw new Error(
         `Specialty "${normalizedSpecialty}" requires explicit senior notes. Use --senior-note "<path>".`,
       );
     }
-    if (!options.slidesDirExplicit) {
+    if (normalizedSpecialty !== "psychiatry" && !options.slidesDirExplicit) {
       throw new Error(
         `Specialty "${normalizedSpecialty}" requires an explicit slides directory. Use --slides-dir "<path>".`,
       );

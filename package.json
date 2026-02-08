@@ -8,10 +8,10 @@
     "start": "next start",
     "lint": "eslint",
     "index:rag": "node scripts/index-rag.mjs",
-    "index:rag:psychiatry": "node scripts/index-rag.mjs --specialty psychiatry",
+    "index:rag:psychiatry": "node scripts/index-rag.mjs --psychiatry",
     "generate:notes": "node scripts/generate-notes.mjs",
     "generate:notes:surgery": "node scripts/generate-notes.mjs -surgery",
-    "generate:notes:psychiatry": "node scripts/generate-notes.mjs --specialty psychiatry"
+    "generate:notes:psychiatry": "node scripts/generate-notes.mjs --psychiatry"
   },
   "dependencies": {
     "@ai-sdk/devtools": "^0.0.12",

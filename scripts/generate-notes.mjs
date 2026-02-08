@@ -119,9 +119,17 @@ const SECTION_TAB_NAMES = ["Etiology", "DDx", "Dx", "Mx", "Complications"];
 const DEFAULT_SPECIALTY = "general-surgery";
 const SURGERY_SAMPLE_NOTE_PATH = "scripts/felixlai.md";
 const SURGERY_SECONDARY_NOTE_PATH = "scripts/maxim.md";
+const DEFAULT_PSYCHIATRY_SLIDES_DIR = "/Users/jason/Documents/PyschiatrySlides";
 const DEFAULT_SENIOR_NOTES = [
   { id: "felix", path: SURGERY_SAMPLE_NOTE_PATH, label: "Felix Lai" },
   { id: "maxim", path: SURGERY_SECONDARY_NOTE_PATH, label: "Maxim" },
+];
+const DEFAULT_PSYCHIATRY_SENIOR_NOTES = [
+  {
+    id: "ryanho-psych",
+    path: "scripts/ryanho-psych.md",
+    label: "Ryan Ho (Psychiatry)",
+  },
 ];
 const DEFAULT_SLIDES_DIR = "/Users/jason/Documents/BlockBSlides";
 const DEFAULT_CACHE_DIR = ".cache/rag";
@@ -194,8 +202,11 @@ function printUsage() {
 Options:
   --topics "<topic1,topic2>"   Comma-separated topics.
   -surgery, --surgery          Use surgery preset defaults.
-  -psychiatry, --psychiatry    Shortcut for --specialty psychiatry (requires explicit --senior-note and --slides-dir).
-  --model "<provider/model>"   Generation model. Default: deepseek/deepseek-v3.2-thinking
+  -psychiatry, --psychiatry    Shortcut preset:
+                               specialty=psychiatry
+                               slides-dir=${DEFAULT_PSYCHIATRY_SLIDES_DIR}
+                               senior-note=${DEFAULT_PSYCHIATRY_SENIOR_NOTES[0].path}
+  --model "<provider/model>"   Generation model. Default: anthropic/claude-opus-4.6
   --selection-model "<provider/model>" Selection model for scouts/slides. Default: anthropic/claude-opus-4.6
   --specialty "<folder-name>"  Default: ${DEFAULT_SPECIALTY}
   --senior-note "<path>"       Add a senior note source (repeatable). Format: "<label>=<path>" or "<path>".
@@ -217,6 +228,7 @@ Examples:
   npm run generate:notes -- "acute pancreatitis"
   npm run generate:notes -- --topic-concurrency 3 "acute pancreatitis" "appendicitis"
   npm run generate:notes -- --selection-model "anthropic/claude-opus-4.6" --top-slides 5 "acute pancreatitis"
+  npm run generate:notes -- --psychiatry "major depressive disorder"
   npm run generate:notes -- --specialty psychiatry --senior-note "/path/to/psychiatry-senior.md" --slides-dir "/path/to/psychiatry/slides" "major depressive disorder"
 `);
 }
@@ -272,7 +284,7 @@ function upsertSeniorNote(notes, entry) {
 
 function parseArgs(argv) {
   const options = {
-    model: "deepseek/deepseek-v3.2-thinking",
+    model: "anthropic/claude-opus-4.6",
     selectionModel: "anthropic/claude-opus-4.6",
     specialty: DEFAULT_SPECIALTY,
     contextScouts: true,
@@ -329,8 +341,10 @@ function parseArgs(argv) {
 
     if (arg === "-psychiatry" || arg === "--psychiatry") {
       options.specialty = "psychiatry";
-      options.seniorNotes = [];
-      options.seniorNotesExplicit = true;
+      options.seniorNotes = DEFAULT_PSYCHIATRY_SENIOR_NOTES.slice();
+      options.seniorNotesExplicit = false;
+      options.slidesDir = DEFAULT_PSYCHIATRY_SLIDES_DIR;
+      options.slidesDirExplicit = false;
       continue;
     }
 
@@ -464,17 +478,26 @@ function parseArgs(argv) {
     options.cacheDir = `${DEFAULT_CACHE_DIR}/${normalizedSpecialty}`;
   }
 
+  if (normalizedSpecialty === "psychiatry") {
+    if (!options.seniorNotesExplicit) {
+      options.seniorNotes = DEFAULT_PSYCHIATRY_SENIOR_NOTES.slice();
+    }
+    if (!options.slidesDirExplicit) {
+      options.slidesDir = DEFAULT_PSYCHIATRY_SLIDES_DIR;
+    }
+  }
+
   if (options.seniorNotes.length === 0) {
     throw new Error("At least one senior note is required. Use --senior-note.");
   }
 
   if (normalizedSpecialty !== DEFAULT_SPECIALTY) {
-    if (!options.seniorNotesExplicit) {
+    if (normalizedSpecialty !== "psychiatry" && !options.seniorNotesExplicit) {
       throw new Error(
         `Specialty "${normalizedSpecialty}" requires explicit senior notes. Use --senior-note "<path>".`,
       );
     }
-    if (!options.slidesDirExplicit) {
+    if (normalizedSpecialty !== "psychiatry" && !options.slidesDirExplicit) {
       throw new Error(
         `Specialty "${normalizedSpecialty}" requires an explicit slides directory. Use --slides-dir "<path>".`,
       );
