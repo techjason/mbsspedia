@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Zoom from "react-medium-image-zoom";
 import "../../styles/image-zoom.css";
 
@@ -22,11 +23,13 @@ export function DiagramCard({ src, alt, caption }: DiagramCardProps) {
       >
         <div className="group w-[140px] cursor-zoom-in overflow-hidden rounded-lg border border-fd-border bg-fd-card shadow-sm transition-shadow hover:shadow-md">
           <div className="flex items-center justify-center bg-fd-muted/40 p-2">
-            <img
+            <Image
               src={src}
               alt={alt ?? caption ?? "Diagram"}
+              width={140}
+              height={100}
+              sizes="140px"
               className="h-[100px] w-auto object-contain"
-              loading="lazy"
             />
           </div>
           {caption && (

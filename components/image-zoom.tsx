@@ -30,6 +30,8 @@ function getImageSrc(src: ImageProps['src']): string {
 }
 
 export function ImageZoom({ zoomInProps, children, rmiz, ...props }: ImageZoomProps) {
+  const alt = typeof props.alt === 'string' ? props.alt : '';
+
   return (
     <Zoom
       zoomMargin={20}
@@ -42,7 +44,11 @@ export function ImageZoom({ zoomInProps, children, rmiz, ...props }: ImageZoomPr
       }}
     >
       {children ?? (
-        <Image sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 900px" {...props} />
+        <Image
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 900px"
+          alt={alt}
+          {...props}
+        />
       )}
     </Zoom>
   );
