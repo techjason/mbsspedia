@@ -1,0 +1,39 @@
+---
+title: Dementia
+description: "Dementia is a chronic, progressive decline in cognitive function—including memory, reasoning, and behavior—sufficient to impair daily functioning, resulting from various neurodegenerative or vascular conditions."
+---
+
+import EtiologySection from "../../fragments/psychiatry/dementia/etiology.mdx";
+import DdxSection from "../../fragments/psychiatry/dementia/ddx.mdx";
+import DxSection from "../../fragments/psychiatry/dementia/dx.mdx";
+import MxSection from "../../fragments/psychiatry/dementia/mx.mdx";
+import ComplicationsSection from "../../fragments/psychiatry/dementia/complications.mdx";
+
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+
+<Tab value="Etiology">
+  <EtiologySection components={props.components} />
+
+</Tab>
+
+<Tab value="DDx">
+  <DdxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Dx">
+  <DxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Mx">
+  <MxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Complications">
+  <ComplicationsSection components={props.components} />
+
+</Tab>
+
+</Tabs>

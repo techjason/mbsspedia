@@ -1,0 +1,39 @@
+---
+title: Assessment In Child Psychiatry
+description: "Assessment in child psychiatry is a comprehensive, developmentally informed evaluation integrating clinical interviews with the child and caregivers, behavioral observations, standardized rating scales, and collateral information to diagnose and formulate mental health problems in children and adolescents."
+---
+
+import EtiologySection from "../../fragments/psychiatry/assessment-in-child-psychiatry/etiology.mdx";
+import DdxSection from "../../fragments/psychiatry/assessment-in-child-psychiatry/ddx.mdx";
+import DxSection from "../../fragments/psychiatry/assessment-in-child-psychiatry/dx.mdx";
+import MxSection from "../../fragments/psychiatry/assessment-in-child-psychiatry/mx.mdx";
+import ComplicationsSection from "../../fragments/psychiatry/assessment-in-child-psychiatry/complications.mdx";
+
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+
+<Tab value="Etiology">
+  <EtiologySection components={props.components} />
+
+</Tab>
+
+<Tab value="DDx">
+  <DdxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Dx">
+  <DxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Mx">
+  <MxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Complications">
+  <ComplicationsSection components={props.components} />
+
+</Tab>
+
+</Tabs>

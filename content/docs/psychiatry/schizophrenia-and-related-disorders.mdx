@@ -1,0 +1,39 @@
+---
+title: Schizophrenia And Related Disorders
+description: "Schizophrenia and related disorders are a group of chronic psychiatric conditions characterized by disturbances in thought, perception, affect, and behavior, including symptoms such as delusions, hallucinations, disorganized thinking, and negative symptoms."
+---
+
+import EtiologySection from "../../fragments/psychiatry/schizophrenia-and-related-disorders/etiology.mdx";
+import DdxSection from "../../fragments/psychiatry/schizophrenia-and-related-disorders/ddx.mdx";
+import DxSection from "../../fragments/psychiatry/schizophrenia-and-related-disorders/dx.mdx";
+import MxSection from "../../fragments/psychiatry/schizophrenia-and-related-disorders/mx.mdx";
+import ComplicationsSection from "../../fragments/psychiatry/schizophrenia-and-related-disorders/complications.mdx";
+
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+
+<Tab value="Etiology">
+  <EtiologySection components={props.components} />
+
+</Tab>
+
+<Tab value="DDx">
+  <DdxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Dx">
+  <DxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Mx">
+  <MxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Complications">
+  <ComplicationsSection components={props.components} />
+
+</Tab>
+
+</Tabs>

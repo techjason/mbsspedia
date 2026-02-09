@@ -1,0 +1,39 @@
+---
+title: Autistic Spectrum Disorder
+description: "Autism spectrum disorder is a neurodevelopmental condition characterized by persistent deficits in social communication and interaction along with restricted, repetitive patterns of behavior, interests, or activities."
+---
+
+import EtiologySection from "../../fragments/psychiatry/autistic-spectrum-disorder-asd/etiology.mdx";
+import DdxSection from "../../fragments/psychiatry/autistic-spectrum-disorder-asd/ddx.mdx";
+import DxSection from "../../fragments/psychiatry/autistic-spectrum-disorder-asd/dx.mdx";
+import MxSection from "../../fragments/psychiatry/autistic-spectrum-disorder-asd/mx.mdx";
+import ComplicationsSection from "../../fragments/psychiatry/autistic-spectrum-disorder-asd/complications.mdx";
+
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+
+<Tab value="Etiology">
+  <EtiologySection components={props.components} />
+
+</Tab>
+
+<Tab value="DDx">
+  <DdxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Dx">
+  <DxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Mx">
+  <MxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Complications">
+  <ComplicationsSection components={props.components} />
+
+</Tab>
+
+</Tabs>

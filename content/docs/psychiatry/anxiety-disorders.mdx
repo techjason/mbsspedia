@@ -1,0 +1,39 @@
+---
+title: Anxiety Disorders
+description: "Anxiety disorders are a group of mental health conditions characterized by excessive, persistent fear or worry that is disproportionate to the actual threat and causes significant functional impairment."
+---
+
+import EtiologySection from "../../fragments/psychiatry/anxiety-disorders/etiology.mdx";
+import DdxSection from "../../fragments/psychiatry/anxiety-disorders/ddx.mdx";
+import DxSection from "../../fragments/psychiatry/anxiety-disorders/dx.mdx";
+import MxSection from "../../fragments/psychiatry/anxiety-disorders/mx.mdx";
+import ComplicationsSection from "../../fragments/psychiatry/anxiety-disorders/complications.mdx";
+
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+
+<Tab value="Etiology">
+  <EtiologySection components={props.components} />
+
+</Tab>
+
+<Tab value="DDx">
+  <DdxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Dx">
+  <DxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Mx">
+  <MxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Complications">
+  <ComplicationsSection components={props.components} />
+
+</Tab>
+
+</Tabs>

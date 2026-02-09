@@ -1,0 +1,39 @@
+---
+title: Approach To Mood Disturbances
+description: "A systematic clinical evaluation of persistent alterations in emotional state—including depression, mania, and mixed episodes—through comprehensive history, mental status examination, and differential diagnosis to identify underlying psychiatric, medical, or substance-related etiologies."
+---
+
+import EtiologySection from "../../fragments/psychiatry/approach-to-mood-disturbances/etiology.mdx";
+import DdxSection from "../../fragments/psychiatry/approach-to-mood-disturbances/ddx.mdx";
+import DxSection from "../../fragments/psychiatry/approach-to-mood-disturbances/dx.mdx";
+import MxSection from "../../fragments/psychiatry/approach-to-mood-disturbances/mx.mdx";
+import ComplicationsSection from "../../fragments/psychiatry/approach-to-mood-disturbances/complications.mdx";
+
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+
+<Tab value="Etiology">
+  <EtiologySection components={props.components} />
+
+</Tab>
+
+<Tab value="DDx">
+  <DdxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Dx">
+  <DxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Mx">
+  <MxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Complications">
+  <ComplicationsSection components={props.components} />
+
+</Tab>
+
+</Tabs>

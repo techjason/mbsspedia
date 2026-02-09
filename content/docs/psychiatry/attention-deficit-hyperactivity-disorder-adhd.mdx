@@ -1,0 +1,39 @@
+---
+title: Attention-deficit Hyperactivity Disorder
+description: "Attention-deficit hyperactivity disorder is a neurodevelopmental disorder characterized by persistent patterns of inattention, hyperactivity, and impulsivity that impair functioning across multiple settings."
+---
+
+import EtiologySection from "../../fragments/psychiatry/attention-deficit-hyperactivity-disorder-adhd/etiology.mdx";
+import DdxSection from "../../fragments/psychiatry/attention-deficit-hyperactivity-disorder-adhd/ddx.mdx";
+import DxSection from "../../fragments/psychiatry/attention-deficit-hyperactivity-disorder-adhd/dx.mdx";
+import MxSection from "../../fragments/psychiatry/attention-deficit-hyperactivity-disorder-adhd/mx.mdx";
+import ComplicationsSection from "../../fragments/psychiatry/attention-deficit-hyperactivity-disorder-adhd/complications.mdx";
+
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+
+<Tab value="Etiology">
+  <EtiologySection components={props.components} />
+
+</Tab>
+
+<Tab value="DDx">
+  <DdxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Dx">
+  <DxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Mx">
+  <MxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Complications">
+  <ComplicationsSection components={props.components} />
+
+</Tab>
+
+</Tabs>

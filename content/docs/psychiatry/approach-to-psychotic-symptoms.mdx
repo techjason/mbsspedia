@@ -1,0 +1,39 @@
+---
+title: Approach To Psychotic Symptoms
+description: "A systematic clinical evaluation of hallucinations, delusions, and disorganized thinking to differentiate primary psychotic disorders from secondary causes such as medical conditions, substance use, and mood disorders."
+---
+
+import EtiologySection from "../../fragments/psychiatry/approach-to-psychotic-symptoms/etiology.mdx";
+import DdxSection from "../../fragments/psychiatry/approach-to-psychotic-symptoms/ddx.mdx";
+import DxSection from "../../fragments/psychiatry/approach-to-psychotic-symptoms/dx.mdx";
+import MxSection from "../../fragments/psychiatry/approach-to-psychotic-symptoms/mx.mdx";
+import ComplicationsSection from "../../fragments/psychiatry/approach-to-psychotic-symptoms/complications.mdx";
+
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+
+<Tab value="Etiology">
+  <EtiologySection components={props.components} />
+
+</Tab>
+
+<Tab value="DDx">
+  <DdxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Dx">
+  <DxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Mx">
+  <MxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Complications">
+  <ComplicationsSection components={props.components} />
+
+</Tab>
+
+</Tabs>

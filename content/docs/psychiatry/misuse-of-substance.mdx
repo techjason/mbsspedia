@@ -1,0 +1,39 @@
+---
+title: Misuse Of Substance
+description: "Misuse of substance is the harmful or hazardous use of psychoactive substances, including alcohol and illicit drugs, in a manner that deviates from approved medical or social patterns, leading to adverse physical, psychological, or social consequences."
+---
+
+import EtiologySection from "../../fragments/psychiatry/misuse-of-substance/etiology.mdx";
+import DdxSection from "../../fragments/psychiatry/misuse-of-substance/ddx.mdx";
+import DxSection from "../../fragments/psychiatry/misuse-of-substance/dx.mdx";
+import MxSection from "../../fragments/psychiatry/misuse-of-substance/mx.mdx";
+import ComplicationsSection from "../../fragments/psychiatry/misuse-of-substance/complications.mdx";
+
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+
+<Tab value="Etiology">
+  <EtiologySection components={props.components} />
+
+</Tab>
+
+<Tab value="DDx">
+  <DdxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Dx">
+  <DxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Mx">
+  <MxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Complications">
+  <ComplicationsSection components={props.components} />
+
+</Tab>
+
+</Tabs>

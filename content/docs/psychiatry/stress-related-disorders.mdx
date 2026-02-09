@@ -1,0 +1,39 @@
+---
+title: Stress-related Disorders
+description: "Stress-related disorders are a group of conditions in which identifiable psychosocial stressors or traumatic events lead to clinically significant emotional, behavioral, or physiological symptoms, including acute stress disorder, post-traumatic stress disorder, and adjustment disorders."
+---
+
+import EtiologySection from "../../fragments/psychiatry/stress-related-disorders/etiology.mdx";
+import DdxSection from "../../fragments/psychiatry/stress-related-disorders/ddx.mdx";
+import DxSection from "../../fragments/psychiatry/stress-related-disorders/dx.mdx";
+import MxSection from "../../fragments/psychiatry/stress-related-disorders/mx.mdx";
+import ComplicationsSection from "../../fragments/psychiatry/stress-related-disorders/complications.mdx";
+
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+
+<Tab value="Etiology">
+  <EtiologySection components={props.components} />
+
+</Tab>
+
+<Tab value="DDx">
+  <DdxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Dx">
+  <DxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Mx">
+  <MxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Complications">
+  <ComplicationsSection components={props.components} />
+
+</Tab>
+
+</Tabs>

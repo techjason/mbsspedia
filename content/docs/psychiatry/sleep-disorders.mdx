@@ -1,0 +1,39 @@
+---
+title: Sleep Disorders
+description: "Sleep disorders are a group of conditions that impair the ability to initiate, maintain, or regulate sleep or wakefulness, resulting in disrupted sleep patterns and daytime functional impairment."
+---
+
+import EtiologySection from "../../fragments/psychiatry/sleep-disorders/etiology.mdx";
+import DdxSection from "../../fragments/psychiatry/sleep-disorders/ddx.mdx";
+import DxSection from "../../fragments/psychiatry/sleep-disorders/dx.mdx";
+import MxSection from "../../fragments/psychiatry/sleep-disorders/mx.mdx";
+import ComplicationsSection from "../../fragments/psychiatry/sleep-disorders/complications.mdx";
+
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+
+<Tab value="Etiology">
+  <EtiologySection components={props.components} />
+
+</Tab>
+
+<Tab value="DDx">
+  <DdxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Dx">
+  <DxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Mx">
+  <MxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Complications">
+  <ComplicationsSection components={props.components} />
+
+</Tab>
+
+</Tabs>

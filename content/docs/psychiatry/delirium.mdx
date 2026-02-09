@@ -1,0 +1,39 @@
+---
+title: Delirium
+description: "Delirium is an acute, fluctuating disturbance of consciousness with impaired attention and cognition, typically caused by an underlying medical condition, substance use, or withdrawal."
+---
+
+import EtiologySection from "../../fragments/psychiatry/delirium/etiology.mdx";
+import DdxSection from "../../fragments/psychiatry/delirium/ddx.mdx";
+import DxSection from "../../fragments/psychiatry/delirium/dx.mdx";
+import MxSection from "../../fragments/psychiatry/delirium/mx.mdx";
+import ComplicationsSection from "../../fragments/psychiatry/delirium/complications.mdx";
+
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+
+<Tab value="Etiology">
+  <EtiologySection components={props.components} />
+
+</Tab>
+
+<Tab value="DDx">
+  <DdxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Dx">
+  <DxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Mx">
+  <MxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Complications">
+  <ComplicationsSection components={props.components} />
+
+</Tab>
+
+</Tabs>

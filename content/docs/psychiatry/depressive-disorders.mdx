@@ -1,0 +1,39 @@
+---
+title: Depressive Disorders
+description: "Depressive disorders are a group of mood disorders characterized by persistent sadness, loss of interest or pleasure, and associated cognitive and somatic symptoms that impair daily functioning."
+---
+
+import EtiologySection from "../../fragments/psychiatry/depressive-disorders/etiology.mdx";
+import DdxSection from "../../fragments/psychiatry/depressive-disorders/ddx.mdx";
+import DxSection from "../../fragments/psychiatry/depressive-disorders/dx.mdx";
+import MxSection from "../../fragments/psychiatry/depressive-disorders/mx.mdx";
+import ComplicationsSection from "../../fragments/psychiatry/depressive-disorders/complications.mdx";
+
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+
+<Tab value="Etiology">
+  <EtiologySection components={props.components} />
+
+</Tab>
+
+<Tab value="DDx">
+  <DdxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Dx">
+  <DxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Mx">
+  <MxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Complications">
+  <ComplicationsSection components={props.components} />
+
+</Tab>
+
+</Tabs>
