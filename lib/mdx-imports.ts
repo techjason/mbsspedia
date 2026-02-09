@@ -1,11 +1,5 @@
-import { source } from "@/lib/source";
-import type { OramaDocument } from "fumadocs-core/search/orama-cloud";
-import {
-  structure,
-  type StructuredData,
-} from "fumadocs-core/mdx-plugins/remark-structure";
-import { dirname, resolve } from "node:path";
 import { readFile } from "node:fs/promises";
+import { dirname, resolve } from "node:path";
 
 const FRONTMATTER_RE = /^---[\s\S]*?\n---\n?/;
 const IMPORT_LINE_RE =
@@ -19,7 +13,7 @@ interface ResolvedImport {
 
 const fileContentCache = new Map<string, Promise<string>>();
 const resolvedImportCache = new Map<string, Promise<ResolvedImport | null>>();
-const importedStructuredDataCache = new Map<string, Promise<StructuredData | null>>();
+const importedMdxTextCache = new Map<string, Promise<string>>();
 
 function readFileCached(filePath: string): Promise<string> {
   const cached = fileContentCache.get(filePath);
@@ -30,7 +24,7 @@ function readFileCached(filePath: string): Promise<string> {
   return pending;
 }
 
-function cleanMdxForIndexing(content: string): string {
+export function cleanMdxForIndexing(content: string): string {
   return content
     .replace(FRONTMATTER_RE, "")
     .replace(IMPORT_EXPORT_LINE_RE, "")
@@ -57,7 +51,7 @@ async function resolveLocalMdxImport(
         const content = await readFileCached(candidate);
         return { path: candidate, content };
       } catch {
-        // continue through candidate list
+        // continue
       }
     }
 
@@ -108,65 +102,29 @@ async function resolvePageAbsolutePath(pagePath: string): Promise<string | null>
       await readFileCached(candidate);
       return candidate;
     } catch {
-      // try next path
+      // continue
     }
   }
 
   return null;
 }
 
-async function getImportedStructuredData(pagePath: string): Promise<StructuredData | null> {
+export async function getImportedMdxTextForPage(pagePath: string): Promise<string> {
   const absolutePath = await resolvePageAbsolutePath(pagePath);
-  if (!absolutePath) return null;
+  if (!absolutePath) return "";
 
-  const cached = importedStructuredDataCache.get(absolutePath);
+  const cached = importedMdxTextCache.get(absolutePath);
   if (cached) return cached;
 
-  const pending = (async (): Promise<StructuredData | null> => {
+  const pending = (async (): Promise<string> => {
     const rawPage = await readFileCached(absolutePath);
-    const importedText = await collectImportedMdxText(
+    return collectImportedMdxText(
       rawPage,
       dirname(absolutePath),
       new Set<string>([absolutePath]),
     );
-    if (!importedText) return null;
-    return structure(importedText);
   })();
 
-  importedStructuredDataCache.set(absolutePath, pending);
+  importedMdxTextCache.set(absolutePath, pending);
   return pending;
-}
-
-function mergeStructuredData(
-  primary: StructuredData | undefined,
-  imported: StructuredData | null,
-): StructuredData {
-  const base = primary ?? { headings: [], contents: [] };
-  if (!imported) return base;
-
-  return {
-    headings: [...base.headings, ...imported.headings],
-    contents: [...base.contents, ...imported.contents],
-  };
-}
-
-export async function exportSearchIndexes(): Promise<OramaDocument[]> {
-  const pages = source.getPages();
-  const documents = await Promise.all(
-    pages.map(async (page) => {
-      const importedStructuredData = await getImportedStructuredData(page.path);
-      return {
-        id: page.url,
-        structured: mergeStructuredData(
-          page.data.structuredData,
-          importedStructuredData,
-        ),
-        url: page.url,
-        title: page.data.title,
-        description: page.data.description,
-      } satisfies OramaDocument;
-    }),
-  );
-
-  return documents;
 }

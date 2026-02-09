@@ -5,11 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "npm run search:sync:cloud:if-configured",
     "start": "next start",
     "lint": "eslint",
-    "search:sync:cloud": "node scripts/sync-content.mjs",
-    "search:sync:cloud:if-configured": "node scripts/sync-content.mjs --if-configured",
     "index:rag": "node scripts/index-rag.mjs",
     "index:rag:psychiatry": "node scripts/index-rag.mjs --psychiatry",
     "generate:notes": "node scripts/generate-notes.mjs",

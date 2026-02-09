@@ -60,19 +60,10 @@ npm run start
 Search is configured to use Orama Cloud when the following environment
 variables are available:
 
-- `NEXT_PUBLIC_ORAMA_PROJECT_ID`
-- `NEXT_PUBLIC_ORAMA_DATASOURCE_ID`
+- `NEXT_PUBLIC_ORAMA_ENDPOINT` (or `NEXT_PUBLIC_ORAMA_API_ENDPOINT`)
 - `NEXT_PUBLIC_ORAMA_API_KEY`
-- `ORAMA_PRIVATE_API_KEY`
 
-To sync indexes manually after a build:
-
-```bash
-npm run search:sync:cloud
-```
-
-`npm run build` already runs a postbuild sync step that skips automatically if
-the required Orama Cloud environment variables are missing.
+Indexing/import is managed from the Orama Cloud dashboard (website importer).
 
 ### Lint
 
