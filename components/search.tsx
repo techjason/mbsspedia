@@ -4,7 +4,6 @@ import {
   SearchDialog,
   SearchDialogClose,
   SearchDialogContent,
-  SearchDialogFooter,
   SearchDialogHeader,
   SearchDialogIcon,
   SearchDialogInput,
@@ -37,6 +36,12 @@ export default function DocsSearchDialog(props: SharedProps) {
           <SearchDialogInput />
           <SearchDialogClose />
         </SearchDialogHeader>
+        {query.isLoading && (
+          <div className="flex items-center gap-2 px-3 py-2 text-xs text-fd-muted-foreground">
+            <span className="inline-block h-3 w-3 animate-spin rounded-full border border-current border-t-transparent" />
+            Searching...
+          </div>
+        )}
         <SearchDialogList items={query.data !== "empty" ? query.data : null} />
         {query.error && (
           <div className="px-3 pb-2 text-xs text-red-400">
@@ -44,15 +49,6 @@ export default function DocsSearchDialog(props: SharedProps) {
             <code>MIXEDBREAD_STORE_IDENTIFIER</code> on the server.
           </div>
         )}
-        <SearchDialogFooter>
-          <a
-            href="https://mixedbread.com"
-            rel="noreferrer noopener"
-            className="ms-auto text-xs text-fd-muted-foreground"
-          >
-            Search powered by Mixedbread
-          </a>
-        </SearchDialogFooter>
       </SearchDialogContent>
     </SearchDialog>
   );
