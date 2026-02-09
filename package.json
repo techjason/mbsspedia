@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "index:rag": "node scripts/index-rag.mjs",
+    "index:rag:surgery": "node scripts/index-rag.mjs --surgery",
     "index:rag:psychiatry": "node scripts/index-rag.mjs --psychiatry",
     "generate:notes": "node scripts/generate-notes.mjs",
     "generate:notes:surgery": "node scripts/generate-notes.mjs -surgery",

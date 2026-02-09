@@ -132,7 +132,8 @@ const DEFAULT_PSYCHIATRY_SENIOR_NOTES = [
   },
 ];
 const DEFAULT_SLIDES_DIR = "/Users/jason/Documents/BlockBSlides";
-const DEFAULT_CACHE_DIR = ".cache/rag";
+const DEFAULT_CACHE_ROOT = ".cache/rag";
+const DEFAULT_SURGERY_CACHE_DIR = `${DEFAULT_CACHE_ROOT}/surgery`;
 
 const SCOUT_CANDIDATE_LIMIT = envInt("RAG_SCOUT_CANDIDATE_LIMIT", 120);
 const SCOUT_SELECTION_LIMIT = envInt("RAG_SCOUT_SELECTION_LIMIT", 28);
@@ -215,7 +216,7 @@ Options:
   --slides-dir "<path>"         Default: /Users/jason/Documents/BlockBSlides
   --top-slides <n>              Number of slide PDFs to select. Default: ${DEFAULT_TOP_SLIDES}
   --topic-concurrency <n>       Number of topics to generate in parallel. Default: 2
-  --cache-dir "<path>"          Retrieval cache directory. Default: .cache/rag
+  --cache-dir "<path>"          Retrieval cache directory. Default: ${DEFAULT_SURGERY_CACHE_DIR}
   --allow-stale-index           Continue with stale/missing index artifacts (warn only).
   --no-context-scouts           Disable retrieval pipeline and use legacy direct context injection.
   --sample-note "<path>"        Legacy sample notes file (used with --no-context-scouts).
@@ -296,7 +297,7 @@ function parseArgs(argv) {
     slidesDirExplicit: false,
     topSlides: DEFAULT_TOP_SLIDES,
     topicConcurrency: 2,
-    cacheDir: DEFAULT_CACHE_DIR,
+    cacheDir: DEFAULT_SURGERY_CACHE_DIR,
     cacheDirExplicit: false,
     allowStaleIndex: false,
     devtools: true,
@@ -474,8 +475,11 @@ function parseArgs(argv) {
   const normalizedSpecialty = slugify(options.specialty) || DEFAULT_SPECIALTY;
   options.specialty = normalizedSpecialty;
 
-  if (!options.cacheDirExplicit && normalizedSpecialty !== DEFAULT_SPECIALTY) {
-    options.cacheDir = `${DEFAULT_CACHE_DIR}/${normalizedSpecialty}`;
+  if (!options.cacheDirExplicit) {
+    options.cacheDir =
+      normalizedSpecialty === DEFAULT_SPECIALTY
+        ? DEFAULT_SURGERY_CACHE_DIR
+        : `${DEFAULT_CACHE_ROOT}/${normalizedSpecialty}`;
   }
 
   if (normalizedSpecialty === "psychiatry") {
@@ -1538,7 +1542,7 @@ function buildIndexCommandHint(options) {
   const notesArgs = options.seniorNotes
     .map((note) => `--senior-note ${JSON.stringify(note.path)}`)
     .join(" ");
-  return `npm run index:rag -- --specialty "${options.specialty}" --slides-dir "${options.slidesDir}" ${notesArgs}`.trim();
+  return `npm run index:rag -- --specialty "${options.specialty}" --slides-dir "${options.slidesDir}" --cache-dir "${options.cacheDir}" ${notesArgs}`.trim();
 }
 
 async function listCacheReadinessIssues(options, manifest) {

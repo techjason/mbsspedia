@@ -35,7 +35,8 @@ const execFileAsync = promisify(execFile);
 const DEFAULT_SPECIALTY = "general-surgery";
 const DEFAULT_SLIDES_DIR = "/Users/jason/Documents/BlockBSlides";
 const DEFAULT_PSYCHIATRY_SLIDES_DIR = "/Users/jason/Documents/PyschiatrySlides";
-const DEFAULT_CACHE_DIR = ".cache/rag";
+const DEFAULT_CACHE_ROOT = ".cache/rag";
+const DEFAULT_SURGERY_CACHE_DIR = `${DEFAULT_CACHE_ROOT}/surgery`;
 const DEFAULT_OCR_POLICY = "smart";
 const SUMMARY_MAX_CHARS = 7000;
 
@@ -67,7 +68,7 @@ Options:
                                senior-note=${DEFAULT_PSYCHIATRY_SENIOR_NOTES[0].path}
   --slides-dir "<path>"         Default: ${DEFAULT_SLIDES_DIR}
   --embedding-model "<id>"      Default: ${DEFAULT_EMBEDDING_MODEL}
-  --cache-dir "<path>"          Default: ${DEFAULT_CACHE_DIR}
+  --cache-dir "<path>"          Default: ${DEFAULT_SURGERY_CACHE_DIR}
   --ocr-policy <smart|always|off> Default: ${DEFAULT_OCR_POLICY}
   --force                       Rebuild all artifacts
   --help                        Show this help
@@ -129,7 +130,7 @@ function parseArgs(argv) {
     specialty: DEFAULT_SPECIALTY,
     slidesDir: DEFAULT_SLIDES_DIR,
     embeddingModel: DEFAULT_EMBEDDING_MODEL,
-    cacheDir: DEFAULT_CACHE_DIR,
+    cacheDir: DEFAULT_SURGERY_CACHE_DIR,
     cacheDirExplicit: false,
     slidesDirExplicit: false,
     seniorNotesExplicit: false,
@@ -249,8 +250,11 @@ function parseArgs(argv) {
   const normalizedSpecialty = slugify(options.specialty) || DEFAULT_SPECIALTY;
   options.specialty = normalizedSpecialty;
 
-  if (!options.cacheDirExplicit && normalizedSpecialty !== DEFAULT_SPECIALTY) {
-    options.cacheDir = `${DEFAULT_CACHE_DIR}/${normalizedSpecialty}`;
+  if (!options.cacheDirExplicit) {
+    options.cacheDir =
+      normalizedSpecialty === DEFAULT_SPECIALTY
+        ? DEFAULT_SURGERY_CACHE_DIR
+        : `${DEFAULT_CACHE_ROOT}/${normalizedSpecialty}`;
   }
 
   if (normalizedSpecialty === "psychiatry") {
