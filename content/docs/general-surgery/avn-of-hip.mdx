@@ -1,0 +1,39 @@
+---
+title: Avn Of Hip
+description: "Avascular necrosis of the hip is the death of femoral head bone tissue due to disruption of its blood supply, leading to structural collapse and secondary degenerative arthritis."
+---
+
+import EtiologySection from "../../fragments/general-surgery/avn-of-hip/etiology.mdx";
+import DdxSection from "../../fragments/general-surgery/avn-of-hip/ddx.mdx";
+import DxSection from "../../fragments/general-surgery/avn-of-hip/dx.mdx";
+import MxSection from "../../fragments/general-surgery/avn-of-hip/mx.mdx";
+import ComplicationsSection from "../../fragments/general-surgery/avn-of-hip/complications.mdx";
+
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+
+<Tab value="Etiology">
+  <EtiologySection components={props.components} />
+
+</Tab>
+
+<Tab value="DDx">
+  <DdxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Dx">
+  <DxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Mx">
+  <MxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Complications">
+  <ComplicationsSection components={props.components} />
+
+</Tab>
+
+</Tabs>

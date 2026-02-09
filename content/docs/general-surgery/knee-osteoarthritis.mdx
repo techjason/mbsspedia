@@ -1,0 +1,39 @@
+---
+title: Knee Osteoarthritis
+description: "Degenerative joint disease of the knee characterized by progressive articular cartilage loss, subchondral bone remodeling, osteophyte formation, and chronic pain with functional impairment."
+---
+
+import EtiologySection from "../../fragments/general-surgery/knee-osteoarthritis/etiology.mdx";
+import DdxSection from "../../fragments/general-surgery/knee-osteoarthritis/ddx.mdx";
+import DxSection from "../../fragments/general-surgery/knee-osteoarthritis/dx.mdx";
+import MxSection from "../../fragments/general-surgery/knee-osteoarthritis/mx.mdx";
+import ComplicationsSection from "../../fragments/general-surgery/knee-osteoarthritis/complications.mdx";
+
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+
+<Tab value="Etiology">
+  <EtiologySection components={props.components} />
+
+</Tab>
+
+<Tab value="DDx">
+  <DdxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Dx">
+  <DxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Mx">
+  <MxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Complications">
+  <ComplicationsSection components={props.components} />
+
+</Tab>
+
+</Tabs>
