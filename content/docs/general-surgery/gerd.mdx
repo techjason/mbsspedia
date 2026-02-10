@@ -1,0 +1,39 @@
+---
+title: Gerd
+description: "Gastroesophageal reflux disease is a chronic condition in which retrograde flow of gastric contents into the esophagus causes troublesome symptoms such as heartburn and regurgitation, and/or mucosal complications."
+---
+
+import EtiologySection from "../../fragments/general-surgery/gerd/etiology.mdx";
+import DdxSection from "../../fragments/general-surgery/gerd/ddx.mdx";
+import DxSection from "../../fragments/general-surgery/gerd/dx.mdx";
+import MxSection from "../../fragments/general-surgery/gerd/mx.mdx";
+import ComplicationsSection from "../../fragments/general-surgery/gerd/complications.mdx";
+
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+
+<Tab value="Etiology">
+  <EtiologySection components={props.components} />
+
+</Tab>
+
+<Tab value="DDx">
+  <DdxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Dx">
+  <DxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Mx">
+  <MxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Complications">
+  <ComplicationsSection components={props.components} />
+
+</Tab>
+
+</Tabs>

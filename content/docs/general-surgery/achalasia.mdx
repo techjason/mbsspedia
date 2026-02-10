@@ -1,0 +1,39 @@
+---
+title: Achalasia
+description: "Achalasia is a primary esophageal motility disorder characterized by failure of the lower esophageal sphincter to relax and absent peristalsis in the esophageal body due to degeneration of inhibitory neurons in the myenteric plexus."
+---
+
+import EtiologySection from "../../fragments/general-surgery/achalasia/etiology.mdx";
+import DdxSection from "../../fragments/general-surgery/achalasia/ddx.mdx";
+import DxSection from "../../fragments/general-surgery/achalasia/dx.mdx";
+import MxSection from "../../fragments/general-surgery/achalasia/mx.mdx";
+import ComplicationsSection from "../../fragments/general-surgery/achalasia/complications.mdx";
+
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+
+<Tab value="Etiology">
+  <EtiologySection components={props.components} />
+
+</Tab>
+
+<Tab value="DDx">
+  <DdxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Dx">
+  <DxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Mx">
+  <MxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Complications">
+  <ComplicationsSection components={props.components} />
+
+</Tab>
+
+</Tabs>

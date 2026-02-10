@@ -1,0 +1,39 @@
+---
+title: Ca Stomach
+description: "Gastric carcinoma is a malignant neoplasm arising from the epithelial lining of the stomach, most commonly an adenocarcinoma, associated with risk factors such as H. pylori infection, dietary nitrosamines, and chronic atrophic gastritis."
+---
+
+import EtiologySection from "../../fragments/general-surgery/ca-stomach/etiology.mdx";
+import DdxSection from "../../fragments/general-surgery/ca-stomach/ddx.mdx";
+import DxSection from "../../fragments/general-surgery/ca-stomach/dx.mdx";
+import MxSection from "../../fragments/general-surgery/ca-stomach/mx.mdx";
+import ComplicationsSection from "../../fragments/general-surgery/ca-stomach/complications.mdx";
+
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+
+<Tab value="Etiology">
+  <EtiologySection components={props.components} />
+
+</Tab>
+
+<Tab value="DDx">
+  <DdxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Dx">
+  <DxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Mx">
+  <MxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Complications">
+  <ComplicationsSection components={props.components} />
+
+</Tab>
+
+</Tabs>

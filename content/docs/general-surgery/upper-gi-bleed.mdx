@@ -1,0 +1,39 @@
+---
+title: Upper Gi Bleed
+description: "Upper gastrointestinal bleeding is hemorrhage originating from a source proximal to the ligament of Treitz, commonly caused by peptic ulcers, esophageal varices, or Mallory-Weiss tears."
+---
+
+import EtiologySection from "../../fragments/general-surgery/upper-gi-bleed/etiology.mdx";
+import DdxSection from "../../fragments/general-surgery/upper-gi-bleed/ddx.mdx";
+import DxSection from "../../fragments/general-surgery/upper-gi-bleed/dx.mdx";
+import MxSection from "../../fragments/general-surgery/upper-gi-bleed/mx.mdx";
+import ComplicationsSection from "../../fragments/general-surgery/upper-gi-bleed/complications.mdx";
+
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+
+<Tab value="Etiology">
+  <EtiologySection components={props.components} />
+
+</Tab>
+
+<Tab value="DDx">
+  <DdxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Dx">
+  <DxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Mx">
+  <MxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Complications">
+  <ComplicationsSection components={props.components} />
+
+</Tab>
+
+</Tabs>
