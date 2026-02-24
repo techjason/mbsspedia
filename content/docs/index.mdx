@@ -1,64 +1,45 @@
 ---
 title: Welcome to MBBSPedia
-description: Public medical learning notes with strict source, citation, and safety policy
+description: Personal MBBS study notes with source acknowledgments and workflow transparency
 ---
 
 ## Welcome to MBBSPedia
 
-MBBSPedia is a student-built medical knowledge base for MBBS revision.
+MBBSPedia is my personal MBBS revision workspace.
 
-<Callout title="Medical and Content Notice" type="warning">
-This site is for education only and is not medical advice. Do not use it as a substitute for clinical judgment, local protocols, or specialist supervision.
+I am Jason (M28), and this library is actively maintained for day-to-day study use.
+
+<Callout title="Use and Sharing Notice" type="warning">
+  This project is for self-use and is not intended for redistribution. It
+  contains copyrighted images, and some notes are derived from lecture sites.
+  Lectures are intentionally redacted where required. Please do not share this
+  beyond intended use to avoid copyright and logistics issues.
 </Callout>
 
-## What This Site Is For
+I have created this with the intention of understanding the material. Hence these notes are intentionally more comprehensive, detailed and explains every thing to aid in understanding rather than dry memorisation. Materials from lecture slides are italicised.
 
-- Structured revision notes for medical students.
-- Fast topic lookup and exam-oriented consolidation.
-- Guided links back to citable public references.
+Every condition is splitted into 5 sections: Etiology, Differential Diagnosis, Diagnosis, Management and Complications. There is automatic AI grading workflow at the end with active recall questions.
 
-## Public Source Policy
+## Source Acknowledgment
 
-All public pages must follow this rule set:
+The primary golden-source notes used in this workflow include:
 
-- Allowed sources: public guidelines, public-domain or openly licensed resources, and publisher content that explicitly permits reuse.
-- Not allowed on public pages: university lecture slides, Moodle material, private handouts, private senior notes, or any source without clear redistribution rights.
-- If a page contains restricted-derived material, it must be rewritten from permitted sources before remaining public.
-- AI-generated text is treated as draft text only and must be validated against permitted references.
+- Lecture slides and seminar slides
+- Felix Lai
+- Maxim
+- Ryan Ho
 
-## Citation and Transparency Policy
+## Sourcing Workflow
 
-- References must remain visible on every page.
-- Factual claims should be traceable to explicit references.
-- Prefer the newest available guideline versions and include publication year when possible.
-- If a source cannot be publicly linked or clearly licensed, it should not be used in public content.
+- RAG indexing is used over Felix Lai, Ryan Ho and Maxim notes, together with lecture slides. An agentic workflow is deployed for fact checking across reuptable medical journals and sources.
+- A "friendly" bedside professor teaching tone is deployed to aid in readability over dry textbooks.
+- Master generation prompts are used with Claude (Anthropic Opus 4.6).
+- Notes are organized by disease and by presenting symptoms.
+- Separate notes are maintained for history taking.
+- The library is continuously growing and regularly edited.
 
-## Content Status Labels
+## Feedback
 
-Each page should carry one of these statuses in the frontmatter or editorial metadata:
+The project is open source for transparency and ongoing improvement. If you spot errors, please share feedback.
 
-- `public-source-verified`: sourced from allowed public references.
-- `needs-source-review`: citations incomplete or outdated.
-- `restricted-derived`: contains non-public source influence and requires rewrite before public publication.
-
-## Corrections and Takedown
-
-If you are a rights holder, teacher, or student and believe content should be corrected or removed:
-
-- Open an issue in the project repository.
-- Include the page URL, the disputed section, and your reason.
-- The content will be reviewed and removed or revised as needed.
-
-## Editorial Workflow
-
-- Draft from allowed public references first.
-- Add inline citations and a visible references section.
-- Perform a source-rights check before publishing.
-- Re-review pages periodically as guidelines are updated.
-
-## Quick Navigation
-
-- Start with specialty index pages under the docs sidebar.
-- Use page-level references to verify key statements quickly.
-
--Jason
+WhatsApp: 6902 5557
