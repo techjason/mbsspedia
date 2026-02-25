@@ -26,6 +26,7 @@
     "@radix-ui/react-presence": "^1.1.5",
     "@radix-ui/react-scroll-area": "^1.2.10",
     "@types/mdx": "^2.0.13",
+    "@vercel/analytics": "^1.6.1",
     "ai": "^6.0.78",
     "class-variance-authority": "^0.7.1",
     "fumadocs-core": "^16.5.1",

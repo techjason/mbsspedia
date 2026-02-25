@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "katex/dist/katex.min.css";
 import "./globals.css";
 import { source } from "@/lib/source";
@@ -72,6 +73,7 @@ export default function RootLayout({
             {children}
           </DocsLayout>
         </Provider>
+        <Analytics />
       </body>
     </html>
   );
