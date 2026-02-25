@@ -71,9 +71,9 @@ export default function RootLayout({
             </AISearch>
 
             {children}
+            <Analytics />
           </DocsLayout>
         </Provider>
-        <Analytics />
       </body>
     </html>
   );
