@@ -192,6 +192,9 @@ const DEFAULT_SPECIALTY = "general-surgery";
 const SURGERY_SAMPLE_NOTE_PATH = "scripts/SeniorNotes/felixlai.md";
 const SURGERY_SECONDARY_NOTE_PATH = "scripts/SeniorNotes/maxim.md";
 const DEFAULT_PSYCHIATRY_SLIDES_DIR = "/Users/jason/Documents/PyschiatrySlides";
+const DEFAULT_FAMILY_MEDICINE_SPECIALTY = "family-medicine";
+const DEFAULT_FAMILY_MEDICINE_SOURCES_DIR =
+  "/Users/jason/Documents/FamilyMedicineSources";
 const DEFAULT_SENIOR_NOTES = [
   { id: "felix", path: SURGERY_SAMPLE_NOTE_PATH, label: "Felix Lai" },
   { id: "maxim", path: SURGERY_SECONDARY_NOTE_PATH, label: "Maxim" },
@@ -205,6 +208,10 @@ const DEFAULT_PSYCHIATRY_SENIOR_NOTES = [
 ];
 const DEFAULT_SLIDES_DIR = "/Users/jason/Documents/BlockBSlides";
 const DEFAULT_SURGERY_SENIOR_NOTES_DIR = "scripts/SeniorNotes";
+const DEFAULT_FAMILY_MEDICINE_SENIOR_NOTES_DIRS = [
+  DEFAULT_FAMILY_MEDICINE_SOURCES_DIR,
+  DEFAULT_SURGERY_SENIOR_NOTES_DIR,
+];
 const DEFAULT_CACHE_ROOT = ".cache/rag";
 const DEFAULT_SURGERY_CACHE_DIR = `${DEFAULT_CACHE_ROOT}/surgery`;
 
@@ -280,6 +287,12 @@ Options:
                                specialty=psychiatry
                                slides-dir=${DEFAULT_PSYCHIATRY_SLIDES_DIR}
                                senior-note=${DEFAULT_PSYCHIATRY_SENIOR_NOTES[0].path}
+  -family-medicine, --family-medicine, --family
+                               Shortcut preset:
+                               specialty=${DEFAULT_FAMILY_MEDICINE_SPECIALTY}
+                               slides-dir=${DEFAULT_FAMILY_MEDICINE_SOURCES_DIR}
+                               senior-notes-dir=${DEFAULT_FAMILY_MEDICINE_SOURCES_DIR}
+                               senior-notes-dir=${DEFAULT_SURGERY_SENIOR_NOTES_DIR}
   --model "<provider/model>"   Generation model. Default: anthropic/claude-opus-4.6
   --selection-model "<provider/model>" Selection model for scouts/slides. Default: anthropic/claude-opus-4.6
   --specialty "<folder-name>"  Default: ${DEFAULT_SPECIALTY}
@@ -309,6 +322,7 @@ Examples:
   npm run generate:notes -- --selection-model "anthropic/claude-opus-4.6" --top-slides 5 "acute pancreatitis"
   npm run generate:notes -- --senior-notes-dir "scripts/SeniorNotes" --history-taking "lower gi bleed"
   npm run generate:notes -- --psychiatry "major depressive disorder"
+  npm run generate:notes -- --family-medicine "hypertension"
   npm run generate:notes -- --specialty psychiatry --senior-note "/path/to/psychiatry-senior.md" --slides-dir "/path/to/psychiatry/slides" "major depressive disorder"
   npm run generate:notes -- --history-taking "chest pain"
 `);
@@ -452,6 +466,26 @@ function parseArgs(argv) {
       options.seniorNotesDirs = [];
       options.seniorNotesExplicit = false;
       options.slidesDir = DEFAULT_PSYCHIATRY_SLIDES_DIR;
+      options.slidesDirExplicit = false;
+      continue;
+    }
+
+    if (
+      arg === "-family-medicine" ||
+      arg === "--family-medicine" ||
+      arg === "--family"
+    ) {
+      const maybeFamilySuffix = String(argv[i + 1] ?? "")
+        .trim()
+        .toLowerCase();
+      if (arg === "--family" && maybeFamilySuffix === "medicine") {
+        i += 1;
+      }
+      options.specialty = DEFAULT_FAMILY_MEDICINE_SPECIALTY;
+      options.seniorNotes = [];
+      options.seniorNotesDirs = DEFAULT_FAMILY_MEDICINE_SENIOR_NOTES_DIRS.slice();
+      options.seniorNotesExplicit = true;
+      options.slidesDir = DEFAULT_FAMILY_MEDICINE_SOURCES_DIR;
       options.slidesDirExplicit = false;
       continue;
     }
@@ -646,19 +680,34 @@ function parseArgs(argv) {
     }
   }
 
+  if (normalizedSpecialty === DEFAULT_FAMILY_MEDICINE_SPECIALTY) {
+    if (!options.seniorNotesExplicit) {
+      options.seniorNotes = [];
+      options.seniorNotesDirs = DEFAULT_FAMILY_MEDICINE_SENIOR_NOTES_DIRS.slice();
+      options.seniorNotesExplicit = true;
+    }
+    if (!options.slidesDirExplicit) {
+      options.slidesDir = DEFAULT_FAMILY_MEDICINE_SOURCES_DIR;
+    }
+  }
+
   if (options.seniorNotes.length === 0 && options.seniorNotesDirs.length === 0) {
     throw new Error(
       "At least one senior note is required. Use --senior-note or --senior-notes-dir.",
     );
   }
 
+  const hasBuiltInPresetDefaults =
+    normalizedSpecialty === "psychiatry" ||
+    normalizedSpecialty === DEFAULT_FAMILY_MEDICINE_SPECIALTY;
+
   if (normalizedSpecialty !== DEFAULT_SPECIALTY) {
-    if (normalizedSpecialty !== "psychiatry" && !options.seniorNotesExplicit) {
+    if (!hasBuiltInPresetDefaults && !options.seniorNotesExplicit) {
       throw new Error(
         `Specialty "${normalizedSpecialty}" requires explicit senior notes. Use --senior-note "<path>".`,
       );
     }
-    if (normalizedSpecialty !== "psychiatry" && !options.slidesDirExplicit) {
+    if (!hasBuiltInPresetDefaults && !options.slidesDirExplicit) {
       throw new Error(
         `Specialty "${normalizedSpecialty}" requires an explicit slides directory. Use --slides-dir "<path>".`,
       );

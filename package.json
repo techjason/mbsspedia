@@ -11,9 +11,11 @@
     "index:rag:notes-only": "node scripts/index-rag.mjs --notes-only",
     "index:rag:surgery": "node scripts/index-rag.mjs --surgery",
     "index:rag:psychiatry": "node scripts/index-rag.mjs --psychiatry",
+    "index:rag:family-medicine": "node scripts/index-rag.mjs --family-medicine",
     "generate:notes": "node scripts/generate-notes.mjs",
     "generate:notes:surgery": "node scripts/generate-notes.mjs -surgery",
-    "generate:notes:psychiatry": "node scripts/generate-notes.mjs --psychiatry"
+    "generate:notes:psychiatry": "node scripts/generate-notes.mjs --psychiatry",
+    "generate:notes:family-medicine": "node scripts/generate-notes.mjs --family-medicine"
   },
   "dependencies": {
     "@ai-sdk/devtools": "^0.0.12",

@@ -35,6 +35,14 @@ const execFileAsync = promisify(execFile);
 const DEFAULT_SPECIALTY = "general-surgery";
 const DEFAULT_SLIDES_DIR = "/Users/jason/Documents/BlockBSlides";
 const DEFAULT_PSYCHIATRY_SLIDES_DIR = "/Users/jason/Documents/PyschiatrySlides";
+const DEFAULT_FAMILY_MEDICINE_SPECIALTY = "family-medicine";
+const DEFAULT_FAMILY_MEDICINE_SOURCES_DIR =
+  "/Users/jason/Documents/FamilyMedicineSources";
+const DEFAULT_SURGERY_SENIOR_NOTES_DIR = "scripts/SeniorNotes";
+const DEFAULT_FAMILY_MEDICINE_SENIOR_NOTES_DIRS = [
+  DEFAULT_FAMILY_MEDICINE_SOURCES_DIR,
+  DEFAULT_SURGERY_SENIOR_NOTES_DIR,
+];
 const DEFAULT_CACHE_ROOT = ".cache/rag";
 const DEFAULT_SURGERY_CACHE_DIR = `${DEFAULT_CACHE_ROOT}/surgery`;
 const DEFAULT_OCR_POLICY = "smart";
@@ -70,6 +78,11 @@ Options:
                                specialty=psychiatry
                                slides-dir=${DEFAULT_PSYCHIATRY_SLIDES_DIR}
                                senior-note=${DEFAULT_PSYCHIATRY_SENIOR_NOTES[0].path}
+  --family-medicine            Shortcut preset:
+                               specialty=${DEFAULT_FAMILY_MEDICINE_SPECIALTY}
+                               slides-dir=${DEFAULT_FAMILY_MEDICINE_SOURCES_DIR}
+                               senior-notes-dir=${DEFAULT_FAMILY_MEDICINE_SOURCES_DIR}
+                               senior-notes-dir=${DEFAULT_SURGERY_SENIOR_NOTES_DIR}
   --slides-dir "<path>"         Default: ${DEFAULT_SLIDES_DIR}
   --embedding-model "<id>"      Default: ${DEFAULT_EMBEDDING_MODEL}
   --cache-dir "<path>"          Default: ${DEFAULT_SURGERY_CACHE_DIR}
@@ -81,6 +94,7 @@ Examples:
   npm run index:rag -- --slides-dir "/Users/jason/Documents/BlockBSlides"
   npm run index:rag -- --notes-only --senior-notes-dir "/Users/jason/Documents/SeniorNotes"
   npm run index:rag -- --psychiatry
+  npm run index:rag -- --family-medicine
   npm run index:rag -- --specialty psychiatry --senior-note "/path/to/psychiatry-senior.md" --slides-dir "/path/to/psychiatry/slides"
   npm run index:rag -- --force --ocr-policy always
 `);
@@ -198,6 +212,16 @@ function parseArgs(argv) {
       continue;
     }
 
+    if (arg === "--family-medicine" || arg === "-family-medicine") {
+      options.specialty = DEFAULT_FAMILY_MEDICINE_SPECIALTY;
+      options.seniorNotes = [];
+      options.seniorNotesExplicit = true;
+      options.seniorNotesDirs = DEFAULT_FAMILY_MEDICINE_SENIOR_NOTES_DIRS.slice();
+      options.slidesDir = DEFAULT_FAMILY_MEDICINE_SOURCES_DIR;
+      options.slidesDirExplicit = false;
+      continue;
+    }
+
     if (arg === "--senior-note") {
       if (!options.seniorNotesExplicit) {
         options.seniorNotes = [];
@@ -311,17 +335,28 @@ function parseArgs(argv) {
     }
   }
 
+  if (normalizedSpecialty === DEFAULT_FAMILY_MEDICINE_SPECIALTY) {
+    if (!options.seniorNotesExplicit) {
+      options.seniorNotes = [];
+      options.seniorNotesDirs = DEFAULT_FAMILY_MEDICINE_SENIOR_NOTES_DIRS.slice();
+      options.seniorNotesExplicit = true;
+    }
+    if (!options.slidesDirExplicit) {
+      options.slidesDir = DEFAULT_FAMILY_MEDICINE_SOURCES_DIR;
+    }
+  }
+
+  const hasBuiltInPresetDefaults =
+    normalizedSpecialty === "psychiatry" ||
+    normalizedSpecialty === DEFAULT_FAMILY_MEDICINE_SPECIALTY;
+
   if (normalizedSpecialty !== DEFAULT_SPECIALTY) {
-    if (normalizedSpecialty !== "psychiatry" && !options.seniorNotesExplicit) {
+    if (!hasBuiltInPresetDefaults && !options.seniorNotesExplicit) {
       throw new Error(
         `Specialty "${normalizedSpecialty}" requires explicit senior notes. Use --senior-note "<path>".`,
       );
     }
-    if (
-      options.indexSlides &&
-      normalizedSpecialty !== "psychiatry" &&
-      !options.slidesDirExplicit
-    ) {
+    if (options.indexSlides && !hasBuiltInPresetDefaults && !options.slidesDirExplicit) {
       throw new Error(
         `Specialty "${normalizedSpecialty}" requires an explicit slides directory. Use --slides-dir "<path>".`,
       );
