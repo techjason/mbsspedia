@@ -5,12 +5,18 @@ import {
   type UIMessage,
 } from "ai";
 import {
+  asRecord,
   clipText,
   deriveSourceArticleName,
+  firstString,
   getChunkPath,
   type MixedbreadChunkLike,
 } from "@/lib/mixedbread/chunk-utils";
 import { getMixedbreadClient, getRequiredEnv } from "@/lib/mixedbread/client";
+import {
+  getFragmentToPageUrlMap,
+  resolveChunkUrl,
+} from "@/lib/mixedbread/source-resolution";
 
 export const runtime = "nodejs";
 
@@ -19,6 +25,16 @@ const MAX_CHUNK_CHARS = 1000;
 const MAX_CONTEXT_CHUNKS = 10;
 const WEAK_RETRIEVAL_SCORE_THRESHOLD = 0.45;
 const WEAK_RETRIEVAL_CHAR_THRESHOLD = 280;
+
+const FRAGMENT_LABELS: Record<string, string> = {
+  etiology: "Etiology",
+  ddx: "DDx",
+  dx: "Dx",
+  mx: "Mx",
+  management: "Management",
+  complications: "Complications",
+  summary: "Summary",
+};
 
 type PageContext = {
   pathname?: string;
@@ -98,6 +114,57 @@ function normalizePageContext(value: unknown): PageContext | undefined {
   return { pathname, title };
 }
 
+function deriveFragmentLabelFromPath(path?: string): string | undefined {
+  if (!path) return undefined;
+
+  const normalized = path.replace(/\\/g, "/");
+  const marker = "/content/fragments/";
+  const markerIndex = normalized.indexOf(marker);
+  if (markerIndex < 0) return undefined;
+
+  const relative = normalized.slice(markerIndex + marker.length);
+  const parts = relative.split("/").filter(Boolean);
+  const leaf = parts.at(-1)?.replace(/\.(md|mdx)$/i, "").toLowerCase();
+  if (!leaf) return undefined;
+
+  return FRAGMENT_LABELS[leaf] ?? leaf.charAt(0).toUpperCase() + leaf.slice(1);
+}
+
+function deriveHeadingHint(item: MixedbreadScoredChunk): string | undefined {
+  const generated = asRecord(item.generated_metadata);
+
+  const headingContext = generated.heading_context;
+  if (Array.isArray(headingContext) && headingContext.length > 0) {
+    const last = headingContext[headingContext.length - 1];
+    const label = firstString(asRecord(last).text);
+    if (label) return label.trim();
+  }
+
+  const chunkHeadings = generated.chunk_headings;
+  if (Array.isArray(chunkHeadings) && chunkHeadings.length > 0) {
+    const last = chunkHeadings[chunkHeadings.length - 1];
+    const label = firstString(asRecord(last).text);
+    if (label) return label.trim();
+  }
+
+  return undefined;
+}
+
+function formatCitationSourceName(params: {
+  articleName: string;
+  url?: string | null;
+  fragmentLabel?: string;
+  headingHint?: string;
+}): string {
+  const article = params.url
+    ? `[${params.articleName}](${params.url})`
+    : params.articleName;
+  const section = params.fragmentLabel ?? params.headingHint;
+
+  if (!section) return article;
+  return `${article} (${section})`;
+}
+
 async function retrieveCitationContext(query: string): Promise<{
   chunks: RetrievedChunk[];
   sources: CitationSource[];
@@ -106,12 +173,18 @@ async function retrieveCitationContext(query: string): Promise<{
   const storeIdentifier = getRequiredEnv("MIXEDBREAD_STORE_IDENTIFIER");
   const client = getMixedbreadClient();
 
-  const response = await client.stores.search({
+  const fragmentToPageUrlPromise = getFragmentToPageUrlMap();
+  const responsePromise = client.stores.search({
     query,
     store_identifiers: [storeIdentifier],
     top_k: SEARCH_TOP_K,
     search_options: { return_metadata: true, rerank: true },
   });
+
+  const [fragmentToPageUrl, response] = await Promise.all([
+    fragmentToPageUrlPromise,
+    responsePromise,
+  ]);
 
   const data = (response.data ?? []) as MixedbreadScoredChunk[];
   const sourceByKey = new Map<string, CitationSource>();
@@ -122,17 +195,31 @@ async function retrieveCitationContext(query: string): Promise<{
     const rawText = item.text?.trim();
     if (!rawText) continue;
 
+    const generated = asRecord(item.generated_metadata);
+    const metadata = asRecord(item.metadata);
     const filePath = getChunkPath(item);
     const sourceKey = filePath || item.filename || item.file_id;
 
     let source = sourceByKey.get(sourceKey);
     if (!source) {
+      const directUrl = firstString(generated.url, metadata.url);
+      const url = resolveChunkUrl({
+        path: filePath,
+        directUrl,
+        fragmentToPageUrl,
+      });
+
       source = {
         n: sourceByKey.size + 1,
         key: sourceKey,
-        sourceName: deriveSourceArticleName({
-          path: filePath,
-          filename: item.filename,
+        sourceName: formatCitationSourceName({
+          articleName: deriveSourceArticleName({
+            path: filePath,
+            filename: item.filename,
+          }),
+          url,
+          fragmentLabel: deriveFragmentLabelFromPath(filePath),
+          headingHint: deriveHeadingHint(item),
         }),
       };
       sourceByKey.set(sourceKey, source);
