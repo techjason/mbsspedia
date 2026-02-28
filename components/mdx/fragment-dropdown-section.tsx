@@ -25,7 +25,9 @@ type SplitSections = {
   groupedNodes: ReactNode[][];
 };
 
-function isHeadingElement(node: ReactNode): node is ReactElement<HeadingProps, string> {
+function isHeadingElement(
+  node: ReactNode,
+): node is ReactElement<HeadingProps, string> {
   return (
     isValidElement(node) &&
     typeof node.type === "string" &&
@@ -140,7 +142,11 @@ function sanitizeHeadingChildren(children: ReactNode): ReactNode {
   return items;
 }
 
-export function FragmentDropdownSection({ children }: { children?: ReactNode }) {
+export function FragmentDropdownSection({
+  children,
+}: {
+  children?: ReactNode;
+}) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const contentId = useId();
   const [open, setOpen] = useState(false);
@@ -251,7 +257,7 @@ export function FragmentDropdownSection({ children }: { children?: ReactNode }) 
         </button>
       </HeadingTag>
 
-      <div id={contentId} hidden={!open} className="pb-2">
+      <div id={contentId} hidden={!open} className="">
         {contentNodes}
       </div>
     </div>
