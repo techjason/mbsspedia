@@ -196,7 +196,7 @@ export function FragmentDropdownSection({ children }: { children?: ReactNode }) 
       <div ref={sectionRef}>
         <HeadingTag
           id={headingId}
-          className={cn("not-prose m-0 py-5", headingNode.props.className)}
+          className={cn(headingNode.props.className, "not-prose my-0 py-2")}
         >
           <span className={getHeadingTextClass(headingNode.type)}>
             {headingChildren}
@@ -230,14 +230,14 @@ export function FragmentDropdownSection({ children }: { children?: ReactNode }) 
     <div ref={sectionRef}>
       <HeadingTag
         id={headingId}
-        className={cn("not-prose m-0", headingNode.props.className)}
+        className={cn(headingNode.props.className, "not-prose my-0")}
       >
         <button
           type="button"
           aria-controls={contentId}
           aria-expanded={open}
           onClick={() => setOpen((value) => !value)}
-          className="group flex w-full items-center justify-between gap-4 py-5 text-left"
+          className="group flex w-full items-center justify-between gap-4 py-2 text-left"
         >
           <span className={getHeadingTextClass(headingNode.type)}>
             {headingChildren}
@@ -251,7 +251,7 @@ export function FragmentDropdownSection({ children }: { children?: ReactNode }) 
         </button>
       </HeadingTag>
 
-      <div id={contentId} hidden={!open} className="pb-6">
+      <div id={contentId} hidden={!open} className="pb-2">
         {contentNodes}
       </div>
     </div>
