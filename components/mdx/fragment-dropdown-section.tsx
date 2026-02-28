@@ -92,7 +92,7 @@ function splitByChildHeadingLevel(
   ).length;
 
   // Avoid splitting for one-off child headings.
-  if (headingCount < 3) {
+  if (headingCount < 2) {
     return null;
   }
 
