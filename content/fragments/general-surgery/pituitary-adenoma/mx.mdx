@@ -1,443 +1,444 @@
 ## Management of Pituitary Adenoma
 
-### The Management Philosophy — First Principles
-
-Before diving into specifics, let's think about what we're trying to achieve. The management of pituitary adenomas is guided by ***five principles*** [1]:
-
-1. ***Aim at cure if feasible***
-2. ***Preserve life***
-3. ***Preserve function***
-4. ***Preserve personhood***
-5. ***Maximise quality of life***
-
-And a critical sixth principle from the lecture: ***Do not treat the scan*** [1] — meaning not every pituitary adenoma needs intervention. An incidental microadenoma in an asymptomatic patient with normal hormones should be observed, not operated on.
-
-The management decision hinges on **three questions**:
-1. **Is this a prolactinoma?** → If yes, **medical therapy first** (the only adenoma subtype where drugs are first line).
-2. **Is there mass effect or non-prolactin hormonal excess?** → If yes, **surgery first**.
-3. **Is this an incidental, asymptomatic, non-functioning microadenoma?** → **Conservative observation**.
+The management of pituitary adenoma is one of the few areas in medicine where the treatment algorithm is **completely dictated by the hormonal subtype**. A prolactinoma and a GH-secreting adenoma of identical size sitting in the same sella are treated by entirely different first-line modalities. Understanding *why* each subtype is treated differently comes down to understanding the unique pharmacology and biology of each cell lineage.
 
 ---
 
-### Master Management Algorithm
+### 1. Overarching Treatment Paradigm
+
+The management decision tree rests on two questions:
+1. **Is the tumour functional or non-functional?**
+2. **Is there mass effect or is it a small incidental finding?**
+
+***Treatment Paradigm*** [4]:
 
 ```mermaid
 graph TD
-    A["Pituitary Adenoma Diagnosed"] --> B{"Pituitary Apoplexy?"}
-    B -->|"Yes"| C["EMERGENCY:
-    1. IV Hydrocortisone 100mg stat
-    2. Give cortisol BEFORE T4
-    3. Urgent transsphenoidal decompression
-    if visual deterioration / declining GCS"]
-    B -->|"No"| D{"Is it a Prolactinoma?
-    PRL proportional to size"}
+    A["Pituitary Adenoma Diagnosed"] --> B{"Functional or Non-functional?"}
     
-    D -->|"Yes"| E["MEDICAL THERAPY FIRST LINE:
-    Dopamine Agonist
-    Cabergoline preferred"]
-    E --> F{"Response?"}
-    F -->|"PRL normalised + tumour shrinks"| G["Continue medical therapy
-    Long-term ± trial withdrawal"]
-    F -->|"Refractory / Intolerant"| H["Transsphenoidal Surgery"]
+    B --> C["Functioning Adenoma"]
+    B --> D["Non-functioning Adenoma"]
     
-    D -->|"No — GH / ACTH / TSH-secreting
-    OR Non-functioning with mass effect"| I["SURGERY FIRST:
-    Transsphenoidal approach preferred"]
-    I --> J{"Complete resection?
-    Hormonal remission?"}
-    J -->|"Yes"| K["Surveillance:
-    MRI + hormonal follow-up"]
-    J -->|"No — residual / recurrent"| L["Adjuvant Therapy"]
-    L --> M["Radiotherapy / Radiosurgery"]
-    L --> N["Medical Therapy
-    - Somatostatin analogues for GH
-    - Pasireotide for ACTH
-    - Temozolomide for aggressive PitNET"]
+    C --> E{"Which hormone?"}
     
-    D -->|"Non-functioning
-    incidental microadenoma
-    No mass effect / No hormonal effect"| O["CONSERVATIVE:
-    Follow-up Q3-6 months
-    Repeat MRI + hormones at 6, 12 months
-    then annually"]
-    O --> P{"Growth or new symptoms?"}
-    P -->|"Yes"| I
-    P -->|"No"| Q["Continue surveillance
-    Extend interval if stable"]
+    E --> F["Prolactinoma"]
+    E --> G["GH-secreting"]
+    E --> H["ACTH-secreting"]
+    E --> I["TSH-secreting"]
     
-    E -.->|"Special: Giant prolactinoma > 3cm
-    + wishes pregnancy"| H
+    F --> F1["***1st line: Dopamine Agonist***\n bromocriptine / cabergoline"]
+    F1 --> F2{"Refractory or intolerant?"}
+    F2 -->|Yes| F3["Surgery\n***or radiosurgery***"]
+    
+    G --> G1["***Surgery first***\nTranssphenoidal"]
+    G1 --> G2{"Residual / recurrence?"}
+    G2 -->|Yes| G3["Medical Rx: SSA, pegvisomant, DA\n***or radiosurgery***"]
+    
+    H --> H1["***Surgery first***\nTranssphenoidal"]
+    H1 --> H2{"Persistent?"}
+    H2 -->|Yes| H3["Repeat surgery / RT / medical Rx\n/ bilateral adrenalectomy"]
+    
+    I --> I1["***Surgery first***\nTranssphenoidal"]
+    I1 --> I2{"Residual?"}
+    I2 -->|Yes| I3["SSA / RT\n***or radiosurgery***"]
+    
+    D --> D2{"Micro or Macro?"}
+    D2 --> D3["Microadenoma\n< 1 cm, no mass effect"]
+    D2 --> D4["Macroadenoma\nor mass effect"]
+    
+    D3 --> D5["***Observe***\nFU every 3-6 months"]
+    D4 --> D6["***Surgery first***\nTranssphenoidal"]
+    D6 --> D7{"Residual?"}
+    D7 -->|Yes| D8["***Radiosurgery***\nor RT"]
 ```
 
----
+[2][3][4][5][10]
 
-### 1. Conservative Management (Observation)
+<Callout title="The Key Treatment Paradigm from Lecture Slides">
 
-***Indicated in patients with pituitary adenoma < 1 cm without mass or hormonal effect*** [2].
-***Managed with follow-up every 3–6 months*** [2].
+***Prolactinoma → Dopamine agonist (bromocriptine / cabergoline) = 1st line medical therapy*** [4]
 
-**Why observe?** Most pituitary microadenomas are **indolent** — they grow slowly or not at all. Autopsy studies show that ***20–25% of pituitaries harbour adenomas at autopsy*** [1], the vast majority of which never caused any problems during life. Treating every incidental microadenoma with surgery would cause more harm than good.
+***GH, ACTH, TSH-secreting adenomas → Surgery first*** [4]
 
-**Who qualifies for observation:**
-- **Incidental microadenoma** (< 1 cm) discovered on MRI done for other reasons.
-- **No hormonal excess** on full biochemical panel.
-- **No hypopituitarism**.
-- **No visual field defect** on formal perimetry.
-- **No symptoms** (headache may warrant monitoring but alone is not an indication for surgery if microadenoma).
+***Non-functioning microadenoma → Observe*** [2][3]
 
-**Surveillance protocol:**
-| Timepoint | MRI Pituitary | Hormonal Panel | Visual Fields |
-|:----------|:-------------|:---------------|:-------------|
-| **6 months** | Repeat | Repeat full panel | Only if close to chiasm |
-| **12 months** | Repeat | Repeat | As indicated |
-| **Annually × 3 years** | Repeat | Repeat | As indicated |
-| **If stable at 3 years** | Extend to every 2–3 years | As indicated | As indicated |
+***Residual or recurrent disease → Radiosurgery or conventional RT*** [4]
 
-**Triggers to escalate from observation to intervention:**
-- Tumour growth on serial MRI (especially approaching the optic chiasm).
-- New hormonal excess or deficiency.
-- New visual symptoms.
-
-<Callout title="Non-functioning Macroadenomas — Watch Carefully">
-Even non-functioning **macroadenomas** that are not causing symptoms can sometimes be observed if surgery carries high risk (elderly, comorbid patient) — but this requires very close monitoring. The threshold for intervention is lower with macroadenomas because of proximity to the optic chiasm.
+This is the single most important management framework for exam purposes.
 </Callout>
 
 ---
 
-### 2. Medical Therapy
+### 2. Conservative Management (Observation)
 
-#### A. Dopamine Agonists — First-Line for Prolactinoma
+#### 2.1 Indications
 
-***Dopamine agonists are the 1st line treatment for patients with hyperprolactinaemia of any cause including lactotroph adenoma of any size*** [2].
+***Observation is indicated for non-functional pituitary adenomas < 1 cm without mass effect or hormonal abnormality*** [5][2][3]
 
-**Why dopamine agonists work for prolactinoma (and not other adenomas):**
-Prolactin is the **only** anterior pituitary hormone under predominantly **tonic inhibitory control** by dopamine from the hypothalamus. Dopamine acts on **D2 receptors** on lactotroph cells to:
-1. **Suppress prolactin gene transcription and secretion** → PRL levels normalise.
-2. **Induce tumour shrinkage** → perivascular fibrosis, cellular necrosis, and reduction in cell volume → tumour regresses, often dramatically (macroprolactinomas can shrink by > 50% within weeks to months).
+**Why can we observe?**
+- Many microadenomas are discovered incidentally and remain stable for years or even decades
+- The natural history of non-functioning microadenomas is generally benign — only ~10% enlarge over 5 years
+- Unnecessary surgery carries risks (hypopituitarism, DI, CSF leak) that outweigh the benefit for a stable, asymptomatic lesion
 
-No other adenoma subtype has this kind of exquisite pharmacological target, which is why prolactinoma is uniquely managed medically.
+#### 2.2 Follow-Up Protocol
 
-| Drug | Dose | Frequency | Efficacy | Side Effects |
-|:-----|:-----|:----------|:---------|:-------------|
-| ***Cabergoline*** | 0.25–1 mg (titrate up) | **Twice weekly** (long half-life ~65 hours) | ***70–100% success rate*** [2]; PRL normalises in ~85–90%; tumour shrinkage in ~80% | ***Less nausea than bromocriptine*** [2]; may cause dizziness, constipation, headache. At high doses (Parkinson's): cardiac valvular fibrosis — generally not an issue at prolactinoma doses, but consider baseline echocardiogram if high doses needed. |
-| ***Bromocriptine*** | 2.5–15 mg daily | **Daily** (shorter half-life) | ~70–80% normalise PRL | ***Nausea, orthostatic hypotension, nasal congestion*** [2]; less well tolerated than cabergoline |
+***Follow-up every 3–6 months*** [5] initially, then less frequently if stable:
 
-***Cabergoline is preferred due to its efficacy (70–100% success rate) and favourable side effect profile (as it causes less nausea than bromocriptine)*** [2].
+| Timepoint | Assessment |
+|:---|:---|
+| **6 months** | Repeat MRI pituitary; repeat hormonal panel |
+| **1 year** | Repeat MRI; repeat hormonal panel; visual field testing if close to chiasm |
+| **Annually for 3–5 years** | If stable, extend interval to every 2–3 years |
+| **Indications to intervene** | Tumour growth on serial MRI; new visual field defect; new hormonal deficit; symptoms develop |
 
-**Monitoring on dopamine agonist therapy:**
-- **Serum prolactin**: Check at 1 month, then every 3–6 months. Target: normalisation.
-- **MRI pituitary**: Repeat at 3–6 months (macroprolactinoma) to assess tumour shrinkage. Then annually.
-- **Visual fields**: Repeat if macroadenoma was compressing the chiasm — improvement often rapid (days to weeks as tumour shrinks).
+---
 
-**Duration and withdrawal:**
-- Treat for at least **2 years** with normalised PRL and significant tumour shrinkage.
-- Then consider **trial withdrawal** (gradual taper, not abrupt). ~30–40% of patients can successfully discontinue; the rest relapse and need lifelong therapy.
-- If PRL re-elevates or tumour regrows, restart the dopamine agonist.
+### 3. Medical Treatment
 
-**When surgery is needed despite dopamine agonist response in prolactinoma:**
+#### 3.1 Dopamine Agonists — First-Line for Prolactinoma
 
-***Indications for surgery in prolactinoma*** [2]:
-- ***Patients refractory or intolerable to medical treatment*** — ~10–15% of prolactinomas are **cabergoline-resistant** (usually aggressive, may have lower D2 receptor expression).
-- ***Women with giant lactotroph adenoma > 3 cm who wish to become pregnant, even if responding to dopamine agonist*** — because ***discontinuation of dopamine agonist during pregnancy may lead to increase in size of adenoma to be clinically important before delivery*** [2]. During pregnancy, oestrogen stimulates lactotroph growth; without the protective effect of the dopamine agonist, a giant prolactinoma can expand rapidly and compress the chiasm.
+**Why does medical therapy work for prolactinoma but not for other adenomas?**
 
-<Callout title="Prolactinoma in Pregnancy" type="error">
-**Microprolactinomas** in pregnancy: Low risk of clinically significant growth (< 5%). Can safely discontinue the dopamine agonist during pregnancy and monitor clinically.
+This is elegant pharmacology rooted in physiology. Recall that prolactin is the **only** anterior pituitary hormone under **tonic inhibition** by dopamine from the hypothalamus. Lactotroph cells express abundant **dopamine D2 receptors**. When you give a dopamine agonist, it:
 
-**Macroprolactinomas** in pregnancy: Higher risk of growth (~30% without prior debulking). Options: (1) continue cabergoline through pregnancy (limited safety data, but generally reassuring), or (2) debulk surgically before conception (especially giant adenomas > 3 cm), or (3) monitor very closely with visual fields monthly.
+1. **Binds D2 receptors on tumour cells** → directly inhibits prolactin synthesis and secretion → PRL falls within days
+2. **Induces tumour cell shrinkage** → cytoplasmic involution + perivascular fibrosis → tumour volume decreases over weeks to months (often dramatically — a 3 cm prolactinoma can shrink to nothing)
+
+No other pituitary adenoma subtype has such a clean pharmacological target, which is why dopamine agonists are only first-line for prolactinoma.
+
+| Drug | Dose | Efficacy | Side Effects | Notes |
+|:---|:---|:---|:---|:---|
+| ***Cabergoline*** | Start 0.25–0.5 mg once or twice weekly; titrate monthly | ***70–100% normalise PRL; > 90% tumour shrinkage*** [2][5] | ***Nausea*** (less than bromocriptine), postural hypotension, mental fogginess, ***impulse control disorders*** (hypersexuality, compulsive gambling/shopping — important to warn patients), cardiac valvulopathy at high doses (rare at standard prolactinoma doses) | ***Preferred over bromocriptine*** due to superior efficacy and tolerability [2][5] |
+| ***Bromocriptine*** | Start 1.25 mg daily with food; titrate to 2.5–10 mg daily | ~80% normalise PRL | ***Nausea*** (more than cabergoline), ***orthostatic hypotension***, ***nasal congestion***, headache, dizziness | Older agent; still used especially in pregnancy (longer safety record) |
+
+[2][4][5]
+
+***Dopamine agonists are 1st line treatment for patients with hyperprolactinaemia of any cause, including lactotroph adenoma of any size*** [5]
+
+**Management milestones for prolactinoma on DA therapy** [2]:
+
+| Phase | Action |
+|:---|:---|
+| **Start** | Begin low-dose cabergoline (0.25–0.5 mg/week); titrate monthly based on PRL level |
+| **Monitoring** | PRL level every 1–3 months; MRI at 3–6 months (assess tumour shrinkage) |
+| **Target** | Normalise PRL + resolve symptoms + tumour shrinkage |
+| **Attempt withdrawal** | ***Consider tapering off DA if PRL normalised + no residual adenoma on MRI for ≥ 2 years*** [2]. Approximately 30–40% relapse after withdrawal → restart DA |
+| **Pregnancy** | ***Stop DA when pregnant*** — no need to suppress PRL during pregnancy (hypogonadism is not an issue); PRL naturally rises in pregnancy. ***Resume if symptoms of tumour growth (headache, visual loss)***. Bromocriptine has the longest safety record in pregnancy [2] |
+| **Refractory** | If maximum dose DA fails → surgery ± adjuvant RT [2][5][10] |
+
+<Callout title="Special Scenario: Giant Prolactinoma and Pregnancy" type="error">
+***Women with giant lactotroph adenoma > 3 cm who wish to become pregnant should be considered for surgery even if responding to DA*** [5]. Why? Because DA will be discontinued during pregnancy, and a 3+ cm tumour may grow rapidly without the dopamine "brake," potentially causing acute chiasmal compression before delivery.
 </Callout>
 
-#### B. Somatostatin Analogues — For Somatotroph Adenomas (Acromegaly)
+#### 3.2 Medical Therapy for Acromegaly (Second-Line, After Surgery)
 
-These are **second-line/adjuvant** medical therapy for acromegaly (surgery is first line):
+Medical therapy for acromegaly is used when surgery is **not curative** (residual tumour), when surgery is **contraindicated**, or while **awaiting the effect of radiotherapy** [2]:
 
-| Drug | Mechanism | Dose | Efficacy | Side Effects |
-|:-----|:----------|:-----|:---------|:-------------|
-| **Octreotide LAR** | Somatostatin receptor (SSTR2, SSTR5) agonist → suppresses GH secretion + mild tumour shrinkage | 10–40 mg IM every 4 weeks | Normalises IGF-1 in ~50–65% | Gallstones (inhibits gallbladder contraction), GI upset (diarrhoea, steatorrhoea), hyperglycaemia |
-| **Lanreotide Autogel** | Same mechanism (SSTR2 > SSTR5) | 60–120 mg SC every 4 weeks | Similar to octreotide | Similar |
-| **Pasireotide LAR** | Multi-receptor somatostatin analogue (SSTR1, 2, 3, 5) | 10–60 mg IM every 4 weeks | More effective for octreotide-resistant tumours | **More hyperglycaemia** (higher SSTR5 affinity → suppresses insulin) |
+| Drug Class | Example | Mechanism | Efficacy | Side Effects |
+|:---|:---|:---|:---|:---|
+| ***Somatostatin analogues (SSAs)*** | ***Octreotide LAR*** (long-acting repeatable, IM monthly); ***Lanreotide*** Autogel (SC monthly) | Bind somatostatin receptors (SST2 > SST5) on somatotroph adenoma cells → inhibit GH secretion + mild anti-proliferative effect → tumour shrinkage in ~30–50% | Normalise IGF-1 in ~55–65%; GH < 2.5 ng/mL in ~50–60% | Gallstones (SSA inhibit gallbladder contraction), GI upset (diarrhoea, steatorrhoea), hyperglycaemia (suppress insulin), injection site reactions |
+| ***GH receptor antagonist*** | ***Pegvisomant*** (daily SC injection) | Modified GH molecule that binds GH receptors but blocks signal transduction → blocks GH action at the peripheral level; does NOT reduce tumour size | Normalises IGF-1 in ~90–95% (most effective agent for biochemical control) | LFT abnormalities (hepatotoxicity — monitor LFTs); does not shrink tumour; very expensive; injection site lipohypertrophy |
+| ***Dopamine agonist*** | ***Cabergoline*** | Works in adenomas that co-secrete PRL (~30% of GH-secreting adenomas share PIT-1 lineage); binds D2 receptors | Normalises IGF-1 in ~30–40% (mild GH elevation only) | As above for DA |
 
-**Why somatostatin analogues?** Somatostatin is the physiological inhibitor of GH from the hypothalamus. These analogues mimic somatostatin but are long-acting. Somatotroph adenomas retain somatostatin receptors (especially SSTR2), allowing pharmacological GH suppression.
+[2][3]
 
-**Indications:**
-- Pre-operative (to reduce tumour size and improve surgical outcomes, especially in large invasive adenomas).
-- Post-operative persistent acromegaly (incomplete resection).
-- Primary medical therapy if surgery is contraindicated or refused.
+> **Why is surgery first-line for acromegaly, not SSAs?** Because SSAs only normalise IGF-1 in ~60% and rarely cure the disease. ***Transsphenoidal surgery has an 80–90% cure rate for microadenomas and can debulk large macroadenomas to improve subsequent medical efficacy*** [3]. The surgical "first strike" maximises the chance of biochemical remission.
 
-**Other acromegaly-specific drugs:**
-- **Pegvisomant** (GH receptor antagonist) — blocks GH action at the peripheral receptor → normalises IGF-1 in ~90%. Does **not** shrink the tumour (so must monitor MRI). Used when somatostatin analogues fail.
-- **Cabergoline** — can be added in mild residual acromegaly (some somatotroph adenomas co-express D2 receptors, especially mammosomatotroph tumours).
+#### 3.3 Medical Therapy for Cushing's Disease (Peri-Operative or Refractory)
 
-#### C. Medical Therapy for Corticotroph Adenomas (Cushing's Disease)
+Medical therapy here is **not curative** — it is used to:
+- ***Control hypercortisolism pre-operatively*** (to reduce surgical risk) [2]
+- Manage patients **contraindicated for surgery** or with **persistent disease after surgery**
+- **Bridge** until radiotherapy takes effect (6–12 months delay)
 
-Medical therapy is generally **adjuvant or temporising** — ***definitive treatment for pituitary Cushing's is transsphenoidal surgery*** [6]:
+| Drug Class | Example | Mechanism | Notes |
+|:---|:---|:---|:---|
+| ***Adrenal steroidogenesis inhibitors*** | ***Metyrapone*** (first-line) | Inhibits CYP11B1 (11β-hydroxylase) → blocks the final step of cortisol synthesis; short-acting, effective within 2 hours; requires BD/TDS dosing [2] | Side effects: hirsutism (shunts precursors to androgens), hypertension (↑11-deoxycorticosterone has mineralocorticoid activity), GI upset |
+| | **Ketoconazole** | Azole antifungal that also inhibits multiple adrenal steroidogenic enzymes (CYP11A1, CYP17) → ↓cortisol + ↓androgen | ***Hepatotoxicity*** (requires LFT monitoring; withdrawn in some countries as antifungal); gynaecomastia, ↓libido (anti-androgen effect) [2] |
+| | **Osilodrostat** (newer) | CYP11B1 + CYP11B2 inhibitor; potent, oral, once daily | QTc prolongation; adrenal insufficiency if overdosed |
+| **Adrenolytic agent** | **Mitotane** | Cytotoxic to adrenal cortex ("medical adrenalectomy"); used mainly for adrenal carcinoma, occasionally severe Cushing's | Slow onset; GI side effects; teratogenic |
+| ***Pituitary-acting agents*** | ***Pasireotide*** (somatostatin analogue with SST5 affinity) | Corticotroph adenoma cells express SST5; pasireotide binds SST5 → ↓ACTH secretion | Hyperglycaemia (significant — may need insulin); GI side effects |
+| | ***Cabergoline*** (dopamine agonist) | Some corticotroph adenomas express D2 receptors | Normalises UFC in ~25–40% of mild cases; less effective than steroidogenesis inhibitors [2] |
+| **Glucocorticoid receptor antagonist** | **Mifepristone** | Blocks cortisol at the receptor level → useful for metabolic complications (hyperglycaemia) | Does not lower cortisol levels (cannot monitor UFC); risk of adrenal insufficiency; anti-progestational (abortifacient) |
 
-| Drug | Target | Mechanism | Role |
-|:-----|:-------|:----------|:-----|
-| **Ketoconazole** | Adrenal steroidogenesis | Inhibits CYP11A1, CYP17 → ↓ cortisol synthesis | Bridging therapy pre-surgery or if surgery fails |
-| **Metyrapone** | 11β-hydroxylase | Blocks final step of cortisol synthesis | Rapid cortisol reduction; pre-operative preparation |
-| **Osilodrostat** | 11β-hydroxylase | Same as metyrapone but oral, more potent | Newer option for persistent Cushing's |
-| **Pasireotide** | Pituitary SSTR5 | Suppresses ACTH secretion from corticotroph tumour cells (which express SSTR5 > SSTR2) | Post-surgical persistent disease; normalises UFC in ~25% |
-| **Mifepristone** | Glucocorticoid receptor | Blocks cortisol action peripherally (competitive antagonist) | Controls hyperglycaemia in Cushing's; does NOT lower cortisol levels (cannot monitor by cortisol — use clinical response) |
-| **Cabergoline** | D2 receptors on corticotroph cells | Some corticotroph adenomas express D2 → ACTH suppression | Adjunctive; moderate efficacy (~25–30%) |
+***Two strategies*** for medical cortisol control [2]:
+- ***Block-and-replace:*** Total suppression of cortisol with inhibitors + add back physiological hydrocortisone replacement. Used when cortisol production is highly variable
+- ***Normalisation:*** Titrate inhibitor dose to normalise UFC without replacement. Used when cortisol production is relatively stable
 
-***Bilateral adrenalectomy*** — last resort for refractory Cushing's disease. Risk: ***Nelson's syndrome*** (unopposed ACTH-secreting tumour grows rapidly without cortisol negative feedback → hyperpigmentation, mass effect) [6].
+#### 3.4 Medical Therapy for TSH-Secreting Adenoma (Second-Line)
 
-#### D. Temozolomide — For Aggressive PitNETs / Pituitary Carcinoma
-
-- **Temozolomide** ("temo-" = related to its imidazotetrazine structure, "-zolomide" = alkylating) — an alkylating chemotherapy agent.
-- Indicated for **aggressive pituitary neuroendocrine tumours** (high Ki-67, rapid recurrence despite surgery + radiotherapy) and the rare **pituitary carcinoma** (with metastasis).
-- Mechanism: methylates DNA at O6-guanine → DNA damage → apoptosis. Response correlates with **low MGMT expression** (MGMT is a repair enzyme that removes the methyl group — if MGMT is low, the tumour can't repair the damage → better response).
-- ~30–40% response rate in aggressive PitNETs.
+- ***Somatostatin analogues*** (octreotide, lanreotide): used as adjunctive therapy post-surgery or pre-operatively; can normalise TSH and fT4 in ~80% and shrink tumour in ~40%
 
 ---
 
-### 3. Surgical Treatment
+### 4. Surgical Treatment
 
-***For GH, ACTH, TSH-secreting adenomas: surgery first*** [1].
-***Or radiosurgery*** [1].
+***Surgery is first-line for all functioning pituitary adenomas except prolactinoma, and for all macroadenomas with mass effect*** [2][3][4][10]
 
-#### A. Transsphenoidal Surgery — The Workhorse
+#### 4.1 Surgical Indications
 
-***Transsphenoidal surgery*** [2] is the primary surgical approach for the vast majority of pituitary adenomas. The name: "trans-" = through, "sphenoidal" = sphenoid bone/sinus — the surgeon goes through the nose, through the sphenoid sinus, and into the sella from below.
+| Adenoma Type | Indication for Surgery |
+|:---|:---|
+| ***GH-secreting adenoma*** | ***First-line treatment*** — surgery offers the best chance of biochemical cure [2][3][4] |
+| ***ACTH-secreting adenoma*** | ***First-line treatment*** — transsphenoidal surgery curative in 60–70% [2][4] |
+| ***TSH-secreting adenoma*** | ***First-line treatment*** [4] |
+| ***Prolactinoma*** | ***Second-line*** — only if refractory or intolerant to dopamine agonist; or giant prolactinoma in woman planning pregnancy [2][5][10] |
+| ***Non-functioning macroadenoma*** | ***Symptomatic/large non-functioning adenoma*** with visual field defects, progressive growth, or hypopituitarism [2][3][10] |
+| ***Pituitary apoplexy*** | ***Urgent surgical decompression*** under steroid cover if: signs of raised ICP, change in conscious state, evidence of compression on neighbouring structures [2][10] |
 
-***Surgical approaches*** [1]:
-- ***Microscopic or Endoscopic — Less invasive but depends on tumour size and morphology*** [1].
-- ***Endoscopic transsphenoidal surgery — probably better than microscopic transsphenoidal surgery*** [1] — better visualisation, wider panoramic view, lower complication rates in experienced centres.
+[2][3][4][5][10]
 
-**Why transsphenoidal?**
-- The sphenoid sinus sits **directly below** the sella turcica. By going through the nose → sphenoid sinus → floor of sella, you access the pituitary without touching the brain. This is a **minimally invasive** extracranial route.
-- Avoids brain retraction, craniotomy, and frontal lobe manipulation.
-- The sphenoid sinus is an air-filled cavity — there is nothing vital to traverse (unlike opening the skull).
+#### 4.2 Surgical Approaches
 
-**Endoscopic technique (modern standard):**
-1. Binostril or mononostril approach using a rigid 0° or 30° endoscope.
-2. Middle turbinate lateralised; posterior nasal septum removed.
-3. Sphenoidotomy → expose the anterior face of the sella.
-4. Open the sellar floor with a drill/osteotome.
-5. Incise the dura → identify and resect the adenoma under direct endoscopic vision.
-6. Reconstruct the sellar floor (fat graft, fascia lata, nasoseptal flap for large defects).
+| Approach | Route | Indication | Rationale |
+|:---|:---|:---|:---|
+| ***Transsphenoidal (route of choice)*** | Through the nose (transnasal) or upper lip (sublabial) → sphenoid sinus → sellar floor → pituitary | ***Most pituitary adenomas*** — both micro- and macroadenomas | The sphenoid sinus sits directly below the sella. This approach avoids brain retraction entirely; recovery is faster; complications are lower. Two techniques: ***microscopic or endoscopic*** [10] |
+| ***Transfrontal (transcranial)*** | Craniotomy → frontal lobe retraction → access from above | ***Very large suprasellar extension*** or ***severe chiasmal compression*** that cannot be safely reached from below [2] | Needed when the tumour is too large or too lateral (encasing ICA) for a transsphenoidal approach |
 
-#### B. Craniotomy — For Large Suprasellar Extension
+[2][5][10]
 
-***Craniotomy — mainly when significant suprasellar extension*** [1].
+**Why is endoscopic transsphenoidal surgery now preferred over microscopic?**
+- The endoscope provides a **wide-angle, panoramic view** of the surgical field
+- Allows better visualisation of the **lateral recesses** (cavernous sinus margins), **suprasellar extension**, and **diaphragma sellae** descent
+- Enables more complete tumour removal with lower rates of residual disease in experienced hands
+- Both approaches have similar complication rates; the choice often depends on surgeon preference and expertise
 
-When the adenoma has a large suprasellar component with a narrow "waist" at the diaphragma sellae (hourglass shape), the transsphenoidal approach may not reach the suprasellar portion. In these cases, a **subfrontal or pterional craniotomy** allows access from above.
+#### 4.3 Surgical Outcomes
 
-- In some centres, a **combined approach** (transsphenoidal + transcranial) may be used for giant adenomas.
+| Adenoma Type | Cure Rate (Micro-) | Cure Rate (Macro-) | Notes |
+|:---|:---|:---|:---|
+| ***GH-secreting*** | ***80–90%*** | ***< 50%*** [3] | Can repeat surgery if MRI detects residual tumour |
+| ***ACTH-secreting*** | ***60–70%*** curative (postop cortisol undetectable) [2] | Lower (macroadenomas rare in Cushing's disease) | Microadenomectomy if feasible; otherwise subtotal anterior hypophysectomy if no fertility wish [2] |
+| **Prolactinoma** | ~80% (when surgery is chosen) | ~30–40% | Rarely first-line; high recurrence rates compared to continued DA |
+| **Non-functioning** | Debulking → decompression | Complete resection rates 50–70% | ***NOT all adenoma tissue can be excised, particularly macroadenomas*** [5]; surgery tends to be conservative to minimise damage to surrounding structures [5] |
 
-#### C. Indications for Surgery
+***Advantages of surgery*** [2]:
+- ***Rapid reduction in hormone secretion and tumour size*** → biochemical remission achievable in days to weeks
+- ***Remission > 85% for microadenomas***; 40–50% for macroadenomas
 
-***Indications for transsphenoidal/transfrontal surgery*** [2]:
+***Disadvantages of surgery*** [2]:
+- ***Residual disease or recurrence***, especially with macroadenomas (2–8% recurrence rate)
+- ***Hypopituitarism*** — risk of new hormone deficiencies
+- ***Diabetes insipidus*** — from surgical injury to the stalk or posterior pituitary (may be transient or permanent)
 
-| Indication | Explanation |
-|:-----------|:-----------|
-| ***Macroadenoma > 1 cm in size*** | Risk of mass effect (chiasmal compression, hypopituitarism) increases with size |
-| ***Symptomatic patients, especially with visual disturbances*** | Visual field loss is a strong indication — the longer the compression, the worse the recovery |
-| ***Hemorrhage in pituitary adenoma*** (apoplexy) | ***Urgent surgery for decompression*** [1] if visual deterioration or declining consciousness |
-| ***GH-secreting adenoma (acromegaly)*** | ***Surgery first*** [1] — medical therapy is adjuvant |
-| ***ACTH-secreting adenoma (Cushing's disease)*** | ***Surgery first*** [1] — ***trans-sphenoidal surgery ± pituitary radiotherapy/radiosurgery*** [6] |
-| ***TSH-secreting adenoma*** | ***Surgery first*** [1] — very rare; somatostatin analogues can be used pre-operatively |
-| ***Patients refractory or intolerable to medical treatment*** | Prolactinomas resistant to dopamine agonists (~10–15%) |
-| ***Women with giant lactotroph adenoma > 3 cm who wish to become pregnant*** | ***Even if responding to dopamine agonist*** — risk of rapid tumour expansion when agonist is discontinued in pregnancy [2] |
+#### 4.4 Complications of Transsphenoidal Surgery
 
-#### D. Pre-operative Preparation
+***This is explicitly listed as essential knowledge in the lecture slides*** [4]:
 
-| Action | Rationale |
-|:-------|:---------|
-| **Assess cortisol reserve** (8 AM cortisol ± SST/ITT) | ***Hypopituitarism can cause shock (cortisol)*** [1] — must give peri-operative hydrocortisone if deficient |
-| **Peri-operative steroid cover** (IV hydrocortisone 50–100 mg at induction, then Q8H for 24–48 hours) | Covers surgical stress; prevents adrenal crisis even if ACTH axis is intact (may be damaged intra-operatively) |
-| ***Steroid cover: normal HPA axis usually suppressed*** in Cushing's patients [6] | Post-operatively, the normal corticotrophs have been suppressed by chronic cortisol excess → need glucocorticoid replacement until HPA axis recovers (~6–12 months) |
-| **Assess thyroid function** | Correct hypothyroidism pre-operatively (but ***give cortisol before T4*** [1]) |
-| **Formal visual field testing** | Baseline for post-operative comparison |
-| **ENT assessment** | Evaluate nasal anatomy, septal deviation, prior nasal surgery |
-| ***Prophylactic antibiotics*** [6] | Especially Cushing's patients (immunosuppressed by chronic cortisol excess) |
+| Complication | Mechanism | Frequency | Management |
+|:---|:---|:---|:---|
+| ***Diabetes insipidus*** | Injury to posterior pituitary or infundibular stalk → loss of ADH → inability to concentrate urine → polyuria + polydipsia | 10–20% transient; 1–5% permanent | Desmopressin (DDAVP); monitor urine output and serum Na closely post-op |
+| ***Hypopituitarism*** | Removal or compression of normal pituitary tissue during surgery | Variable; higher with larger tumours | Lifelong hormonal replacement as needed (hydrocortisone, levothyroxine, sex steroids, GH) |
+| ***CSF leakage (rhinorrhoea)*** | Defect in the sellar floor or diaphragma sellae → CSF drains through nose | ***0.5–4%*** [5] | Lumbar subarachnoid CSF drainage first; if unsuccessful → re-operation to repack the adenoma bed; ***failure to stop CSF leakage increases risk of meningitis*** [5] |
+| ***Meningitis*** | Secondary to CSF leak; direct contamination from nasal flora | ~1–2% | Prophylactic antibiotics peri-operatively; urgent treatment with IV antibiotics if develops |
+| ***Vision loss*** | Intra-operative damage to optic nerves or chiasm | Rare (<1%) | Intra-operative visual monitoring; careful surgical technique |
+| ***Vascular injury and CVA*** | Injury to internal carotid artery (runs in the cavernous sinus just lateral to the sella) | Very rare but catastrophic | Pre-operative CTA/MRA to map vascular anatomy; meticulous lateral dissection |
+| ***Intracranial haemorrhage*** | Bleeding from tumour bed or vascular injury | Rare | Immediate surgical evacuation if significant |
+| ***ENT symptoms*** | Nasal crusting, septal perforation, sinusitis, anosmia | Common but usually minor | Nasal care; saline irrigation |
+| ***Mortality*** | All causes combined | ***Very rare ( < 0.5%)*** [10] | |
 
-#### E. Surgical Outcomes
+[5][10]
 
-| Adenoma Type | Remission Rate (Microadenoma) | Remission Rate (Macroadenoma) | Comments |
-|:-------------|:-----------------------------|:------------------------------|:---------|
-| **Prolactinoma** (when surgery is indicated) | 80–90% | 30–50% | Usually medical first; surgery reserved for special indications |
-| **Somatotroph** | 80–90% | 40–60% | Defined by normalised IGF-1 and GH nadir < 1 μg/L on OGTT |
-| **Corticotroph** | 70–90% | 50–60% | Defined by low/undetectable morning cortisol post-operatively (remission); need steroid cover as HPA recovers |
-| **Thyrotroph** | 70–80% | 40–50% | Rare; limited data |
-| **Non-functioning** | N/A (usually macroadenomas) | Complete resection: 50–70% | ***NOT all adenoma tissue can be excised particularly those with macroadenoma*** [2] — ***tends to be conservative during surgery and minimize damage to surrounding structures including the non-adenomatous pituitary*** [2] |
+<Callout title="Post-Operative DI — The Triphasic Response" type="idea">
+After transsphenoidal surgery, DI can follow a classic **triphasic pattern**:
+1. **Phase 1 (Days 1–3):** DI due to axonal shock → polyuria, dilute urine, rising serum Na
+2. **Phase 2 (Days 4–8):** Release of stored ADH from damaged axon terminals → transient SIADH → hyponatraemia
+3. **Phase 3 (Day 9+):** Permanent DI if axons are destroyed; or recovery if axonal function resumes
 
-#### F. Complications of Transsphenoidal Surgery
-
-***Complications of Transsphenoidal Surgery*** [1]:
-
-| Complication | Mechanism | Incidence | Key Points |
-|:-------------|:----------|:----------|:-----------|
-| ***Mortality*** | Very rare in modern series | ***Very rare*** [1] | < 0.5% in experienced centres |
-| ***Hypopituitarism*** | Damage to normal pituitary tissue during tumour removal | 5–15% (new deficits) | ***Can cause shock (cortisol)*** [1]; may require lifelong hormonal replacement [2] |
-| ***Diabetes insipidus*** | Damage to posterior pituitary or pituitary stalk → loss of ADH | Transient: 10–20%; Permanent: 1–3% | ***Polyuria, haemoconcentration*** [1]; monitor UO, serum Na, urine SG. Treat with DDAVP if persistent. |
-| ***CSF leakage*** | Breach of arachnoid/dura not adequately sealed during closure | ***0.5–4%*** [2] | ***CSF leakage and meningitis*** [1]; ***Beta-2-transferrin positive; Pneumocephalus*** [1]; ***if lumbar subarachnoid diversion is unsuccessful, reoperation for repacking required; failure to stop CSF leakage increases risk of meningitis*** [2] |
-| ***Visual loss*** | Inadvertent damage to optic nerves or chiasm | Rare ( < 1–2%) | ***Close monitoring post-op*** [1] |
-| ***ENT symptoms*** | Surgical approach through nasal cavity | Variable | ***Epistaxis, anosmia, sinusitis*** [1] |
-| ***Vascular injury*** | Damage to ***internal carotid artery*** [2] or cavernous sinus vessels | Rare but catastrophic | Can cause life-threatening haemorrhage, pseudoaneurysm, or carotid-cavernous fistula |
-| ***Intracranial haemorrhage*** | Bleeding into surgical cavity or intracranial structures | Rare | ***Intracranial haemorrhage*** [1] |
-| **SIADH** | Transient inappropriate ADH release (triphasic response: DI → SIADH → DI or recovery) | 5–10% | Hyponatraemia 5–10 days post-operatively; restrict fluids; monitor Na closely |
-| **Meningitis** | Ascending infection through CSF leak defect | Rare if CSF leak sealed | Prophylactic antibiotics peri-operatively; urgent treatment if it occurs |
-
-<Callout title="The Triphasic Response — Post-operative Sodium Swings" type="idea">
-After transsphenoidal surgery, patients can develop a characteristic **triphasic pattern** of water/sodium disturbance:
-
-**Phase 1 (Days 1–3): Diabetes insipidus** — Surgical trauma causes acute loss of ADH → dilute polyuria → hypernatraemia.
-
-**Phase 2 (Days 5–10): SIADH** — Degenerating posterior pituitary neurons release stored ADH in an uncontrolled burst → water retention → hyponatraemia. This is the **most dangerous phase** because severe hyponatraemia can cause seizures.
-
-**Phase 3 (Days 10–14+): Recovery or Permanent DI** — ADH stores are now depleted. If the stalk/posterior pituitary has recovered, normal water balance returns. If permanently damaged, permanent DI requiring lifelong DDAVP.
-
-Not all patients go through all three phases. Many have only transient DI (Phase 1 alone). The key is to **monitor serum sodium and urine output daily for at least 10–14 days post-operatively**.
+Not all patients go through all three phases. Monitor urine output, urine specific gravity, serum Na, and serum/urine osmolality closely in the first 7–14 days post-op.
 </Callout>
 
----
+#### 4.5 Post-Operative Follow-Up [2]
 
-### 4. Radiation Therapy / Radiosurgery
+| Timepoint | Assessment |
+|:---|:---|
+| **Immediate post-op** (Days 1–7) | Urine output + fluid balance (DI screening); serum Na Q6–12h; serum cortisol (if adrenal axis at risk) |
+| **4–6 weeks** | ***Full pituitary hormone panel*** → assess for new hypopituitarism [2]; visual fields if macroadenoma |
+| **3 months** | Hormonal reassessment; repeat MRI (baseline post-op scan) |
+| **6–12 months** | MRI pituitary; hormonal panel |
+| ***1y, 2y, 5y, 10y*** | ***Post-op MRI for any recurrence*** [2] |
 
-***Or radiosurgery*** [1] — radiotherapy is the **third-line** treatment modality, used as adjuvant to surgery or when surgery is not feasible.
+#### 4.6 Peri-Operative Management — Specific Considerations
 
-#### A. Types of Radiation
+##### Cushing's Disease Peri-Op [2][11]:
+- ***Pre-operative:*** Control and correct HTN, DM, hypokalaemia; metyrapone to lower cortisol
+- ***Peri-operative:*** ***Steroid cover*** (the contralateral normal corticotrophs are suppressed by chronic hypercortisolism → acute adrenal insufficiency after tumour removal); ***prophylactic antibiotics*** (Cushing's patients are immunosuppressed); ***DVT prophylaxis*** (hypercoagulable state)
+- ***Post-operative:*** Glucocorticoid replacement (15–25 mg/d hydrocortisone); taper gradually; HPA axis may take **6–18 months to recover** (some patients need lifelong replacement) [2][11]
 
-***Radiation therapy for brain tumours: aim to deliver high treatment dose to tumour bed, minimise radiation to normal tissue, balance between treatment efficacy and side effects*** [1].
-
-| Modality | Technique | Dose/Fractions | Best For | Key Features |
-|:---------|:----------|:-------------|:---------|:-------------|
-| **Stereotactic Radiosurgery (SRS)** — single fraction | ***Focused radiation beams converge onto tumour*** [1]; ***X-knife uses X-ray; Gamma knife uses gamma ray; Cyberknife uses real-time imaging and moves to adjust to movement*** [1] | Single fraction 12–25 Gy | Small, well-defined residual/recurrent adenomas ( < 3 cm, > 2–3 mm from optic chiasm) | Highly precise; single session; lower risk of hypopituitarism compared to conventional RT; requires clear margin from optic apparatus |
-| **Fractionated Stereotactic Radiotherapy (FSRT)** | Multiple small daily doses | 45–54 Gy in 25–30 fractions | Larger residuals or tumours close to optic chiasm | Better tolerance by optic nerves (fractionation allows normal tissue recovery between doses) |
-| **Conventional Radiotherapy** | Broader field, less precision | 45–50 Gy in 25–30 fractions | Historically used; largely replaced by SRS/FSRT | Higher rates of hypopituitarism, radiation necrosis, second tumour risk |
-
-#### B. Indications for Radiotherapy
-
-***Postoperative radiation*** [2]:
-- ***NOT all adenoma tissue can be excised, particularly those with macroadenoma*** [2].
-- ***Primarily used to prevent regrowth of residual tumour in patients with large macroadenoma after transsphenoidal debulking*** [2].
-- Also used for recurrent adenomas after re-operation, and for aggressive PitNETs.
-
-Specific indications:
-1. **Residual non-functioning macroadenoma** with documented growth on post-operative surveillance MRI.
-2. **Persistent hormonal excess** after surgery (especially acromegaly, Cushing's disease) and medical therapy.
-3. **Aggressive PitNETs** (high Ki-67, rapid recurrence, invasion).
-4. Patients **unfit for surgery** or who **refuse surgery**.
-5. **Residual prolactinoma** resistant to dopamine agonists AND surgery.
-
-#### C. Complications of Radiotherapy
-
-| Complication | Timeframe | Mechanism |
-|:-------------|:---------|:----------|
-| **Hypopituitarism** | Months to years (most common long-term complication: 30–80% at 10 years for conventional RT; lower for SRS) | Radiation damage to normal pituitary cells and hypothalamus → progressive hormone loss |
-| **Optic neuropathy** | Months to years | Direct radiation injury to optic nerves/chiasm (risk minimised by keeping dose to chiasm < 8–10 Gy single fraction or < 54 Gy fractionated) |
-| **Cerebrovascular disease** | Years to decades | Radiation-induced vasculopathy of ICA and cerebral vessels → increased stroke risk |
-| **Secondary malignancy** | Decades | Radiation-induced gliomas, meningiomas, sarcomas (rare, ~2% at 20 years) |
-| **Cognitive dysfunction** | Years | Radiation damage to temporal lobes and hippocampi |
-| **Temporal lobe necrosis** | Months to years | Direct parenchymal radiation injury |
+##### Acromegaly Peri-Op:
+- Pre-operative SSA may be given to improve anaesthetic safety (reduce soft tissue swelling, improve cardiac function)
+- Post-op: assess GH/IGF-1 at 3 months for remission
 
 ---
 
-### 5. Subtype-Specific Management Summary
+### 5. Radiotherapy
 
-| Adenoma Subtype | First-Line Treatment | Second-Line / Adjuvant | Key Points |
-|:----------------|:--------------------|:----------------------|:-----------|
-| ***Prolactinoma*** | ***Dopamine agonist (cabergoline / bromocriptine)*** [1][2] | Surgery (if refractory/intolerant/giant + pregnancy wish); then radiosurgery | Only adenoma where medical Rx is first line. ***Cabergoline preferred.*** |
-| ***Somatotroph (Acromegaly)*** | ***Surgery first*** [1] | Somatostatin analogues (octreotide/lanreotide), pegvisomant, radiosurgery | Pre-operative octreotide may improve surgical outcomes. Target: normal IGF-1, GH < 1 μg/L on OGTT. |
-| ***Corticotroph (Cushing's)*** | ***Surgery first*** [1] — ***trans-sphenoidal surgery ± pituitary radiotherapy/radiosurgery*** [6] | Adrenal-directed drugs (ketoconazole, metyrapone, osilodrostat), pasireotide, bilateral adrenalectomy (last resort) | Post-op steroid cover until HPA recovers (~1 year). Risk of ***Nelson's syndrome if bilateral adrenalectomy*** [6]. |
-| ***Thyrotroph*** | ***Surgery first*** [1] | Somatostatin analogues (octreotide — thyrotroph adenomas express SSTR2); ± anti-thyroid drugs pre-operatively to control thyrotoxicosis | Rarest adenoma type. Must distinguish from thyroid hormone resistance. |
-| ***Non-functioning*** | ***Surgery if symptomatic (mass effect)*** | Radiotherapy for residual/recurrent; conservative if incidental micro | ***Non-functioning incidentaloma — observe*** [1] |
-| ***Aggressive PitNET / Pituitary carcinoma*** | Surgery + radiotherapy | **Temozolomide** (alkylating agent; ~30–40% response) | Check MGMT status (low expression → better response) |
+***Radiotherapy is usually used as adjunct to surgery*** [2][3], not as primary treatment (with the exception of certain macroprolactinomas and patients who are not surgical candidates).
+
+#### 5.1 Modalities
+
+| Modality | Technique | Advantages | Disadvantages |
+|:---|:---|:---|:---|
+| **Conventional fractionated EBRT** | 45–50.4 Gy in 25–28 fractions over 5–6 weeks | Effective; proven long-term tumour control | ***Delayed effect on hormone secretion*** (months to years) [2]; ***higher incidence of hypopituitarism*** (50–100% at 10–20 years) [2]; risk of damage to optic apparatus; rare second malignancy; cognitive effects |
+| ***Stereotactic radiosurgery (SRS)*** | ***Gamma Knife or CyberKnife / LINAC-based***; single high-dose fraction precisely targeted at tumour | More precise; shorter treatment; less collateral damage to surrounding brain | ***NOT used if tumour is < 5 mm from the optic chiasm*** [2] — the single high dose would damage the chiasm; not suitable for very large tumours with suprasellar extension |
+| **Fractionated stereotactic RT** | Multiple fractions delivered with stereotactic precision | Can treat tumours close to the optic chiasm (fractionation allows optic apparatus to repair between fractions) | Intermediate between EBRT and SRS |
+
+***or radiosurgery*** [4] — the lecture slides specifically mention radiosurgery as an alternative for residual/recurrent disease.
+
+#### 5.2 Indications [2]
+
+- ***Adjunct to surgery for residual tumour*** (most common use)
+- ***Primary therapy*** for patients who are **not surgical candidates** (elderly, comorbid)
+- **Macroprolactinoma** refractory to dopamine agonist and surgery
+- **Recurrent** adenoma after prior surgery
+- **Cushing's disease:** pituitary irradiation + medical therapy if residual non-resectable disease [2]
+
+#### 5.3 Key Contraindication
+
+***Stereotactic radiosurgery is NOT used if the tumour is < 5 mm from the optic chiasm*** [2] — the optic apparatus has limited radiation tolerance (~8–10 Gy single dose), and a single high-dose radiosurgery fraction would risk optic neuropathy and blindness.
+
+#### 5.4 Disadvantages of Radiotherapy [2]
+
+- ***Delayed effect on secretion*** — not useful for acute symptom control; maximum effect 6–12 months for hormone normalisation
+- ***Higher incidence of hypopituitarism*** — progressive loss of pituitary function over years (GH first, then other axes); patients need lifelong endocrine follow-up
+- ***Risk of damage to surrounding structures*** — optic nerve, temporal lobes (cognitive decline), cranial nerves
+- **Secondary malignancy** — very rare but reported (meningioma, glioma in the irradiated field, years later)
+- **Cerebrovascular disease** — increased stroke risk years after cranial RT
 
 ---
 
-### 6. Management of Pituitary Apoplexy
+### 6. Management by Specific Adenoma Type — Detailed Algorithm
 
-***Pituitary apoplexy — an emergency!!*** [1]
+#### 6.1 Prolactinoma
 
 ```mermaid
 graph TD
-    A["Acute presentation: Thunderclap headache
-    + Visual loss + Ophthalmoplegia
-    + Altered consciousness"] --> B["Suspect Pituitary Apoplexy"]
-    B --> C["Immediate Actions:
-    1. ABC assessment
-    2. IV access, bloods
-    3. Urgent cortisol level
-    4. IV Hydrocortisone 100mg stat"]
-    C --> D["Urgent MRI pituitary
-    or CT if MRI unavailable"]
-    D --> E{"Visual deterioration
-    or declining GCS?"}
-    E -->|"Yes"| F["Urgent transsphenoidal
-    decompression"]
-    E -->|"No — stable vision,
-    mild symptoms"| G["Conservative management:
-    IV hydrocortisone, monitor
-    visual fields Q4-6 hourly,
-    serial Na/UO for DI"]
-    G --> H{"Improving?"}
-    H -->|"Yes"| I["Continue conservative
-    Transition to oral steroids
-    Full pituitary re-assessment at 4-8 weeks"]
-    H -->|"No — worsening vision"| F
-    C --> J["KEY: Give cortisol BEFORE T4"]
+    P1["Prolactinoma Diagnosed"] --> P2["***Start Dopamine Agonist***\nCabergoline preferred"]
+    P2 --> P3{"PRL normalised +\ntumour shrinks?"}
+    P3 -->|Yes| P4["Continue DA;\nMonitor PRL + MRI"]
+    P4 --> P5{"PRL normal + no tumour\non MRI for ≥ 2 years?"}
+    P5 -->|Yes| P6["Consider DA withdrawal\n~30-40% relapse"]
+    P5 -->|No| P4
+    P3 -->|"No - refractory\nor intolerant"| P7["***Surgery***\nTranssphenoidal"]
+    P7 --> P8{"Residual?"}
+    P8 -->|Yes| P9["Restart DA or\n***Radiosurgery / RT***"]
+    
+    P1 --> P10{"Giant prolactinoma > 3cm\n+ woman planning pregnancy?"}
+    P10 -->|Yes| P11["Consider surgery\neven if DA-responsive"]
 ```
 
-***Give cortisol before T4*** [1] — because T4 increases metabolic rate → increases cortisol demand → precipitates adrenal crisis if the patient is already ACTH-deficient from the apoplexy.
+[2][4][5]
 
-***Urgent surgery for decompression*** [1] — indicated when there is **progressive visual loss** or **declining consciousness**. If vision is stable and symptoms are mild, conservative management with IV steroids and close monitoring is acceptable — many patients improve spontaneously as the haemorrhagic swelling resolves.
+#### 6.2 Acromegaly
+
+```mermaid
+graph TD
+    A1["Acromegaly Diagnosed"] --> A2["***Transsphenoidal Surgery***\n1st line"]
+    A2 --> A3{"Remission?\nIGF-1 normal +\nGH suppresses on OGTT"}
+    A3 -->|"Yes - micro 80-90%"| A4["Follow-up:\nIGF-1, MRI, colonoscopy"]
+    A3 -->|"No - esp macro < 50%"| A5{"Residual tumour\non MRI?"}
+    A5 -->|"Yes, resectable"| A6["Repeat surgery"]
+    A5 -->|"Not resectable"| A7["***Medical Therapy***"]
+    A7 --> A8["SSA: octreotide / lanreotide"]
+    A7 --> A9["± Pegvisomant\nif SSA insufficient"]
+    A7 --> A10["± Cabergoline\nif co-secretes PRL"]
+    A7 --> A11["***Stereotactic RT***\nif refractory to medical Rx"]
+```
+
+***Transsphenoidal surgery is 1st line: 80–90% curative for micro-, < 50% for macroadenoma. Can repeat surgery if MRI detects residual tumour*** [3]
+
+#### 6.3 Cushing's Disease
+
+```mermaid
+graph TD
+    C1["Cushing's Disease\nConfirmed"] --> C2["Pre-op: metyrapone to\ncontrol hypercortisolism"]
+    C2 --> C3["***Transsphenoidal Surgery***\n1st line: 60-70% curative"]
+    C3 --> C4{"Postop cortisol\nundetectable?"}
+    C4 -->|Yes| C5["Hydrocortisone replacement\nuntil HPA recovers\n~6-18 months"]
+    C4 -->|"No - persistent"| C6{"Residual on MRI?"}
+    C6 -->|Yes| C7["Repeat surgery"]
+    C6 -->|"No or failed"| C8["Pituitary RT +\nmedical Rx bridge"]
+    C8 --> C9["If severe persistent\nhypercortisolism"]
+    C9 --> C10["***Bilateral adrenalectomy***\nRisk of Nelson syndrome"]
+```
+
+***Risk of Nelson syndrome*** (8–25% in adults, > 50% in children) ***following bilateral adrenalectomy*** [2]: the removal of cortisol negative feedback causes the residual corticotroph adenoma to grow aggressively and secrete very high ACTH → skin hyperpigmentation + expanding sellar mass. This is why bilateral adrenalectomy is a last resort and patients need long-term MRI surveillance.
+
+[2][11]
+
+#### 6.4 Non-Functioning Adenoma
+
+| Scenario | Management |
+|:---|:---|
+| ***Microadenoma, asymptomatic, incidental*** | ***Observe with serial MRI and hormonal panel*** [2][3][5] |
+| **Macroadenoma with mass effect** (visual field defects, progressive growth, hypopituitarism) | ***Transsphenoidal surgery*** → maximal safe debulking → post-op MRI at 3–6 months |
+| **Residual tumour post-surgery** | ***Radiosurgery or fractionated RT*** if growing on serial imaging [4] |
+| **Growing on surveillance** (previously observed) | Surgery |
 
 ---
 
-### 7. General Medication Therapy for Brain Tumours (Relevant to Pituitary Adenomas)
+### 7. Hormone Replacement for Hypopituitarism
 
-***Treatment options: General medication therapy, surgical biopsy and resection, radiation therapy, chemotherapy, target therapy, immunotherapy*** [1].
+Whether caused by the tumour itself or by its treatment (surgery, RT), hypopituitarism requires systematic replacement:
 
-| Medication | Indication | Key Details |
-|:-----------|:-----------|:-----------|
-| ***Steroids (e.g., dexamethasone)*** | ***Decrease cerebral oedema and relieve symptoms; peri-operative use or palliation*** [1] | ***Exclude infection first*** [1]; ***S/E: DM, immunosuppression, peptic ulcer*** [1]. For pituitary adenomas, dexamethasone is primarily used peri-operatively (though hydrocortisone is preferred for adrenal replacement as it has mineralocorticoid activity). |
-| ***Anticonvulsants (e.g., phenytoin, levetiracetam)*** | ***Prophylaxis or treatment if already seizure; not for infratentorial lesion*** [1] | Pituitary adenomas are infratentorial/sellar, NOT typically associated with seizures (unlike cortical tumours). Anticonvulsant prophylaxis is generally **not indicated** for pituitary adenomas. |
-| ***Tranexamic acid*** | ***Perioperatively to reduce bleeding*** [1] | May be used in transsphenoidal surgery |
+| Deficient Axis | Replacement | Dose | Key Points |
+|:---|:---|:---|:---|
+| **ACTH-cortisol** | ***Hydrocortisone*** | 15–25 mg/d in divided doses (10 mg AM + 5 mg PM) | ***Most critical*** — must be replaced FIRST before thyroxine (giving T4 without cortisol can precipitate adrenal crisis by increasing cortisol metabolism). Patient needs a ***steroid emergency card***; must double/triple dose during illness ("sick day rules") |
+| **TSH-T4** | ***Levothyroxine*** | 1.0–1.6 μg/kg/d | Monitor with **fT4** (NOT TSH — in central hypothyroidism, TSH is unreliable). Start only AFTER cortisol replacement |
+| **FSH/LH → Sex steroids** | Testosterone (M); Oestrogen ± progesterone (F) | Testosterone: IM, transdermal, or PO; HRT: standard regimens | Restores libido, bone density, muscle mass, secondary sexual characteristics. If fertility desired: gonadotropin injections (FSH + LH/hCG) instead of sex steroids |
+| **GH** | ***Recombinant human GH*** | Titrated to normalise IGF-1 | Improves body composition, QoL, bone density. Contraindicated if active malignancy. Expensive. Not always available |
+| **ADH** (if DI) | ***Desmopressin (DDAVP)*** | Intranasal, oral, or SC; titrated to urine output | Monitor serum Na to avoid hyponatraemia from over-replacement |
+
+<Callout title="The Order of Replacement Matters!" type="error">
+Always replace ***cortisol BEFORE thyroxine***. Thyroxine increases cortisol metabolism by inducing hepatic enzymes. If you start thyroxine in a cortisol-deficient patient, you accelerate cortisol clearance → precipitate an acute adrenal crisis. This is a classic exam pitfall.
+</Callout>
 
 ---
 
-### 8. Long-Term Follow-Up
+### 8. Special Situation: Pituitary Apoplexy Management
 
-All patients with pituitary adenomas require **lifelong or long-term follow-up** because of the risk of:
-- **Tumour recurrence** (even after apparent complete resection).
-- **Progressive hypopituitarism** (especially after radiotherapy).
-- **Consequences of hormonal excess** if remission is not achieved (cardiovascular disease in acromegaly, osteoporosis in Cushing's/prolactinoma, etc.).
+***Pituitary apoplexy is a neurosurgical emergency*** [2][4][10]:
 
-**Follow-up protocol:**
+| Step | Action | Rationale |
+|:---|:---|:---|
+| **1. Immediate** | ***IV hydrocortisone 100 mg stat, then 50 mg Q6–8H*** | Presumed acute ACTH/cortisol deficiency — life-threatening if untreated |
+| **2. Assess** | Neurological exam: GCS, visual fields, visual acuity, pupillary responses, CN exam | Determine severity of compression |
+| **3. Image** | CT head (acute blood = hyperdense) → MRI pituitary if stable | Confirm diagnosis |
+| **4. Decide** | ***Urgent surgical decompression if:*** ***signs of raised ICP; change in conscious state; evidence of compression on neighbouring structures*** [2][10] | Surgery decompresses the chiasm and cavernous sinus; removes haemorrhagic debris |
+| **5. Conservative** | If haemodynamically stable, no visual deterioration, mild symptoms → **conservative management** with steroids + close monitoring (some centres manage stable apoplexy conservatively) | Not all apoplexy requires surgery; ~50% improve with steroids alone |
+| **6. Post-acute** | Full pituitary function testing at 4–6 weeks; visual field assessment; plan for definitive management of residual adenoma | Many patients develop permanent hypopituitarism; some recover function |
+
+---
+
+### 9. Long-Term Follow-Up Principles
+
+All patients with treated pituitary adenomas require **lifelong follow-up** because:
+- Recurrence can occur years later (especially with macroadenomas)
+- Hypopituitarism can develop late (especially after RT)
+- Hormone replacement needs monitoring and adjustment
 
 | Component | Frequency | Purpose |
-|:----------|:---------|:--------|
-| **MRI pituitary** | 3 months post-op, then 6 monthly × 2 years, then annually | Detect residual/recurrent tumour |
-| **Hormonal panel** | 6–12 weekly initially, then 6-monthly, then annually | Assess for hormonal remission and detect new deficiencies |
-| **Visual fields** | Pre- and post-op; then as clinically indicated | Document recovery from chiasmal compression |
-| **Pituitary reserve testing** | Post-operatively and annually post-radiotherapy | Detect evolving hypopituitarism (can develop years after RT) |
-| **Hormone replacement adjustment** | Ongoing | Titrate hydrocortisone, levothyroxine, sex steroids, GH as needed |
+|:---|:---|:---|
+| **MRI pituitary** | ***1y, 2y, 5y, 10y post-surgery*** [2]; then every 3–5y if stable | Detect recurrence |
+| **Hormonal panel** | 6-monthly for first 2 years; then annually | Detect new deficiencies; monitor replacement adequacy |
+| **Visual fields** | Pre-op, post-op (3 months), then annually if macroadenoma | Monitor chiasmal function |
+| **Complication screening** | Acromegaly: colonoscopy, cardiac assessment, glucose; Cushing's: metabolic panel, bone density | Systemic complications of hormone excess |
 
 ---
 
 <Callout title="High Yield Summary — Management of Pituitary Adenoma">
 
-1. **Prolactinoma = Medical therapy first.** Dopamine agonists (***cabergoline preferred, 70–100% success***). Surgery only if refractory, intolerant, or giant adenoma + pregnancy planned.
+1. ***Prolactinoma = dopamine agonist FIRST (cabergoline preferred over bromocriptine)*** — normalises PRL and shrinks tumour in > 90%; surgery only if DA-refractory or intolerant [4][5]
+2. ***GH, ACTH, TSH-secreting adenomas = surgery FIRST (transsphenoidal)*** [4]
+3. ***Non-functioning microadenoma = observe (FU every 3–6 months)*** [5]
+4. ***Non-functioning macroadenoma with mass effect = surgery*** [2]
+5. ***Radiotherapy / radiosurgery = adjunct for residual or recurrent disease*** [4]; NOT used if tumour < 5 mm from optic chiasm [2]
+6. **Acromegaly surgery:** 80–90% cure for micro, < 50% for macro → SSA, pegvisomant, or DA if incomplete [3]
+7. **Cushing's disease surgery:** 60–70% curative → repeat surgery, RT, medical Rx, or bilateral adrenalectomy if persistent (risk of Nelson syndrome) [2]
+8. ***Complications of transsphenoidal surgery:*** DI, hypopituitarism, CSF leak + meningitis, vision loss, vascular injury, intracranial haemorrhage, ENT symptoms [4][10]
+9. ***Replace cortisol BEFORE thyroxine*** in hypopituitarism
+10. ***Pituitary apoplexy = IV hydrocortisone FIRST → urgent surgery if compressive signs*** [2][10]
 
-2. **GH / ACTH / TSH-secreting = Surgery first** (transsphenoidal) ***± radiosurgery*** as adjuvant.
-
-3. **Non-functioning microadenoma without mass/hormonal effect = Conservative.** Follow-up every 3–6 months.
-
-4. **Transsphenoidal approach** is the standard; ***endoscopic probably better than microscopic***. ***Craniotomy mainly when significant suprasellar extension.***
-
-5. **Pituitary apoplexy = Emergency.** IV hydrocortisone immediately. ***Give cortisol before T4.*** ***Urgent surgery if visual deterioration.***
-
-6. **Key surgical complications**: Hypopituitarism (shock from cortisol loss), DI (monitor Na/UO), CSF leak (beta-2-transferrin, risk of meningitis), visual loss, ICA injury.
-
-7. **Radiotherapy/Radiosurgery**: Adjuvant for residual/recurrent tumour. Gamma knife/CyberKnife for small well-defined residuals. Main long-term risk: progressive hypopituitarism (30–80% at 10 years).
-
-8. **Cushing's disease**: Surgery first → peri-op steroid cover → HPA recovery ~1 year → bilateral adrenalectomy as last resort (risk of Nelson's syndrome).
-
-9. **Temozolomide** for aggressive PitNETs and pituitary carcinoma. Check MGMT expression.
-
-10. **Lifelong follow-up** is essential — recurrence, progressive hypopituitarism, and consequences of hormonal excess require ongoing monitoring.
 </Callout>
 
 ---
@@ -446,34 +447,38 @@ All patients with pituitary adenomas require **lifelong or long-term follow-up**
   title="Active Recall - Management of Pituitary Adenoma"
   items={[
     {
-      question: "Why is prolactinoma the only pituitary adenoma subtype where medical therapy is first line? Name the preferred drug and its success rate.",
-      markscheme: "Prolactin is the only anterior pituitary hormone under tonic inhibitory control by dopamine. Dopamine agonists (D2 receptor agonists) both suppress prolactin secretion AND induce tumour shrinkage through perivascular fibrosis and cell death. No other adenoma subtype responds this dramatically to medical therapy. Cabergoline is preferred due to its efficacy (70-100% success rate) and favourable side effect profile (less nausea than bromocriptine)."
+      question: "Why is dopamine agonist first-line for prolactinoma but not for GH-secreting or ACTH-secreting adenomas? Explain the pharmacological basis.",
+      markscheme: "Prolactin is the only anterior pituitary hormone under tonic inhibition by dopamine. Lactotroph cells (both normal and adenomatous) express abundant D2 dopamine receptors. Dopamine agonists directly bind these D2 receptors, suppressing PRL synthesis and secretion and causing tumour cell shrinkage (cytoplasmic involution and perivascular fibrosis). GH-secreting (somatotroph) and ACTH-secreting (corticotroph) adenomas do not express sufficient D2 receptors to make dopamine agonists effective as first-line. Somatotroph adenomas are targeted by somatostatin analogues and surgery; corticotroph adenomas are best treated by surgery.",
     },
     {
-      question: "A woman with a 3.5 cm prolactinoma responding well to cabergoline wishes to become pregnant. What is the recommended management and why?",
-      markscheme: "Surgery (transsphenoidal debulking) is recommended before conception despite good response to cabergoline. Discontinuation of dopamine agonist during pregnancy may lead to rapid tumour expansion (oestrogen stimulates lactotroph growth) to a clinically important size before delivery. With a giant adenoma greater than 3 cm, the risk of significant growth and chiasmal compression during pregnancy is high enough to warrant surgical debulking first."
+      question: "List the complications of transsphenoidal surgery for pituitary adenoma. Which complication carries a risk of meningitis if not managed?",
+      markscheme: "Complications: (1) Diabetes insipidus (transient or permanent), (2) Hypopituitarism (new hormone deficiencies), (3) CSF leakage/rhinorrhoea (0.5-4%), (4) Meningitis, (5) Vision loss, (6) Vascular injury and CVA (ICA injury), (7) Intracranial haemorrhage, (8) ENT symptoms (nasal crusting, septal perforation), (9) Mortality (very rare). CSF leakage carries the risk of meningitis if the leak is not sealed — managed first with lumbar subarachnoid drainage; if unsuccessful, re-operation to repack the adenoma bed.",
     },
     {
-      question: "List the key peri-operative preparations for transsphenoidal surgery and explain why cortisol assessment is mandatory.",
-      markscheme: "Key preparations: (1) Assess cortisol reserve - 8 AM cortisol with or without dynamic testing. (2) Peri-operative IV hydrocortisone cover at induction. (3) Thyroid function assessment (give cortisol before T4). (4) Baseline formal visual field testing. (5) ENT assessment of nasal anatomy. (6) Prophylactic antibiotics especially in Cushing's patients. Cortisol assessment is mandatory because unrecognised ACTH deficiency causes cortisol deficiency, and surgical stress without cortisol cover causes hypotensive shock (adrenal crisis)."
+      question: "A patient with Cushing's disease undergoes transsphenoidal surgery but has persistent elevated cortisol post-operatively. Outline the stepwise management. What is Nelson syndrome and when does it occur?",
+      markscheme: "Stepwise management of persistent Cushing's disease: (1) If residual tumour on MRI, consider repeat surgery. (2) If non-resectable residual, pituitary irradiation plus medical therapy (metyrapone or ketoconazole) as bridge until RT takes effect (6-12 months). (3) If mild hypercortisolism, pituitary-acting agents (pasireotide, cabergoline) may suffice. (4) If severe persistent hypercortisolism or desire for pregnancy, bilateral adrenalectomy. Nelson syndrome: an enlarging corticotroph adenoma that occurs after bilateral adrenalectomy (8-25% adults, more than 50% children). Removal of cortisol negative feedback allows the residual corticotroph tumour to grow aggressively, producing very high ACTH causing intense skin hyperpigmentation and an expanding sellar mass.",
     },
     {
-      question: "Describe the triphasic response pattern after transsphenoidal surgery and explain which phase is most dangerous.",
-      markscheme: "Phase 1 (Days 1-3): Diabetes insipidus - surgical trauma causes acute ADH loss leading to dilute polyuria and hypernatraemia. Phase 2 (Days 5-10): SIADH - degenerating posterior pituitary neurons release stored ADH in an uncontrolled burst causing water retention and hyponatraemia. Phase 3 (Days 10-14+): Recovery or permanent DI - ADH stores depleted, either normal function recovers or permanent DI develops. Phase 2 (SIADH) is most dangerous because severe hyponatraemia can cause seizures and cerebral oedema."
+      question: "Why must you replace hydrocortisone BEFORE starting levothyroxine in a patient with panhypopituitarism?",
+      markscheme: "Levothyroxine increases cortisol metabolism by inducing hepatic enzymes (particularly CYP3A4 and other enzymes involved in cortisol clearance). In a cortisol-deficient patient, starting thyroxine accelerates cortisol clearance from an already depleted reserve, precipitating an acute adrenal crisis which can be fatal. Always ensure adequate cortisol replacement (hydrocortisone 15-25 mg/day) before initiating levothyroxine.",
     },
     {
-      question: "What are the indications for radiotherapy or radiosurgery in pituitary adenoma management? Name two types of stereotactic radiosurgery.",
-      markscheme: "Indications: (1) Residual tumour after surgery, particularly with documented growth. (2) Persistent hormonal excess after surgery and medical therapy. (3) Aggressive PitNETs with rapid recurrence. (4) Patients unfit for or refusing surgery. (5) Residual prolactinoma resistant to both dopamine agonists and surgery. Types of radiosurgery: Gamma Knife (uses gamma rays), X-Knife (uses X-rays), and CyberKnife (uses real-time imaging and adjusts to patient movement)."
+      question: "A 28-year-old woman with a 3.5 cm prolactinoma on cabergoline wishes to become pregnant. What special management consideration applies, and why?",
+      markscheme: "Women with giant prolactinoma greater than 3 cm who wish to become pregnant should be considered for debulking surgery before conception, even if responding to dopamine agonist. Rationale: DA is discontinued during pregnancy (no need to control PRL since hypogonadism is not an issue in pregnancy). Without the DA brake, a large prolactinoma may grow significantly during pregnancy (stimulated by oestrogen and loss of dopamine suppression), causing visual compromise before delivery. Pre-pregnancy surgical debulking reduces this risk. Bromocriptine has the longest pregnancy safety record if DA needs to continue.",
     },
     {
-      question: "For Cushing's disease that persists after transsphenoidal surgery, outline the management escalation pathway and explain the risk of bilateral adrenalectomy.",
-      markscheme: "Escalation pathway: (1) Repeat transsphenoidal surgery if residual tumour visible on MRI. (2) Pituitary radiotherapy or radiosurgery. (3) Medical therapy to control cortisol - adrenal steroidogenesis inhibitors (ketoconazole, metyrapone, osilodrostat) or pituitary-directed (pasireotide, cabergoline). (4) Bilateral adrenalectomy as last resort. Risk of bilateral adrenalectomy: Nelson's syndrome - removal of cortisol negative feedback allows the ACTH-secreting tumour to grow unopposed, causing aggressive tumour expansion, mass effect, and severe hyperpigmentation from very high ACTH and MSH levels."
-    }
+      question: "State the indications and one key contraindication for stereotactic radiosurgery in pituitary adenoma management.",
+      markscheme: "Indications: (1) Adjunct to surgery for residual tumour after transsphenoidal resection, (2) Primary therapy if patient is not a surgical candidate, (3) Recurrent adenoma after prior surgery, (4) Refractory prolactinoma after failed DA and surgery. Key contraindication: tumour less than 5 mm from the optic chiasm. The optic apparatus has limited radiation tolerance (approximately 8-10 Gy single dose), and the single high-dose fraction of radiosurgery risks radiation-induced optic neuropathy and blindness. Use fractionated stereotactic RT instead in such cases.",
+    },
   ]}
 />
 
 ## References
 
-[1] Lecture slides: GC 108. A mass in the brain brain tumours.pdf (Treatment Paradigm — bromocriptine/cabergoline for prolactinoma, surgery first for GH/ACTH/TSH; Surgical Approaches — microscopic/endoscopic, craniotomy for suprasellar extension; Endoscopic transsphenoidal surgery; Complications of Transsphenoidal Surgery; Pituitary Apoplexy — give cortisol before T4, urgent surgery; Principles and Options — treatment principles, medication therapy including steroids/anticonvulsants/TXA; Radiation Therapy — aim, radiosurgery types; Principles of Brain Tumour Surgery — do not treat scan, non-functioning incidentaloma observe)
-[2] Senior notes: felixlai.md (Pituitary adenoma: Conservative treatment — indications and follow-up; Medical treatment — dopamine agonists, cabergoline preferred; Surgical treatment — indications, post-operative radiation, complications)
-[6] Senior notes: maxim.md (Cushing syndrome management — trans-sphenoidal surgery ± radiotherapy, peri-operative cautions, steroid cover, Nelson's syndrome risk; Adrenalectomy)
+[2] Senior notes: Ryan Ho Endocrine.pdf (Section 5: Pituitary Gland, pp. 104–111; Cushing's management pp. 63–64; Prolactinoma management p. 110)
+[3] Senior notes: Ryan Ho Fundamentals.pdf (Section 3.8.4: Pituitary Tumour, pp. 441–444)
+[4] Lecture slides: GC 108. A mass in the brain brain tumours.pdf (pp. 41–42, 48)
+[5] Senior notes: felixlai.md (Pituitary adenoma — Treatment section)
+[9] Senior notes: Ryan Ho Chemical Path.pdf (Section 4: Diagnostic Function Tests, pp. 33–34)
+[10] Senior notes: Ryan Ho Neurology.pdf (Pituitary Adenoma management, p. 166; Brain tumour surgery, p. 163)
+[11] Senior notes: maxim.md (Cushing syndrome management, pp. 434–435)

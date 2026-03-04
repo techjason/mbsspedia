@@ -1,0 +1,39 @@
+---
+title: Pituitary Adenoma
+description: "A benign neoplasm arising from adenohypophyseal cells that may cause hormonal hypersecretion or hyposecretion and mass effects such as visual field deficits due to optic chiasm compression."
+---
+
+import EtiologySection from "../../fragments/general-surgery/pituitary-adenoma/etiology.mdx";
+import DdxSection from "../../fragments/general-surgery/pituitary-adenoma/ddx.mdx";
+import DxSection from "../../fragments/general-surgery/pituitary-adenoma/dx.mdx";
+import MxSection from "../../fragments/general-surgery/pituitary-adenoma/mx.mdx";
+import ComplicationsSection from "../../fragments/general-surgery/pituitary-adenoma/complications.mdx";
+
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+
+<Tab value="Etiology">
+  <EtiologySection components={props.components} />
+
+</Tab>
+
+<Tab value="DDx">
+  <DdxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Dx">
+  <DxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Mx">
+  <MxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Complications">
+  <ComplicationsSection components={props.components} />
+
+</Tab>
+
+</Tabs>

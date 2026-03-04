@@ -1,0 +1,39 @@
+---
+title: Thyroid Cancer
+description: "Thyroid cancer is a malignant neoplasm arising from the follicular or parafollicular (C) cells of the thyroid gland, most commonly presenting as a painless thyroid nodule with papillary carcinoma being the most prevalent histologic subtype."
+---
+
+import EtiologySection from "../../fragments/general-surgery/thyroid-cancer/etiology.mdx";
+import DdxSection from "../../fragments/general-surgery/thyroid-cancer/ddx.mdx";
+import DxSection from "../../fragments/general-surgery/thyroid-cancer/dx.mdx";
+import MxSection from "../../fragments/general-surgery/thyroid-cancer/mx.mdx";
+import ComplicationsSection from "../../fragments/general-surgery/thyroid-cancer/complications.mdx";
+
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+
+<Tab value="Etiology">
+  <EtiologySection components={props.components} />
+
+</Tab>
+
+<Tab value="DDx">
+  <DdxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Dx">
+  <DxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Mx">
+  <MxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Complications">
+  <ComplicationsSection components={props.components} />
+
+</Tab>
+
+</Tabs>

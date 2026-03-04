@@ -1,347 +1,347 @@
 ## Diagnostic Approach to Pituitary Adenoma
 
-### The Diagnostic Philosophy — Why We Investigate
+The diagnosis of a pituitary adenoma is never based on a single test. It is a **convergence** of three pillars — biochemistry, imaging, and visual assessment — each answering a distinct question:
 
-When you encounter a sellar mass, you need to answer **three fundamental questions** before you can manage the patient. Every single investigation you order serves one of these three goals [2]:
+1. **Biochemistry:** "Is this mass making too much hormone? Is it destroying the normal gland?"
+2. **Imaging:** "What is this mass? Where exactly is it? What is it compressing?"
+3. **Visual assessment:** "Is it damaging the optic pathways?"
 
-1. **What is it?** → Imaging (MRI, ± CT) to characterise the mass.
-2. **Is it hormonally active?** → Biochemical hormonal panel to identify excess and/or deficiency.
-3. **What is the functional impact on surrounding structures?** → Visual field testing, assessment of pituitary reserve.
-
-There are no formal "diagnostic criteria" for pituitary adenoma in the way that, say, rheumatoid arthritis has ACR/EULAR criteria. Instead, the diagnosis is established by **integrating imaging appearance + hormonal profile + clinical context**, and confirmed definitively by **histopathology** after surgical resection (when performed). Let me walk you through this systematically.
+Let me walk you through the complete diagnostic algorithm from first principles.
 
 ---
 
-### Master Diagnostic Algorithm
+### 1. Overarching Diagnostic Algorithm
 
 ```mermaid
 graph TD
-    A["Sellar Mass Identified
-    (Clinical suspicion or Incidental)"] --> B["Step 1: MRI Pituitary with Gadolinium"]
-    B --> C{"Mass arises WITHIN
-    the pituitary gland?"}
-    C -->|"No — separate from gland"| D["Consider: Craniopharyngioma,
-    Meningioma, Rathke's cyst,
-    Aneurysm, Metastasis"]
-    C -->|"Yes"| E["Step 2: Comprehensive
-    Hormonal Evaluation"]
-    E --> F{"Evidence of
-    hormonal excess?"}
-    F -->|"Prolactin elevated"| G{"PRL level vs tumour size"}
-    G -->|"PRL > 200 and proportional to size"| H["Prolactinoma confirmed biochemically"]
-    G -->|"PRL 30-150, disproportionate to large mass"| I["Stalk effect — Non-functioning adenoma
-    Request DILUTED prolactin to exclude hook effect"]
-    F -->|"Elevated IGF-1"| J["Somatotroph adenoma suspected
-    Confirm with OGTT-GH suppression test"]
-    F -->|"Elevated 24h UFC or failed ONDST"| K["Corticotroph adenoma suspected
-    Confirm with LDDST, then HDDST/IPSS"]
-    F -->|"Elevated TSH with elevated fT4"| L["Thyrotroph adenoma suspected
-    vs Thyroid hormone resistance"]
-    F -->|"No excess detected"| M["Non-functioning adenoma
-    Check alpha-subunit, LH, FSH"]
-    E --> N["Step 3: Assess Pituitary Reserve
-    for Hypopituitarism"]
-    N --> O["8am cortisol, fT4, TSH,
-    LH, FSH, Testosterone/Oestradiol,
-    IGF-1, Prolactin"]
-    B --> P["Step 4: Visual Assessment"]
-    P --> Q["Formal Perimetry
-    + Visual Acuity"]
-    D --> R["± CT for calcification"]
-    D --> S["± CTA/MRA to exclude aneurysm"]
+    A["Clinical Suspicion of Pituitary Lesion"] --> B{"How was it discovered?"}
+    
+    B --> C["Hormonal symptoms"]
+    B --> D["Visual symptoms / Headache"]
+    B --> E["Incidental finding on MRI/CT"]
+    
+    C --> F["Targeted hormonal evaluation based on syndrome"]
+    D --> F2["Formal visual field perimetry"]
+    E --> F3["Complete hormonal screen + perimetry"]
+    
+    F --> G["STEP 1: Confirm hormonal hypersecretion"]
+    G --> G1["Serum PRL"]
+    G --> G2["Serum IGF-1 +/- OGTT for GH suppression"]
+    G --> G3["Screening for Cushing's: UFC, LNDST, late-night salivary cortisol"]
+    G --> G4["TSH + fT4"]
+    G --> G5["FSH, LH, alpha-subunit"]
+    
+    G1 --> H["STEP 2: Pituitary MRI with gadolinium"]
+    G2 --> H
+    G3 --> H
+    G4 --> H
+    G5 --> H
+    F2 --> H
+    F3 --> H
+    
+    H --> I{"Mass identified on MRI?"}
+    I -->|Yes| J["STEP 3: Assess for hypopituitarism"]
+    I -->|No| K["Consider ectopic hormone source, or microadenoma too small to see"]
+    
+    J --> L["Full anterior pituitary panel: 9am cortisol, TFTs, LH/FSH, sex steroids, IGF-1, PRL"]
+    J --> M["Formal perimetry if macroadenoma"]
+    J --> N["Consider MEN1 screening if indicated"]
+    
+    L --> O["STEP 4: Integrate findings — Functioning vs Non-functioning; Micro vs Macro"]
+    M --> O
+    N --> O
+    
+    O --> P["STEP 5: Plan management based on diagnosis"]
 ```
 
----
-
-### Step 1: Imaging — Defining the Anatomy
-
-#### A. MRI Pituitary with Gadolinium Enhancement — The Gold Standard
-
-***MRI pituitary is the single best imaging procedure for most sellar masses and there is usually no need to perform any other imaging study*** [2].
-
-**Why MRI and not CT?**
-- MRI provides superior **soft-tissue contrast** — you can distinguish the normal pituitary (bright with gadolinium) from adenoma tissue (enhances less), and delineate the relationship with the optic chiasm, cavernous sinuses, and ICA.
-- CT cannot adequately visualise soft tissue in the sella (bony artefact from the skull base degrades the image).
-
-**Protocol**: Dedicated thin-cut (2–3 mm) coronal and sagittal T1-weighted sequences **before and after gadolinium**, plus T2-weighted sequences.
-
-| Sequence | What It Shows | Key Findings in Pituitary Adenoma |
-|:---------|:-------------|:----------------------------------|
-| **T1 pre-contrast** | Native tissue signal | Adenoma is isointense to grey matter; haemorrhagic areas bright (T1 shortening from methaemoglobin in apoplexy) |
-| **T1 post-gadolinium** | Enhancement pattern | ***Normal pituitary tissue takes up gadolinium to a greater degree than CNS tissue*** → higher-intensity signal. ***Pituitary adenomas take up gadolinium to a lesser degree than normal pituitary but more than CNS*** [2]. Delayed images may show "catch-up" enhancement of the adenoma. |
-| **T2-weighted** | Fluid and tissue characterisation | Adenomas variable; cysts are bright; **flow voids** (dark signal) in vessels — critical to identify ICA aneurysm |
-| **Coronal thin-cut** | Relationship to optic chiasm and cavernous sinus | Suprasellar extension, optic chiasm compression, cavernous sinus invasion |
-| **Dynamic contrast-enhanced** | Early vs late enhancement | Microadenomas enhance later than normal pituitary on early dynamic sequences (within 30–60 seconds post-gadolinium) — this is the **most sensitive technique for microadenomas** |
-
-**Key MRI Interpretation Principles** [2]:
-
-- ***If a sellar lesion can be seen as separate from the normal pituitary gland, this indicates the mass is NOT a pituitary adenoma*** [2] — it is something else (craniopharyngioma, meningioma, Rathke's cyst, aneurysm).
-- **Microadenomas** (< 1 cm): appear as a focal area of **hypoenhancement** within the normally brightly enhancing gland on early dynamic sequences. The normal gland enhances avidly because it has a rich portal blood supply; the adenoma has its own disorganised vasculature that enhances more slowly.
-- **Macroadenomas** (> 1 cm): obvious sellar mass, often with **suprasellar extension** (snowman/figure-of-8 shape), **cavernous sinus invasion** (encasing the ICA), and/or **infrasellar extension** into the sphenoid sinus.
-
-<Callout title="Gadolinium Safety" type="error">
-***AVOID gadolinium in patients with moderate to advanced renal failure (eGFR < 30) since it has been associated with nephrogenic systemic fibrosis*** [2] — a devastating fibrotic condition of skin and internal organs. Always check renal function before ordering gadolinium-enhanced MRI. In such patients, non-contrast MRI still provides useful information, or consider macrocyclic gadolinium agents (lower risk).
-</Callout>
-
-#### Knosp Classification — Cavernous Sinus Invasion
-
-The **Knosp classification** grades the degree of cavernous sinus invasion on coronal MRI, which predicts surgical resectability:
-
-| Knosp Grade | Description | Surgical Implication |
-|:------------|:-----------|:--------------------|
-| **0** | Adenoma does not reach the medial wall of cavernous sinus | Complete resection likely |
-| **1** | Adenoma passes medial wall but does not reach the intercarotid line (a line between the medial tangents of the intracavernous ICA) | Complete resection possible |
-| **2** | Adenoma reaches but does not pass the intercarotid line | Complete resection more difficult |
-| **3** | Adenoma passes beyond the lateral intercarotid line | Complete resection unlikely; cavernous sinus invaded |
-| **4** | Adenoma completely encases the intracavernous ICA | Complete resection not possible; surgery is for debulking only |
-
-> Knosp grade 3–4 = high probability of cavernous sinus invasion → incomplete surgical resection → likely need adjuvant radiotherapy.
-
-#### B. CT Scan — When and Why
-
-***Calcification in a craniopharyngioma or meningioma is seen better by CT scan than by MRI*** [2].
-
-CT is **not** routinely needed for pituitary adenoma evaluation but is useful when:
-- You suspect **craniopharyngioma** (calcification in ~90% paediatric, ~50% adult) or **meningioma** (psammomatous calcification).
-- You need to assess **bony anatomy** of the sella (floor erosion, sphenoid sinus pneumatisation) for **pre-operative surgical planning** of transsphenoidal approach.
-- MRI is contraindicated (e.g., non-MRI-compatible pacemaker).
-
-#### C. CTA / MRA — To Exclude Aneurysm
-
-***Cerebral aneurysm mimicking a sellar tumour*** [1] — whenever a sellar mass has **flow voids** on T2 MRI or an unusual appearance, order CTA or MRA to exclude an ICA aneurysm before any surgical intervention. Operating on an unsuspected aneurysm transsphenoidally = catastrophic haemorrhage.
-
-#### D. ***Gadolinium Contrast-Enhanced MRI*** — The Investigation of Choice for Brain Tumours [3]
-
-***Gadolinium contrast-enhanced MRI*** is the standard imaging for all brain tumours, including pituitary adenomas [3]. Other MRI sequences that may be helpful:
-- ***FLAIR***: shows perilesional oedema (vasogenic edema, most apparent on FLAIR) [3]
-- ***DWI***: differentiates cystic tumour (facilitated diffusion) from abscess (restricted diffusion) [3]
-- ***Spectroscopy (MRS)***: can help characterise tumour biochemistry (less relevant for adenomas, more for gliomas)
+[2][3][5]
 
 ---
 
-### Step 2: Biochemical Hormonal Evaluation — Identifying Excess
+### 2. Step 1 — Biochemical Evaluation: Hormonal Hypersecretion
 
-This is the step that **classifies** the adenoma by functional subtype and directly determines management (e.g., prolactinoma → medical; others → surgical).
+This is the first and most critical step. **Every patient with a sellar mass needs a full hormonal evaluation** — you need to determine both what the tumour is secreting and what the normal gland has stopped producing.
 
-***Hormonal evaluation*** [2]:
+#### 2.1 The Principle: Mode of Secretion Determines the Test
 
-#### A. Every Patient with a Sellar Mass — Baseline Panel
+***The approach to hormonal assessment depends on the mode of secretion*** [2]:
 
-**Every** patient with a sellar mass should have a **complete anterior pituitary hormone panel**, regardless of whether the mass is suspected to be functioning or non-functioning. This is because:
-1. You need to identify unsuspected hypersecretion (e.g., mild acromegaly, subclinical Cushing's).
-2. You need to assess for hypopituitarism (which affects anaesthetic and surgical safety — cortisol deficiency can kill).
+| Secretion Pattern | Hormones | Assessment Method | Why |
+|:---|:---|:---|:---|
+| ***Pulsatile secretion*** | ***GH, ACTH (cortisol)*** | ***Dynamic (stimulation/suppression) tests*** | A single random level is meaningless because levels fluctuate widely throughout the day; you need to challenge the axis and see if it responds appropriately |
+| ***Constant (tonic) secretion*** | ***Prolactin, TSH, LH/FSH*** | ***Direct basal serum measurement*** | These hormones have relatively stable levels; a single measurement is interpretable |
 
-| Hormone Axis | Test | What You're Looking For |
-|:-------------|:-----|:----------------------|
-| **Prolactin** | ***Serum prolactin level*** | Elevated → prolactinoma vs stalk effect vs drugs |
-| **GH/IGF-1** | ***Serum IGF-1*** | Elevated IGF-1 → somatotroph adenoma (acromegaly) |
-| **ACTH-Cortisol** | ***24-hour urinary cortisol excretion*** (or 1 mg overnight dexamethasone suppression test, late-night salivary cortisol) | Elevated → corticotroph adenoma (Cushing's disease) |
-| **TSH-Thyroid** | ***TSH, fT3, fT4*** | Elevated TSH + elevated fT4 → thyrotroph adenoma (or thyroid hormone resistance) |
-| **Gonadotropins** | ***Serum LH, FSH, and α-subunit*** | Usually normal or low (gonadotroph adenomas are inefficient); elevated α-subunit suggests gonadotroph origin |
-| **Sex steroids** | Testosterone (males), Oestradiol (females) | Low → hypogonadism from gonadotropin deficiency or hyperprolactinaemia |
+[2]
 
-#### B. Subtype-Specific Confirmatory Tests
+#### 2.2 Hormone-Specific Diagnostic Criteria
 
-##### 1. Prolactinoma — Serum Prolactin
-
-The **diagnosis of prolactinoma is essentially biochemical** — you do NOT need biopsy. The principle is: ***serum prolactin level is proportional to tumour mass*** in true prolactinomas.
-
-| Scenario | Prolactin Level | Interpretation |
-|:---------|:---------------|:--------------|
-| Normal | < 25 ng/mL (varies by lab) | Normal |
-| **Stalk effect** | 30–150 ng/mL (usually < 100) | Non-functioning mass compressing stalk → loss of dopamine inhibition |
-| **Microprolactinoma** | 50–200 ng/mL | Small tumour, moderate PRL elevation |
-| **Macroprolactinoma** | > 200 ng/mL (often > 1,000) | Large tumour with proportionally high PRL |
-| **Giant prolactinoma** | > 10,000 ng/mL | May show **hook effect** on immunoassay |
-
-<Callout title="Hook Effect — Always Request Dilutions for Large Sellar Masses" type="error">
-In giant prolactinomas with extremely high PRL ( > 10,000 ng/mL), the antibody in the two-site immunoassay becomes **saturated** — excess antigen prevents sandwich formation → **falsely low/normal reported PRL**. The clinician sees a 4 cm mass with "normal" prolactin and concludes it's non-functioning → unnecessary surgery. **Always request serial dilutions (1:100)** for any large sellar mass. If the diluted sample reveals a much higher prolactin, you've caught the hook effect.
-</Callout>
-
-Also check for **macroprolactinaemia** — prolactin bound to IgG forming large complexes ("big-big prolactin") that are immunoreactive but biologically inactive. Detected by **polyethylene glycol (PEG) precipitation**: if > 60% of total PRL is precipitated, macroprolactinaemia is present. These patients have elevated PRL on assay but **no clinical symptoms** — no treatment needed.
-
-##### 2. Somatotroph Adenoma (Acromegaly) — IGF-1 + OGTT
-
-***Somatotroph adenoma = Serum insulin-like growth factor-1 (IGF-1)*** [2].
-
-**Why IGF-1 and not just GH?**
-- GH is secreted in **pulsatile fashion** — a single random GH level is unreliable (it can be undetectable even in acromegaly between pulses, and transiently elevated in normals during stress, exercise, or sleep).
-- **IGF-1** (produced by the liver in response to GH) has a **long half-life (~18 hours)** and reflects **integrated GH exposure** over days. It is the ideal screening test.
+##### A. Prolactinoma (Lactotroph Adenoma)
 
 | Test | Method | Interpretation |
-|:-----|:-------|:--------------|
-| **Serum IGF-1** (screening) | Single fasting blood sample; compare to **age- and sex-matched reference range** (IGF-1 declines with age) | Elevated IGF-1 → acromegaly suspected |
-| **Oral Glucose Tolerance Test (OGTT) with GH measurement** (confirmatory) | 75 g oral glucose load; measure GH at 0, 30, 60, 90, 120 minutes | **Normal**: GH suppresses to < 0.4 μg/L (by ultrasensitive assay) or < 1 μg/L (by conventional assay) after glucose load. **Acromegaly**: GH **fails to suppress** (remains > 1 μg/L). Some patients show paradoxical GH **rise**. |
+|:---|:---|:---|
+| ***Serum prolactin*** | Single fasting morning sample | ***PRL > 200 ng/mL (usually > 10× ULN) = diagnostic of prolactinoma*** [2][3][5] |
 
-**Why does glucose suppress GH?** Glucose is the primary metabolic fuel; when glucose is abundant, the body doesn't need GH (which is counter-regulatory and mobilises fat/glucose). Somatostatin release from the hypothalamus is augmented by hyperglycaemia → suppresses GH. In somatotroph adenomas, the tumour cells are **autonomous** and don't respond to this physiological inhibition.
+**Interpretation nuances — the "degree-of-elevation" rule:**
 
-##### 3. Corticotroph Adenoma (Cushing's Disease) — The Three-Step Approach
+| PRL Level | Most Likely Interpretation |
+|:---|:---|
+| **Normal** ( < 25 ng/mL) | Non-functioning adenoma or non-PRL-secreting tumour |
+| **25–100 ng/mL** | Stalk effect, drugs, hypothyroidism, pregnancy, CKD — NOT prolactinoma |
+| **100–200 ng/mL** | Grey zone — could be stalk effect from large mass or small prolactinoma; correlate with tumour size |
+| ***> 200 ng/mL*** | ***Virtually diagnostic of prolactinoma*** — degree should be proportional to tumour size |
+| **> 1,000–10,000 ng/mL** | Giant prolactinoma |
+| **Large macroadenoma with PRL only 50–150 ng/mL** | ***Think stalk effect (non-functioning adenoma) or hook effect*** — request **serial dilutions** of the sample |
 
-***Corticotroph adenoma = 24-hour urinary cortisol excretion*** [2].
+[2][3][5]
 
-Diagnosing Cushing's disease is the most complex of all adenoma subtypes because you must navigate three sequential questions:
+<Callout title="The Hook Effect — A Lab Pitfall That Can Kill" type="error">
+In giant prolactinomas with extremely high PRL ( > 10,000 ng/mL), the standard two-site immunometric assay can be **overwhelmed** — excessive analyte saturates both capture and detection antibodies, preventing proper sandwich formation. The result is a **falsely normal or mildly elevated PRL** reading. This can lead to misdiagnosis as a non-functioning adenoma → inappropriate surgery instead of dopamine agonist therapy. **Always request serial dilutions (1:100)** when you have a large macroadenoma with only modestly elevated PRL.
+</Callout>
 
-**Step A: Is there cortisol excess? (Screening)**
+##### B. Acromegaly (Somatotroph Adenoma)
 
-| Screening Test | Method | Positive Result | Why It Works |
-|:---------------|:-------|:---------------|:-------------|
-| **24-hour urinary free cortisol (UFC)** × 2–3 | Collect all urine for 24 hours; measures unbound (free) cortisol excreted by kidneys | > 3–4× ULN is highly specific; mild elevations need repeat | Reflects integrated daily cortisol production; not affected by CBG fluctuations |
-| **1 mg overnight dexamethasone suppression test (ONDST)** | Give 1 mg dexamethasone at 11 PM; measure 8 AM cortisol next morning | Cortisol > 50 nmol/L (1.8 μg/dL) = non-suppressed | Dexamethasone (potent synthetic glucocorticoid) should suppress ACTH → cortisol in normal HPA axis. Autonomous cortisol production (Cushing's) is NOT suppressed. |
-| **Late-night salivary cortisol** × 2 | Salivary sample at 11 PM – midnight | Elevated above lab cut-off | Normal cortisol nadir is at midnight (circadian rhythm). Loss of diurnal variation is an early feature of Cushing's syndrome. |
+GH is secreted in pulses, so a random GH level is useless for diagnosis. Instead, we use two complementary tests:
 
-> **2 out of 3 screening tests positive ± high clinical pre-test probability** → proceed to confirmation [6].
+| Test | Method | Diagnostic Criteria | Rationale |
+|:---|:---|:---|:---|
+| ***Serum IGF-1*** | Single fasting sample; compare to age- and sex-matched reference range | ***Elevated IGF-1 (above age-adjusted ULN)*** [2][3] | IGF-1 is produced by the liver in response to GH. Because IGF-1 has a long half-life (~18h) and is bound to IGFBP-3, it reflects **integrated daily GH secretion** rather than pulsatile spikes. It acts as a smoothed-out biomarker for chronic GH excess |
+| ***Oral glucose tolerance test (OGTT) for GH suppression*** | 75g oral glucose load → serial GH measurements at 0, 30, 60, 90, 120 min | ***Normal: GH suppresses to < 1 ng/mL (or < 0.4 ng/mL by ultrasensitive assay)*** after glucose load. ***Acromegaly: failure of GH suppression, or paradoxical GH increase (in ~30%)*** [2][3] | Glucose normally suppresses GH secretion via somatostatin release. In a somatotroph adenoma, the tumour cells are autonomous and do not respond to this negative feedback. Hence GH remains elevated or paradoxically rises |
 
-**Step B: Is it ACTH-dependent or ACTH-independent?**
+**When to use OGTT vs. IGF-1?**
+- IGF-1 is the **initial screening test** — if clearly elevated and clinical features are present, diagnosis is established
+- OGTT is done in **equivocal cases** (borderline IGF-1, no typical manifestations) [2]
 
-| Measurement | ACTH-Dependent (Pituitary or Ectopic) | ACTH-Independent (Adrenal) |
-|:-----------|:-------------------------------------|:--------------------------|
-| **Plasma ACTH** | Normal or elevated ( > 10 pg/mL) | Suppressed ( < 5 pg/mL) |
-| **Mechanism** | ACTH-secreting source drives adrenal cortisol production | Autonomous adrenal cortisol production suppresses CRH and ACTH via negative feedback |
+***Other investigations for acromegaly*** [2]:
+- ***Pituitary MRI and pituitary hormone profile*** for tumour localisation, co-secretion (30% co-secrete PRL), and assessment of local effects
+- ***Colonoscopy*** for colonic tumours (↑risk of colon polyps and carcinoma)
 
-**Step C: Is the ACTH coming from the pituitary or ectopic source?**
+##### C. Cushing's Disease (Corticotroph Adenoma)
 
-| Test | Method | Pituitary (Cushing's Disease) | Ectopic ACTH |
-|:-----|:-------|:-----------------------------|:-------------|
-| **High-dose dexamethasone suppression test (HDDST)** | 2 mg dexamethasone Q6H × 48 hours (total 8 mg/day); measure cortisol | Cortisol suppresses > 50% from baseline | No suppression (ectopic tumours are fully autonomous) |
-| **CRH stimulation test** | IV CRH 100 μg; measure ACTH and cortisol | ACTH/cortisol rise > 35–50% (pituitary corticotrophs retain some CRH responsiveness) | No rise (ectopic ACTH source doesn't have CRH receptors) |
-| **Inferior petrosal sinus sampling (IPSS)** — Gold standard | Catheterise both inferior petrosal sinuses (which drain the pituitary); measure ACTH centrally vs peripherally, before and after CRH stimulation | Central:peripheral ACTH ratio > 2 (basal) or > 3 (post-CRH) | Ratio < 2 (ACTH is not concentrated in the pituitary outflow) |
+Diagnosing Cushing's disease is a **multi-step process** because cortisol, like GH, is pulsatile and stress-responsive. The approach involves: (1) confirm endogenous hypercortisolism, (2) determine ACTH-dependence, (3) localise the source.
 
-> IPSS is the **gold standard** for distinguishing pituitary from ectopic ACTH. It is invasive and requires an experienced interventional radiologist, but it has ~95% sensitivity and specificity. It also lateralises the adenoma within the pituitary (useful for the surgeon when MRI is equivocal — many corticotroph adenomas are microadenomas too small to see on MRI).
+**Step C1: Confirm Hypercortisolism (Screening — need ≥ 2 abnormal tests)** [9][3]:
 
-##### 4. Thyrotroph Adenoma — TSH + fT4/fT3
+***Iatrogenic Cushing's syndrome due to exogenous glucocorticoid must be ruled out first*** [9].
 
-***Thyrotroph adenoma: TSH, fT3 and fT4 level*** [2].
+| Screening Test | Method | Positive Result | Caveats |
+|:---|:---|:---|:---|
+| ***24-hour urinary free cortisol (UFC) ×2*** | Collect all urine over 24h; measures total free cortisol excreted (eliminates pulsatility) | ***Elevated above ULN*** (> 3–4× ULN is virtually diagnostic) [9][3] | Problems: under-/over-collection, inconvenient, affected by renal disease; does not distinguish true CS from physiological hypercortisolism (depression, obesity) [9] |
+| ***1 mg overnight dexamethasone suppression test (DST)*** | 1 mg dexamethasone PO at midnight → serum cortisol at 9 AM next morning | ***Cortisol > 50 nmol/L (1.8 μg/dL) = failure to suppress*** | Affected by oestrogen (↑CBG → falsely ↑total cortisol); enzyme inducers (↑dex metabolism → false positive) [3] |
+| ***Late-night salivary cortisol ×2*** | Saliva sample at 11 PM–midnight | ***Elevated*** (loss of circadian nadir) | Only free cortisol present in saliva; not suitable for shift workers; requires sensitive LC-MS assay [9] |
 
-| Pattern | Interpretation | Mechanism |
-|:--------|:--------------|:----------|
-| ↑ TSH + ↑ fT4/fT3 | **TSH-secreting adenoma** OR **thyroid hormone resistance** | Adenoma autonomously produces TSH despite high T4/T3 (no negative feedback); alternatively, resistance at the receptor level means the hypothalamus/pituitary cannot "see" the high T4/T3 |
-| ↑ TSH + ↓ fT4 | **Primary hypothyroidism** (NOT an adenoma) | Loss of T4 → loss of negative feedback → TSH rises appropriately |
+***≥ 2 tests abnormal → diagnostic of endogenous Cushing's syndrome*** [3]
 
-***If TSH is normal or increased AND fT4 is high → consider TSH-secreting pituitary adenoma or thyroid hormone resistance syndrome*** [7].
+**Step C2: Determine ACTH-Dependence** [2][3]:
 
-**How to differentiate TSH-oma from thyroid hormone resistance:**
+| Plasma ACTH | Interpretation |
+|:---|:---|
+| ***< 1.1 pmol/L ( < 5 pg/mL)*** | ***Non-ACTH-dependent*** → adrenal source (adrenal adenoma, carcinoma, bilateral hyperplasia) [3] |
+| ***> 3.3 pmol/L ( > 15 pg/mL)*** | ***ACTH-dependent*** → pituitary (Cushing's disease) or ectopic ACTH source [3] |
+| **1.1–3.3 pmol/L** | Indeterminate — repeat or proceed to CRH test |
 
-| Feature | TSH-Secreting Adenoma | Thyroid Hormone Resistance |
-|:--------|:---------------------|:--------------------------|
-| Mass on MRI | Usually a visible macroadenoma | No mass (normal pituitary) |
-| Alpha-subunit | Often elevated (co-secreted) | Normal |
-| T3 suppression test | TSH does NOT suppress with exogenous T3 | TSH suppresses normally |
-| Family history | Sporadic | Often familial (TRβ mutation) |
-| SHBG, ferritin | Elevated (reflect peripheral thyroid hormone action) | Normal (peripheral tissues also resistant) |
+**Step C3: Distinguish Pituitary from Ectopic ACTH** [2][3]:
 
-##### 5. Gonadotroph Adenoma — LH, FSH, α-subunit
+| Test | Method | Cushing's Disease | Ectopic ACTH |
+|:---|:---|:---|:---|
+| ***High-dose DST (HDDST)*** | 2 mg dex Q6H × 2 days → measure serum cortisol | ***Cortisol suppressed ( > 50% suppression from baseline)*** — pituitary corticotrophs retain partial feedback sensitivity to high-dose glucocorticoids | ***No suppression*** — ectopic source is autonomous, not responsive to negative feedback [2][3] |
+| ***CRH stimulation test*** | 1 μg/kg CRH IV → serial ACTH and cortisol over 2h | ***Exaggerated rise: cortisol > 20% baseline, ACTH > 50% baseline*** — pituitary corticotroph adenoma cells still express CRH receptors | ***No significant rise*** — ectopic tumour cells lack CRH receptors [2][3] |
+| ***Pituitary MRI*** | Gadolinium-enhanced | May show microadenoma (but 40–50% of corticotroph adenomas are too small to see, and ~10% of normal population has pituitary incidentaloma) | Normal pituitary |
+| ***Inferior petrosal sinus sampling (IPSS)*** | Catheterise both inferior petrosal sinuses; measure ACTH centrally vs. peripherally before and after CRH stimulation | ***Central-to-peripheral ACTH ratio ≥ 2 (basal) or ≥ 3 (post-CRH)*** = pituitary source [2][3] | Ratio < 2 (basal) or < 3 (post-CRH) = ectopic source |
 
-***Gonadotroph adenoma = Serum LH, FSH level and α-subunits*** [2].
+***HDDST is usually done before pituitary MRI to avoid picking up a pituitary incidentaloma*** [2]
 
-- Most gonadotroph adenomas are ***non-functioning*** and diagnosed as such after exclusion of all other secretory subtypes.
-- ***α-subunit is not biologically active and does not result in clinical symptoms due to its secretion but is measured to evaluate patients with sellar masses to determine if the mass is pituitary in origin*** [2].
-- Mildly elevated FSH in a postmenopausal woman does NOT confirm a gonadotroph adenoma — you expect elevated gonadotropins physiologically. In premenopausal women or men, elevated FSH with a sellar mass is more suggestive.
-- **TRH stimulation test** (rarely used now): in gonadotroph adenomas, TRH paradoxically stimulates LH/FSH release (normal gonadotrophs do not respond to TRH). This can help confirm gonadotroph origin.
+<Callout title="IPSS — The Gold Standard for Localisation">
+When biochemistry says "ACTH-dependent" but MRI cannot show a clear pituitary adenoma (which happens in ~40% of Cushing's disease because corticotroph adenomas are often tiny), ***inferior petrosal sinus sampling (IPSS)*** is the definitive test. It directly compares ACTH concentration in the venous drainage of the pituitary (petrosal sinuses) vs. a peripheral vein. A gradient confirms pituitary origin. It can even lateralise the adenoma (left vs. right side of the gland) to guide the surgeon [2][3].
+</Callout>
+
+**Summary of Cushing's syndrome biochemical findings** [2][3]:
+
+| | Cushing's Disease | Ectopic ACTH | Adrenal Tumour | Iatrogenic |
+|:---|:---|:---|:---|:---|
+| **Cortisol** | ↑ | ↑ | ↑ | ↓ (exogenous steroid suppresses endogenous) |
+| **LDDST** | No suppression | No suppression | No suppression | / |
+| **ACTH** | Normal–high | Usually high | ***Almost invariably undetectable*** | Low |
+| **HDDST** | ***Usually suppressed*** | ***Usually no suppression*** | No suppression | / |
+| **CRH test** | ***Exaggerated rise*** | ***No significant rise*** | / | / |
+| **Imaging** | Pituitary adenoma on MRI | Tumour on PET/CT | Adrenal tumour on CT | +ve drug Hx |
+
+[2][3]
+
+##### D. TSH-Secreting Adenoma (Thyrotroph Adenoma)
+
+| Test | Method | Diagnostic Criteria |
+|:---|:---|:---|
+| ***TSH + fT4 (+ fT3)*** [5] | Standard thyroid function tests | ***Elevated fT4 with non-suppressed (normal or elevated) TSH*** — this is the biochemical hallmark of "inappropriate TSH secretion" |
+| ***α-subunit*** | Serum measurement | Elevated in TSHoma; α-subunit:TSH molar ratio > 1 favours TSHoma over thyroid hormone resistance |
+| **TRH stimulation test** | IV TRH → measure TSH response | **Blunted TSH response** in TSHoma (tumour is autonomous); **normal/exaggerated response** in thyroid hormone resistance |
+
+> **Why is this DDx important?** Because treating a TSHoma patient with antithyroid drugs or thyroidectomy (as you would for Graves' disease) would be completely wrong — it would remove the feedback brake and cause the TSHoma to grow aggressively. You need to treat the pituitary adenoma.
+
+##### E. Gonadotroph Adenoma (Non-Functioning)
+
+| Test | Method | Interpretation |
+|:---|:---|:---|
+| ***Serum LH, FSH, and α-subunit*** [5] | Basal levels | ***Gonadotroph adenomas seldom hypersecrete*** clinically [2][3]; may show mildly elevated FSH or α-subunit; most commonly diagnosed as "non-functioning" on biochemistry and confirmed as gonadotroph on immunohistochemistry (SF-1 positivity) post-operatively |
+
+> ***α-subunit is not biologically active*** and does not cause clinical symptoms, but it is measured to determine if a sellar mass is pituitary in origin [5].
 
 ---
 
-### Step 3: Assessment of Pituitary Reserve (Hypopituitarism Screen)
+### 3. Step 2 — Imaging: Radiological Diagnosis
 
-For every patient with a sellar mass — especially macroadenomas — you must assess **all pituitary axes** for deficiency, because hypopituitarism affects anaesthetic safety, surgical planning, and long-term care [2]:
+#### 3.1 MRI Pituitary with Gadolinium Contrast — The Modality of Choice
 
-| Axis | Screening Test | What Indicates Deficiency | Clinical Consequence |
-|:-----|:--------------|:------------------------|:--------------------|
-| **ACTH-Cortisol** | **8 AM serum cortisol** | < 100 nmol/L = deficient; > 400 nmol/L = sufficient; 100–400 = indeterminate → proceed to dynamic testing | Adrenal crisis if not replaced peri-operatively |
-| **TSH-Thyroid** | **fT4, TSH** | Low fT4 with low/normal TSH (inappropriate) | Secondary hypothyroidism |
-| **LH/FSH-Gonadal** | **LH, FSH, Testosterone (M) / Oestradiol (F)** | Low sex steroids with low/normal gonadotropins | Hypogonadism, infertility, osteoporosis |
-| **GH** | **IGF-1** (screening); **Insulin tolerance test (ITT)** or **GHRH-arginine test** (confirmatory) | Low IGF-1 + GH fails to rise > 3–5 μg/L on ITT | GH deficiency (fatigue, ↑ body fat, ↓ lean mass, ↓ QoL) |
-| **Prolactin** | **Serum prolactin** | Very low prolactin (rare clinical significance) | Inability to lactate |
-| **ADH (posterior pit)** | **Serum and urine osmolality, serum sodium** | High serum osmolality + dilute urine + hypernatraemia → DI | Diabetes insipidus (mainly post-operative or if stalk involved) |
+***MRI pituitary is the single best imaging procedure for most sellar masses*** [5][2][3].
 
-#### Dynamic Tests for Cortisol Reserve — When Basal Cortisol Is Indeterminate
+**Protocol:** Dedicated pituitary MRI with thin coronal and sagittal cuts (3 mm or less) through the sella, pre- and post-gadolinium contrast.
 
-| Test | Protocol | Normal Response | When to Use |
-|:-----|:---------|:---------------|:-----------|
-| **Insulin Tolerance Test (ITT)** — Gold standard | IV insulin → induce hypoglycaemia (glucose < 2.2 mmol/L) → maximal stress → cortisol should rise | Peak cortisol > 500–550 nmol/L | Contraindicated in elderly, epilepsy, IHD. Must have doctor present with IV glucose/hydrocortisone at bedside. |
-| **Short Synacthen Test (SST)** | IM/IV 250 μg Synacthen (synthetic ACTH1-24); measure cortisol at 0 and 30 minutes | 30-min cortisol > 500–550 nmol/L | More commonly used in practice; tests adrenal reserve. In **acute** secondary adrenal insufficiency, the adrenals may still respond (haven't atrophied yet), so SST can be falsely normal. Only reliable in **chronic** (> 4–6 weeks) ACTH deficiency. |
-| **Metyrapone test** | Metyrapone blocks 11β-hydroxylase → ↓ cortisol → should ↑ ACTH and 11-deoxycortisol | 11-deoxycortisol > 200 nmol/L | Alternative to ITT; tests entire HPA axis |
+**Key MRI findings in pituitary adenoma:**
 
-<Callout title="Pre-operative Cortisol Assessment Is Non-Negotiable" type="error">
-**Before any pituitary surgery, you MUST assess cortisol reserve.** If the patient has secondary adrenal insufficiency and you don't give peri-operative hydrocortisone cover, they can develop hypotensive shock during surgery. ***Hypopituitarism can cause shock (cortisol)*** [1]. ***Give cortisol before T4*** [1] — this applies both to apoplexy and to any situation where you're replacing pituitary hormones.
+| Feature | Finding | Explanation |
+|:---|:---|:---|
+| **Microadenoma** | Focal hypointense lesion relative to normal enhancing pituitary on early post-contrast images | ***Normal pituitary tissue takes up gadolinium to a greater degree than CNS tissue*** (high-intensity signal). ***Adenomas take up gadolinium to a lesser degree than normal pituitary but more than surrounding CNS*** [5]. On early dynamic images, the adenoma enhances more slowly → appears relatively dark against the brightly enhancing normal gland |
+| **Macroadenoma** | Sellar mass > 1 cm; may be isointense to grey matter on T1; enhances heterogeneously; may show suprasellar extension, cavernous sinus invasion, sphenoid sinus erosion | Larger tumours often have heterogeneous signal due to cystic change, haemorrhage, or necrosis |
+| **Stalk deviation** | Stalk pushed to one side by microadenoma | Indirect sign of a microadenoma on the opposite side |
+| **Suprasellar extension** | Mass extends above the diaphragma sellae towards the optic chiasm | Explains visual field defects |
+| **Cavernous sinus invasion** | Mass extends laterally beyond the intracavernous ICA (Knosp grade 3–4) | Predicts incomplete surgical resection |
+| ***Posterior pituitary bright spot*** | Presence or absence on T1 | ***Normally bright due to ADH neurosecretory granules*** [2]; loss suggests DI or posterior pituitary involvement |
+| **Haemorrhage (apoplexy)** | High signal on T1 (methaemoglobin); ***hyperdensity on CT*** | Acute blood products; ***pituitary apoplexy: acute blood in pituitary seen on CT/MRI*** [2] |
+
+***If a sellar lesion can be seen as separate from the normal pituitary gland, this indicates the mass is NOT a pituitary adenoma*** [5] — consider craniopharyngioma, meningioma, Rathke's cleft cyst, etc.
+
+<Callout title="Gadolinium Precaution" type="error">
+***Avoid gadolinium in patients with moderate to advanced renal failure (eGFR < 30)*** as it is associated with ***nephrogenic systemic fibrosis (NSF)*** — a potentially severe, debilitating fibrotic condition of the skin and internal organs [5]. In such patients, use non-contrast MRI or CT instead.
+</Callout>
+
+<Callout title="Don't MRI Without Indication">
+***MRI pituitary should NOT be performed in healthy individuals with no clinical indication*** — up to ***10% of normal middle-aged individuals have pituitary abnormalities on MRI*** [2]. Imaging incidentalomas cause unnecessary anxiety and further invasive workup.
+</Callout>
+
+#### 3.2 CT Scan — Complementary Role
+
+***CT is better than MRI for detecting calcification*** [2][3][5]:
+
+| Finding on CT | Diagnosis Suggested |
+|:---|:---|
+| ***Calcification in a suprasellar mass*** | ***Craniopharyngioma*** (50% calcified) or ***meningioma*** |
+| **Bone erosion of clivus** | Chordoma |
+| **Sellar floor erosion/remodelling** | Large pituitary macroadenoma |
+| ***Hyperdensity in the pituitary*** (acute) | ***Pituitary apoplexy*** (acute haemorrhage) [2] |
+
+#### 3.3 Skull X-Ray — Largely Historical
+
+***Seldom done nowadays*** due to low sensitivity and specificity [10], but classic findings include:
+
+- ***Double-floor sign*** of the sella turcica — asymmetrical enlargement of the sella by a pituitary adenoma causes the floor to appear duplicated on lateral skull XR [2][3]
+- ***Erosion of posterior clinoid processes*** — sign of raised ICP [10]
+- ***Calcification*** above the sella → craniopharyngioma [10]
+
+#### 3.4 Additional Imaging Considerations
+
+| Modality | Indication | What It Shows |
+|:---|:---|:---|
+| ***CTA or MRA*** | ***Must exclude ICA aneurysm*** before transsphenoidal surgery [4] | Flow void = aneurysm; confirms vascular anatomy |
+| **CT/MRI of chest, abdomen, pelvis** | Suspected ectopic ACTH or GHRH secretion | Neuroendocrine tumours (carcinoid, SCLC, pancreatic NET) |
+| **PET/CT** (⁶⁸Ga-DOTATATE or FDG) | Ectopic ACTH source localisation when conventional imaging negative | Somatostatin-receptor-expressing NETs |
+
+---
+
+### 4. Step 3 — Assessment for Hypopituitarism
+
+**Every patient with a pituitary macroadenoma (and ideally every pituitary adenoma) needs a full anterior pituitary function assessment** — even if the presenting problem is hormonal excess. The tumour may be simultaneously overproducing one hormone while destroying cells that produce others.
+
+#### 4.1 Baseline Pituitary Hormone Panel
+
+| Axis | Tests to Order | Interpretation |
+|:---|:---|:---|
+| **Adrenal (ACTH-cortisol)** | 9 AM serum cortisol | > 500 nmol/L = likely intact; < 100 nmol/L = deficient; 100–500 = indeterminate → dynamic test needed |
+| **Thyroid (TSH-T4)** | TSH + fT4 | Low fT4 with inappropriately normal/low TSH = central hypothyroidism |
+| **Gonadal (LH/FSH)** | LH, FSH + testosterone (M) or oestradiol (F) | Low sex steroids with inappropriately normal/low LH/FSH = hypogonadotropic hypogonadism |
+| **GH (GH-IGF-1)** | Serum IGF-1 | Low IGF-1 suggests GH deficiency (but can be normal in mild deficiency; dynamic testing may be needed) |
+| **Prolactin** | Serum PRL | Elevated = functional prolactinoma or stalk effect; very low = extensive gland destruction |
+| **Posterior pituitary (ADH)** | Serum and urine osmolality; urine specific gravity | Low urine osmolality with high serum osmolality → central DI |
+
+***Classical order of hormone loss in hypopituitarism: GH → FSH/LH → ACTH → TSH*** [2][3]
+
+#### 4.2 Dynamic Function Tests (When Baseline Is Equivocal)
+
+| Test | What It Assesses | Principle | Key Thresholds |
+|:---|:---|:---|:---|
+| ***Insulin tolerance test (ITT)*** | ***GH reserve AND ACTH/cortisol reserve*** simultaneously [9] | IV insulin → hypoglycaemia (glucose < 2.2 mmol/L) → this is a powerful stress stimulus that should trigger both GH and cortisol release via the hypothalamic stress response | ***Normal: peak cortisol > 550 nmol/L; GH rise > 20 mU/L. Blunted response = deficiency*** [9]. Also differentiates true Cushing's (blunted cortisol response) from pseudo-Cushing's |
+| **Short Synacthen test** | ACTH/cortisol reserve (adrenal axis) | 250 μg synthetic ACTH (Synacthen) IV/IM → measure cortisol at 0, 30 min | Peak cortisol > 550 nmol/L = intact adrenal reserve. NB: may be falsely normal in recent pituitary damage (adrenals haven't atrophied yet) |
+| ***Glucagon stimulation test*** | GH and cortisol reserve (alternative to ITT) [9] | IM glucagon → counter-regulatory GH and cortisol release | Alternative when ITT is contraindicated (epilepsy, IHD, severe hypopituitarism) |
+| ***GHRH-arginine stimulation test*** | GH reserve [9] | GHRH stimulates somatotrophs; arginine suppresses somatostatin → maximal GH release | GH-dependent cut-offs (BMI-adjusted) |
+| **Water deprivation test** | Central vs nephrogenic DI | Fluid restriction for 8h → measure urine osmolality; then give desmopressin (DDAVP) | Central DI: urine concentrates after DDAVP. Nephrogenic DI: no response to DDAVP |
+
+<Callout title="ITT — Preparation and Safety" type="idea">
+The ITT is considered the **gold standard** for assessing GH and cortisol reserve but carries risk of severe hypoglycaemia. Mandatory safety precautions [9]:
+- Prior overnight fast
+- ECG to exclude IHD (contraindicated in IHD and epilepsy)
+- 50% dextrose and glucagon at bedside
+- IV line in situ, resuscitation trolley on standby
+- POCT glucose monitoring throughout
+- ≥ 2 blood samples must be drawn during confirmed hypoglycaemia ( < 2.2 mmol/L)
 </Callout>
 
 ---
 
-### Step 4: Visual Assessment
+### 5. Step 4 — Visual Assessment
 
-#### A. Formal Visual Field Perimetry (Goldmann or Humphrey)
+***Formal perimetry for visual defects due to compression on optic pathways*** [2] should be performed in all patients with macroadenoma or any visual complaint.
 
-***Visual (bitemporal hemianopia)*** [1] — this is the classic visual field defect from optic chiasm compression.
-
-- **Goldmann perimetry** (kinetic): a light target is moved from periphery to centre; the patient indicates when they see it. Useful for detecting peripheral field loss.
-- **Humphrey perimetry** (static, automated): tests multiple fixed points; more reproducible and standardised. This is the more commonly used modality in modern practice.
-- **Why formal perimetry?** Confrontation testing at the bedside is insensitive for early chiasmal compression. Formal perimetry can detect subtle superior temporal quadrantanopia (the earliest sign) that confrontation misses.
-- Must be performed **pre-operatively** (baseline) and **post-operatively** (to document improvement or detect deterioration). ***Visual loss — close monitoring post-op*** [1].
-
-#### B. Visual Acuity
-
-- Best corrected visual acuity (BCVA) using Snellen or LogMAR chart.
-- Decreased VA indicates **more severe compression** of the optic chiasm or nerves.
-
-#### C. Optical Coherence Tomography (OCT)
-
-- Non-invasive measurement of **retinal nerve fibre layer (RNFL) thickness**.
-- Thinned RNFL indicates **chronic axonal loss** from prolonged chiasmal compression → poorer prognosis for visual recovery after surgery.
-- Increasingly used as an adjunct to perimetry.
-
-#### D. Fundoscopy
-
-- Look for **optic disc pallor** (optic atrophy from chronic compression) — this is a poor prognostic sign for visual recovery.
-- In rare cases with very large adenomas causing raised ICP, you may see **papilloedema** (but this is unusual because most adenomas don't raise global ICP significantly).
+| Assessment | Method | What It Detects |
+|:---|:---|:---|
+| ***Formal perimetry*** (Humphrey automated or Goldmann kinetic) | Standardised visual field mapping | ***Bitemporal hemianopia*** (classic), upper temporal quadrantanopia (early), scotomas, generalised constriction |
+| **Visual acuity** | Snellen chart / LogMAR | Decreased acuity if optic nerve compression |
+| **Colour vision** | Ishihara plates | Reduced colour perception (red desaturation) indicates optic nerve dysfunction |
+| **Fundoscopy** | Direct ophthalmoscopy | ***Optic atrophy*** (pale disc) from chronic compression; papilloedema if raised ICP |
+| **Pupillary examination** | Swinging flashlight test | Relative afferent pupillary defect (RAPD) in asymmetric optic nerve involvement |
+| **Ocular motility** | Extraocular movements in all directions | CN III, IV, VI palsies from cavernous sinus involvement |
 
 ---
 
-### Step 5: Additional Investigations for Special Scenarios
+### 6. Step 5 — Screening for Familial Syndromes
 
-| Scenario | Investigation | Rationale |
-|:---------|:-------------|:---------|
-| **Suspected MEN1** | Serum calcium, PTH, fasting glucose/insulin, pancreatic hormones, genetic testing for MEN1 | Pituitary adenoma + parathyroid hyperplasia + pancreatic NET |
-| **Suspected ectopic GHRH** | Serum GHRH level | If acromegaly with diffuse pituitary enlargement (hyperplasia rather than adenoma) |
-| **Suspected metastasis** | Staging CT (chest/abdomen/pelvis), tumour markers, PET-CT | Posterior pituitary/stalk mass + known malignancy or high-risk features |
-| **Post-operative CSF leak** | ***Beta-2-transferrin*** [1] in nasal fluid; ***Pneumocephalus*** on CT [1] | ***CSF leakage and meningitis*** [1] — beta-2-transferrin is unique to CSF (not present in nasal secretions or tears); pneumocephalus (air within the cranium on CT) confirms intracranial-nasal communication |
-| ***Pituitary apoplexy*** | **Urgent MRI** (or CT if MRI unavailable); 8 AM cortisol/random cortisol; electrolytes (Na for DI) | ***Acute haemorrhagic infarction ± SAH; headache, visual loss; acute cortisol insufficiency*** [1]. T1 hyperintensity = subacute blood (methaemoglobin); T2 variable. |
+When indicated (young patient, family history, multifocal endocrine disease), screen for:
+
+| Syndrome | Screen | Trigger to Screen |
+|:---|:---|:---|
+| ***MEN1*** | Serum calcium + PTH (parathyroid); fasting gastrin (gastrinoma); genetic testing for MEN1 gene | Young-onset pituitary adenoma, especially prolactinoma; concurrent hyperparathyroidism or pancreatic NET; family history [6] |
+| **Carney complex** | Cardiac echo (myxoma); skin exam (lentigines); urinary cortisol (adrenal nodular hyperplasia); PRKAR1A gene | GH-secreting adenoma with cardiac myxoma or skin pigmentation |
+| **FIPA/AIP** | AIP gene testing | Young-onset ( < 30y) GH-secreting or PRL-secreting adenoma, especially with family history of pituitary adenomas |
 
 ---
 
-### Putting It All Together — Summary of Investigation Modalities
+### 7. Summary — Complete Investigation Checklist for a Pituitary Adenoma
 
-| Investigation | What It Tells You | Key Findings | Pitfalls |
-|:-------------|:-----------------|:-------------|:---------|
-| ***MRI Pituitary with gadolinium*** | Anatomy, size, extension, invasion | Adenoma: hypoenhancing relative to normal gland; separate mass = NOT adenoma | Gadolinium contraindicated if eGFR < 30; may miss microadenomas without dynamic sequences |
-| ***CT scan*** | Calcification, bony anatomy | ***Calcification → craniopharyngioma or meningioma*** [2] | Poor soft tissue contrast for sella |
-| **CTA / MRA** | Vascular anatomy | Flow voids → ***aneurysm mimicking sellar tumour*** [1] | Invasive (CTA); gadolinium concern (MRA) |
-| ***Serum prolactin*** | Prolactinoma vs stalk effect vs drugs | Proportional to tumour size in prolactinoma; mild elevation = stalk effect | Hook effect in giant tumours; macroprolactinaemia |
-| ***Serum IGF-1*** | GH excess screening | Elevated for age → acromegaly | Must use age/sex-matched ranges; falsely low in malnutrition, liver disease |
-| ***OGTT with GH*** | Confirm acromegaly | Failure of GH suppression < 1 μg/L | Diabetes mellitus can confound interpretation |
-| ***24h urinary free cortisol*** | Cortisol excess screening | > 3–4× ULN highly specific | Stress, depression, alcohol can elevate UFC (pseudo-Cushing's) |
-| **1 mg ONDST** | Cortisol excess screening | 8 AM cortisol > 50 nmol/L = non-suppressed | False positives: CYP3A4 inducers (phenytoin, rifampicin) accelerate dex metabolism |
-| **Plasma ACTH** | Dependent vs independent Cushing's | > 10 pg/mL = ACTH-dependent | Must be processed on ice immediately (ACTH degrades rapidly at room temperature) |
-| **IPSS** | Pituitary vs ectopic ACTH | Central:peripheral > 2 (basal) or > 3 (post-CRH) | Anatomical variants in venous drainage can cause lateralisation errors |
-| ***TSH, fT4, fT3*** | Thyrotroph adenoma / thyroid status | ↑ TSH + ↑ fT4 = TSH-oma or resistance | Must exclude assay interference (heterophilic antibodies) |
-| ***LH, FSH, α-subunit*** | Gonadotroph classification | Elevated α-subunit suggests pituitary origin | Postmenopausal women normally have elevated gonadotropins |
-| **Formal perimetry** | Visual field defect | ***Bitemporal hemianopia*** | Requires patient cooperation; unreliable if VA very poor |
-| **8 AM cortisol** | Pituitary reserve | < 100 = deficient; > 400 = sufficient | Single value; 100–400 indeterminate → need dynamic test |
-| **ITT / SST** | Dynamic cortisol reserve | Peak cortisol > 500–550 nmol/L = adequate | SST may be falsely normal in acute ACTH deficiency |
+| Category | Investigations | Purpose |
+|:---|:---|:---|
+| **Hormonal hypersecretion** | PRL, IGF-1, OGTT for GH (if acromegaly suspected), UFC/LDDST/late-night salivary cortisol (if Cushing's suspected), ACTH, TSH + fT4, LH + FSH + α-subunit | Determine if functioning or non-functioning |
+| **Hormonal hyposecretion** | 9 AM cortisol, TSH + fT4, LH/FSH + sex steroids, IGF-1, PRL; dynamic tests (ITT, Synacthen) if equivocal | Detect hypopituitarism |
+| ***Imaging*** | ***MRI pituitary with gadolinium (modality of choice)***; ***CT if calcification suspected*** (craniopharyngioma, meningioma); ***CTA/MRA to exclude aneurysm*** pre-operatively | Anatomical diagnosis, surgical planning |
+| **Visual assessment** | Formal perimetry, visual acuity, colour vision, fundoscopy, pupillary exam, ocular motility | Assess optic pathway compression |
+| **Pre-operative** | Full pituitary panel (above), electrolytes, renal function, coagulation, ECG, CXR; CTA/MRA for vascular anatomy | Surgical fitness and safety |
+| **Specific tumour workup** | Colonoscopy (acromegaly); ECHO/cardiac assessment (acromegaly, Cushing's); bone density (hypogonadism, Cushing's); glucose tolerance (acromegaly) | Complication screening |
+| **Genetic/familial** | MEN1 screen (Ca, PTH, gastrin); AIP gene; Carney complex workup as indicated | Familial syndrome exclusion |
+| ***Intra-operative*** | ***Biopsy for histopathology and immunohistochemistry*** (transcription factor staining: PIT-1, T-PIT, SF-1; hormone staining; Ki-67 proliferation index) | Definitive tissue diagnosis and prognostication |
+
+[2][3][5][9][10]
 
 ---
 
 <Callout title="High Yield Summary — Diagnosis of Pituitary Adenoma">
 
-1. **MRI pituitary with gadolinium** is the single best imaging study. Normal pituitary enhances more than adenoma. If the lesion is separate from the gland, it is NOT an adenoma.
-2. **CT** only for calcification (craniopharyngioma, meningioma) and bony anatomy pre-operatively.
-3. **Every sellar mass** gets a complete hormonal panel: prolactin, IGF-1, 24h UFC (or ONDST), TSH/fT4, LH/FSH, testosterone or oestradiol, 8 AM cortisol.
-4. **Prolactinoma**: diagnosed biochemically (PRL proportional to size). Always request dilutions for large masses (hook effect). Check for macroprolactinaemia (PEG precipitation).
-5. **Acromegaly**: Screen with IGF-1; confirm with OGTT (GH should suppress < 1 μg/L; failure to suppress = acromegaly).
-6. **Cushing's disease**: 3-step approach — (a) Confirm excess (UFC/ONDST/late-night salivary cortisol), (b) ACTH level (dependent vs independent), (c) HDDST/CRH/IPSS (pituitary vs ectopic). IPSS is gold standard.
-7. **TSH-oma**: ↑ TSH + ↑ fT4; differentiate from thyroid hormone resistance (MRI mass, elevated α-subunit, T3 non-suppression → TSH-oma).
-8. **Pituitary reserve**: Assess all axes pre-operatively. 8 AM cortisol is critical. Give cortisol before T4.
-9. **Visual assessment**: Formal perimetry (Humphrey/Goldmann) pre- and post-operatively. OCT for RNFL thickness (prognostic).
-10. **CSF leak**: Beta-2-transferrin positive; pneumocephalus on CT.
+1. **Three diagnostic pillars:** Biochemistry (hormonal excess + deficiency) → Imaging (MRI with gadolinium) → Visual assessment (perimetry)
+2. ***Mode of secretion determines the test:*** Pulsatile hormones (GH, ACTH) need dynamic tests; constant hormones (PRL, TSH, LH/FSH) need direct measurement [2]
+3. ***Prolactinoma dx:*** Serum PRL > 200 ng/mL (> 10× ULN); always correlate PRL level with tumour size; request serial dilutions if large mass with low PRL (hook effect) [2][3]
+4. ***Acromegaly dx:*** Elevated age-adjusted IGF-1 ± failure of GH suppression on OGTT (GH nadir > 1 ng/mL) [2][3]
+5. ***Cushing's disease dx:*** ≥ 2 screening tests abnormal (UFC, overnight DST, late-night salivary cortisol) → ACTH-dependent → HDDST suppresses / CRH test exaggerated rise → pituitary MRI ± IPSS [2][3][9]
+6. ***MRI pituitary with gadolinium = imaging modality of choice;*** CT better for calcification [2][3][5]
+7. ***If lesion is separate from normal pituitary on MRI → NOT a pituitary adenoma*** [5]
+8. ***Always exclude ICA aneurysm (CTA/MRA) before transsphenoidal surgery*** [4]
+9. ***ITT = gold standard for GH + cortisol reserve;*** normal peak cortisol > 550 nmol/L, GH > 20 mU/L [9]
+10. ***Hypopituitarism sequence: GH → FSH/LH → ACTH → TSH*** [2][3]
+
 </Callout>
 
 ---
@@ -350,36 +350,38 @@ For every patient with a sellar mass — especially macroadenomas — you must a
   title="Active Recall - Diagnosis of Pituitary Adenoma"
   items={[
     {
-      question: "Why is IGF-1 a better screening test for acromegaly than a random GH level? What is the confirmatory test and what constitutes a normal result?",
-      markscheme: "GH is secreted in a pulsatile fashion so a single random level is unreliable - it can be undetectable between pulses even in acromegaly. IGF-1 has a long half-life of approximately 18 hours and reflects integrated GH exposure. Confirmatory test is the oral glucose tolerance test (75g glucose load) with GH measurement. Normal response: GH suppresses to less than 1 mcg/L (or less than 0.4 by ultrasensitive assay). In acromegaly, GH fails to suppress."
+      question: "A 42-year-old man has a 3.5 cm pituitary macroadenoma and serum PRL of 120 ng/mL. Is this a prolactinoma? What two phenomena must you consider, and what should you request from the lab?",
+      markscheme: "This is NOT likely a prolactinoma. A 3.5 cm prolactinoma would produce PRL in the thousands to tens of thousands. Two phenomena: (1) Stalk effect from a non-functioning macroadenoma compressing the stalk and blocking dopamine, causing mild PRL elevation typically less than 100-200 ng/mL. (2) Hook effect from a giant prolactinoma where extremely high PRL saturates the assay, giving falsely low readings. Request serial dilutions (1:100) from the lab to unmask a true very high PRL level.",
     },
     {
-      question: "A patient has a 3 cm sellar mass and serum prolactin of 45 ng/mL. The clinician suspects a prolactinoma. What should you consider and what test should you request?",
-      markscheme: "A 3 cm mass with only mildly elevated prolactin of 45 ng/mL is disproportionate - a true macroprolactinoma of this size should have prolactin greater than 200, often greater than 1000 ng/mL. Two possibilities: (1) This is a non-functioning adenoma causing stalk effect (loss of dopamine inhibition, PRL typically 30-150), or (2) This is a giant prolactinoma with the hook effect (antibody saturation in the immunoassay giving falsely low PRL). Request serial dilutions (1:100) of the serum sample to unmask the true prolactin level."
+      question: "Explain the principle behind the OGTT for GH suppression in diagnosing acromegaly. What happens in a normal person versus a patient with acromegaly?",
+      markscheme: "Principle: Oral glucose (75g) causes hyperglycaemia, which physiologically stimulates somatostatin release from the hypothalamus. Somatostatin inhibits GH secretion from somatotrophs. Normal: GH suppresses to less than 1 ng/mL (or less than 0.4 ng/mL by ultrasensitive assay). Acromegaly: GH fails to suppress because the adenoma secretes GH autonomously, independent of somatostatin regulation. In approximately 30%, there is a paradoxical GH increase.",
     },
     {
-      question: "Describe the three-step approach to diagnosing Cushing's disease from a corticotroph adenoma. Name the gold standard test for step 3.",
-      markscheme: "Step 1: Confirm cortisol excess with screening tests - 24h urinary free cortisol, 1mg overnight dexamethasone suppression test (cortisol greater than 50 nmol/L = non-suppressed), or late-night salivary cortisol. Need 2 out of 3 positive. Step 2: Determine if ACTH-dependent or independent by measuring plasma ACTH (greater than 10 pg/mL = dependent). Step 3: Localise the ACTH source as pituitary vs ectopic using high-dose dexamethasone suppression test, CRH stimulation test, and/or inferior petrosal sinus sampling (IPSS). IPSS is the gold standard - central to peripheral ACTH ratio greater than 2 basal or greater than 3 post-CRH confirms pituitary source."
+      question: "In the workup of ACTH-dependent Cushing's syndrome, what is the HDDST and how does it distinguish Cushing's disease from ectopic ACTH syndrome? What test is the gold standard if HDDST is non-diagnostic?",
+      markscheme: "HDDST: 2 mg dexamethasone every 6 hours for 2 days, then measure serum cortisol. Cushing's disease (pituitary): corticotroph adenoma retains partial negative feedback sensitivity to high-dose glucocorticoids, so cortisol suppresses (greater than 50% from baseline). Ectopic ACTH: autonomous ectopic source has no pituitary feedback mechanisms, so cortisol does NOT suppress. Gold standard if non-diagnostic: CRH stimulation test (exaggerated ACTH/cortisol rise in pituitary disease, no rise in ectopic). If still inconclusive: inferior petrosal sinus sampling (IPSS) with CRH, central-to-peripheral ACTH ratio 2 or more (basal) or 3 or more (post-CRH) confirms pituitary source.",
     },
     {
-      question: "On MRI pituitary with gadolinium, how does a pituitary adenoma enhance relative to normal pituitary tissue and to surrounding CNS? What does it mean if the lesion is seen as separate from the normal gland?",
-      markscheme: "Normal pituitary tissue takes up gadolinium to a greater degree than CNS tissue, appearing as a higher-intensity signal. Pituitary adenomas take up gadolinium to a lesser degree than normal pituitary but more than surrounding CNS. If a sellar lesion can be seen as separate from the normal pituitary gland, this indicates the mass is NOT a pituitary adenoma - consider craniopharyngioma, meningioma, Rathke's cyst, or aneurysm."
+      question: "Why is the insulin tolerance test (ITT) considered the gold standard for assessing pituitary reserve? What two axes does it test simultaneously, and what are the normal response thresholds?",
+      markscheme: "ITT induces hypoglycaemia (glucose less than 2.2 mmol/L), which is a potent physiological stress. Stress activates the hypothalamic-pituitary axis, triggering release of both ACTH/cortisol and GH. It simultaneously tests the adrenal axis (cortisol reserve) and the GH axis. Normal thresholds: peak cortisol greater than 550 nmol/L and GH rise greater than 20 mU/L. Blunted responses indicate hypopituitarism. Contraindicated in IHD and epilepsy. Must have IV access, 50% dextrose, and glucagon at bedside.",
     },
     {
-      question: "Why must you assess cortisol reserve before pituitary surgery, and what are the two key rules about hormone replacement in acute pituitary insufficiency?",
-      markscheme: "Cortisol deficiency from ACTH loss can cause life-threatening adrenal crisis (hypotension, shock) during the stress of surgery. Must check 8 AM cortisol pre-operatively and give peri-operative hydrocortisone cover if deficient or indeterminate. Two key rules: (1) Always give cortisol replacement before T4 replacement - T4 increases metabolic rate and cortisol demand, precipitating adrenal crisis in the cortisol-deficient patient. (2) Hypopituitarism can cause shock from cortisol deficiency - always replace cortisol first in any acute pituitary insufficiency."
+      question: "On MRI, how does a pituitary microadenoma typically appear on gadolinium-enhanced images compared to normal pituitary tissue? Why does this pattern occur? Name one absolute contraindication to gadolinium.",
+      markscheme: "Microadenoma appears as a focal hypointense (darker) lesion relative to the surrounding normal pituitary on early post-gadolinium images. This is because normal pituitary tissue has a rich portal venous blood supply and takes up gadolinium to a greater degree than adenoma tissue, which enhances more slowly due to a different vascular architecture. Absolute contraindication: moderate to advanced renal failure (eGFR less than 30) due to risk of nephrogenic systemic fibrosis (NSF).",
     },
     {
-      question: "How do you confirm a CSF leak after transsphenoidal surgery? Name two positive findings.",
-      markscheme: "CSF leak is confirmed by testing nasal fluid for beta-2-transferrin, which is unique to CSF and not present in nasal secretions or tears. A positive beta-2-transferrin test confirms CSF origin. Additionally, CT brain may show pneumocephalus (air within the cranial cavity), which confirms communication between the nasal cavity and intracranial space."
-    }
+      question: "A patient has elevated fT4 with non-suppressed TSH and a pituitary mass. Name two differential diagnoses and state two investigations to distinguish between them.",
+      markscheme: "Two DDx: (1) TSH-secreting pituitary adenoma (TSHoma) and (2) Thyroid hormone resistance syndrome. Investigations to distinguish: (1) Serum alpha-subunit and alpha-subunit-to-TSH molar ratio: greater than 1 in TSHoma, normal in resistance. (2) TRH stimulation test: blunted TSH rise in TSHoma (autonomous tumour does not respond to TRH), normal or exaggerated rise in resistance (pituitary thyrotrophs are simply set to a higher threshold but still respond to TRH).",
+    },
   ]}
 />
 
 ## References
 
-[1] Lecture slides: GC 108. A mass in the brain brain tumours.pdf (Pituitary Adenoma — common presentations; Pituitary Apoplexy — give cortisol before T4; Complications of Transsphenoidal Surgery — beta-2-transferrin, pneumocephalus, hypopituitarism can cause shock; Cerebral aneurysm mimicking sellar tumour; Other Presentations — bitemporal hemianopia)
-[2] Senior notes: felixlai.md (Pituitary adenoma: Diagnosis — hormonal evaluation, MRI pituitary, gadolinium-enhanced imaging, CT for calcification, classification by cell of origin, α-subunit interpretation)
-[3] Senior notes: maxim.md (Brain tumours: Investigations — gadolinium contrast-enhanced MRI, FLAIR, DWI; Skull base tumours)
-[6] Senior notes: maxim.md (Cushing syndrome diagnosis — 2 out of 3 screening tests; ONDST, 24h UFC, LDDST/late night salivary cortisol)
-[7] Senior notes: felixlai.md (Evaluation of thyrotoxicosis flowchart — TSH normal or increased with high unbound T4 → TSH-secreting pituitary adenoma or thyroid hormone resistance syndrome)
+[2] Senior notes: Ryan Ho Endocrine.pdf (Section 5: Pituitary Gland, pp. 104–111; Section 3.3: Cushing's Syndrome, pp. 60–63)
+[3] Senior notes: Ryan Ho Fundamentals.pdf (Section 3.8.4: Presenting Problems in Pituitary Gland, pp. 436–437, 441–444)
+[4] Lecture slides: GC 108. A mass in the brain brain tumours.pdf (pp. 17–18, 41–42, 48)
+[5] Senior notes: felixlai.md (Pituitary adenoma section — Diagnosis)
+[6] Senior notes: Ryan Ho Endocrine.pdf (Section 6.3: MEN, p. 132)
+[9] Senior notes: Ryan Ho Chemical Path.pdf (Section 4: Diagnostic Function Tests, pp. 29–33)
+[10] Senior notes: Ryan Ho Neurology.pdf (Section 1.2.1: Neuroimaging — Skull X-ray, p. 32; Pituitary Adenoma, p. 166)

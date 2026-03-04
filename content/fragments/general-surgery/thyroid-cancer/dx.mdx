@@ -1,452 +1,428 @@
-## Diagnosis of Thyroid Cancer — Diagnostic Criteria, Algorithm & Investigation Modalities
+## Diagnostic Criteria, Diagnostic Algorithm, and Investigation Modalities
 
-### 18. Overview — Diagnostic Philosophy
+### 11.1 Conceptual Framework — How Do We Diagnose Thyroid Cancer?
 
-The diagnosis of thyroid cancer follows a **stepwise approach** that moves from simple, non-invasive, cheap investigations to more complex and invasive ones — but only as clinically indicated. The philosophy is:
+Unlike many cancers, thyroid cancer **does not have a single "diagnostic criterion"** in the way that, say, rheumatoid arthritis has classification criteria. Instead, the diagnosis is built through a **stepwise investigative algorithm** that progresses from clinical suspicion → biochemistry → imaging → cytology → histology. The definitive diagnosis is almost always **histopathological** — either on FNAC (for papillary and medullary CA) or on surgical specimen (for follicular CA, where architectural invasion must be demonstrated).
 
-1. **Screen functionally** (TFT) → is this nodule "hot" or "cold"?
-2. **Characterise anatomically** (USG) → what does it look like? How suspicious?
-3. **Sample cytologically** (FNAC) → what are the cells?
-4. **Stage the disease** (CT, scintigraphy, PET) → how far has it spread?
-5. **Confirm histologically** (thyroidectomy specimen) → what is the definitive diagnosis?
-
-There is no single "diagnostic criterion" for thyroid cancer (unlike, say, the Jones Criteria for rheumatic fever). Diagnosis is a **composite** of clinical, sonographic, cytological, and ultimately histological findings. The Bethesda System for FNAC reporting is the closest thing to a standardised diagnostic classification.
+Let's think about this from first principles: **you cannot biopsy every thyroid nodule** (they are incredibly common — ~50% of adults have thyroid nodules on ultrasound), so the investigative pathway is designed as a **risk-stratification funnel** that filters out the majority of benign nodules and triages the suspicious ones for tissue diagnosis [1][3][5][7].
 
 ---
 
-### 19. Investigation Modalities — A Systematic Walkthrough
+### 11.2 Diagnostic Algorithm — Master Flowchart
 
-#### 19.1 Blood Tests
+```mermaid
+flowchart TD
+    A["Patient with thyroid nodule\n or incidental finding"] --> B["History + Physical Examination"]
+    B --> C["Bloods: TFT - Ultrasensitive TSH +/- fT4"]
+    C --> D{"TSH suppressed?"}
+    
+    D -- "Yes: Hyperthyroid" --> E["Thyroid Scintigraphy\n I-123 or Tc-99m"]
+    E --> F{"Hot or Cold nodule?"}
+    F -- "Hot nodule" --> G["Autonomously functioning\n nodule - rarely malignant\n NO FNAC needed\n Treat as toxic adenoma"]
+    F -- "Cold nodule" --> H["Proceed to USG + FNAC\n 10-20% malignancy risk"]
+    
+    D -- "No: Normal or elevated TSH" --> I["Thyroid USG\n Routine for ALL goitre/nodules"]
+    
+    I --> J{"Assess sonographic pattern\n ATA TI-RADS classification"}
+    
+    J --> K["High suspicion:\n Solid hypoechoic + suspicious features\n Risk >70-90%\n FNA if >= 1 cm"]
+    J --> L["Intermediate suspicion:\n Hypoechoic solid, smooth margins\n Risk 10-20%\n FNA if >= 1 cm"]
+    J --> M["Low suspicion:\n Isoechoic/hyperechoic\n Risk 5-10%\n FNA if >= 1.5 cm"]
+    J --> N["Very low suspicion:\n Partially cystic\n Risk <= 3%\n FNA if >= 2 cm or observe"]
+    J --> O["Benign:\n Purely cystic\n Risk < 1%\n NO FNA"]
+    
+    K --> P["USG-guided FNAC"]
+    L --> P
+    M --> P
+    N --> P
+    H --> P
+    
+    P --> Q["Bethesda Classification"]
+    
+    Q --> R["I: Non-diagnostic\n Repeat FNA"]
+    Q --> S["II: Benign\n Clinical follow-up"]
+    Q --> T["III: AUS/FLUS\n Repeat FNA or molecular testing"]
+    Q --> U["IV: Follicular neoplasm\n Diagnostic hemithyroidectomy"]
+    Q --> V["V: Suspicious for malignancy\n Hemithyroidectomy + FS then TT"]
+    Q --> W["VI: Malignant\n Total thyroidectomy"]
+    
+    W --> X["Pre-op staging workup:\n CT neck/chest, laryngoscopy,\n tumour markers, genetic testing"]
+    V --> X
+```
 
-***Investigations — Blood tests: TSH + free T4*** [5][11].
+[1][2][3][5][7]
 
-These are the **first-line** investigations for any thyroid nodule. Here is every relevant blood test, with the rationale explained from first principles:
+---
 
-| Blood Test | Purpose | Interpretation | Why? |
-|:---|:---|:---|:---|
-| ***Thyroid function test (TFT): Serum TSH*** | ***TSH is the MOST sensitive indicator of thyroid function due to its short half-life*** [8] | Low TSH → possible toxic nodule → scintigraphy. Normal/high TSH → proceed to USG + FNAC | TSH is secreted in a pulsatile fashion and has a short t₁/₂ (~1 hour). The log-linear relationship between TSH and fT4 means even tiny changes in fT4 produce large TSH swings, making TSH the most sensitive detector of thyroid dysfunction |
-| **Serum fT4 and fT3** | Confirm degree of thyroid dysfunction | Elevated → thyrotoxicosis; Low → hypothyroidism | We measure **free** (unbound) hormone because total T3/T4 are affected by binding protein changes (↑ TBG in pregnancy/OCP → falsely elevated total T4; ↓ TBG in androgens/hypoalbuminaemia → falsely low total T4) [8] |
-| ***CBC with differentials*** | Baseline; screen for haematological abnormality | Anaemia of chronic disease (advanced malignancy); lymphocytosis (lymphoma) | General pre-operative workup |
-| ***Serum Ca²⁺ and PO₄³⁻*** | Assess parathyroid function | ***Hypercalcaemia of malignancy*** or ***hypocalcaemia due to parathyroid compromise by tumour invasion*** [8] | Also critical as a **baseline** before thyroidectomy — post-op hypocalcaemia from parathyroid injury is the most common complication |
-| ***Thyroid autoantibodies — Anti-thyroglobulin (TG) antibodies*** | ***Assess whether thyroglobulin can be used as a tumour marker for recurrence after total thyroidectomy*** [8] | If anti-TG antibodies are present, they interfere with Tg assays → Tg becomes unreliable as a tumour marker | ~25% of thyroid cancer patients have anti-TG antibodies. When present, a "low Tg" may be falsely reassuring. Serial anti-TG antibody titres can be used as a surrogate: rising titre suggests recurrence |
-| **Anti-TPO antibodies** | Screen for Hashimoto's thyroiditis | High titres → Hashimoto's (risk factor for thyroid lymphoma) | |
-| ***Serum thyroglobulin (Tg) level*** | ***Baseline tumour marker for differentiated thyroid carcinoma*** [8] | Elevated Tg post-total thyroidectomy + RAI = residual/recurrent disease | Thyroglobulin is produced **exclusively** by thyroid follicular cells. After total thyroidectomy, there should be no source of Tg. Any detectable Tg = residual thyroid tissue (benign remnant or recurrent cancer) |
-| ***Serum calcitonin level*** | ***Baseline tumour marker; 95% of medullary thyroid carcinoma produces calcitonin*** [8] | Elevated calcitonin → strongly suggests MTC; ***metastatic if > 500 pg/mL*** [9] | Calcitonin is produced by parafollicular C cells. Not routinely measured for all thyroid nodules (controversial), but essential if MTC is suspected |
-| ***Serum CEA level*** | ***Baseline tumour marker; 80% of medullary thyroid carcinoma produces CEA*** [8] | Rising CEA in MTC suggests de-differentiation and worse prognosis | CEA is a non-specific tumour marker but is useful for longitudinal monitoring in MTC |
-| ***Genetic testing — RET mutation*** | ***All patients with MTC should be tested for RET mutation. Genetic counselling and testing of family members can be offered*** [8] | Positive germline RET mutation → familial MTC / MEN2 → screen for phaeochromocytoma and hyperparathyroidism; offer prophylactic thyroidectomy to mutation-positive family members | 25% of MTC is familial. Identifying the specific RET codon mutation determines the aggressiveness of the cancer and the timing of prophylactic surgery in relatives |
-| ***ESR*** [5] | Selective: if thyroiditis suspected | Markedly elevated in De Quervain's thyroiditis | Helps differentiate painful thyroid conditions |
+### 11.3 Investigation Modalities — Detailed Breakdown
 
-**Special pre-operative workup for MTC** [9]:
-- ***Rule out familial disease (25%)***: ***Family history, 24-hour urine metanephrines*** (screen for phaeochromocytoma — must be excluded before ANY surgery), ***Ca and PTH*** (screen for hyperparathyroidism)
-- ***Tumour markers: calcitonin, CEA***
-- ***Workup for metastatic disease if calcitonin > 500: CT thorax + abdomen + pelvis and bone scan*** [9]
+#### A. Blood Tests (Biochemistry)
 
-<Callout title="Why Must You Rule Out Phaeochromocytoma Before Thyroidectomy in MTC?">
-MEN2A and MEN2B include phaeochromocytoma. During thyroidectomy, surgical manipulation and anaesthesia can trigger a **catecholamine crisis** from an undiagnosed phaeochromocytoma → life-threatening hypertensive emergency, arrhythmias, and cardiovascular collapse. Always check 24-hour urine metanephrines/catecholamines (or plasma metanephrines) before operating. If phaeochromocytoma is found, it must be resected FIRST, with adequate alpha-blockade (phenoxybenzamine), before thyroidectomy.
+##### i. ***Thyroid Function Test (TFT) — TSH ± fT4***
+
+- ***TSH level is the MOST sensitive indicator of thyroid function*** due to its short half-life and the log-linear relationship with fT4 (small changes in fT4 cause large changes in TSH) [2].
+- **Purpose**: The FIRST blood test ordered. It determines the **functional status** of the thyroid and guides the next step.
+  - ***Suppressed TSH*** → possible autonomous function (hot nodule) → proceed to **scintigraphy** before FNAC [1][2][5][7]
+  - ***Normal or elevated TSH*** → the nodule is NOT hyperfunctioning → proceed directly to **USG ± FNAC** [1][5][7]
+- **Important**: Most thyroid cancers are ***euthyroid*** — they do NOT produce excess thyroid hormone. Therefore a normal TSH does **not** exclude malignancy.
+- ***Elevated TSH is associated with increased thyroid cancer risk in patients with thyroid nodules*** [2] — higher TSH provides more trophic stimulation to follicular cells.
+
+<Callout title="Exam Pitfall" type="error">
+A common mistake is to order thyroid scintigraphy for every thyroid nodule. ***Scintigraphy is ONLY indicated when TSH is suppressed (hyperthyroid)***, to determine if the nodule is hot or cold. It is ***NOT recommended for routine diagnostic use*** in euthyroid patients because the nodule will never be hyperfunctioning in that setting, and you would need USG ± FNAC regardless [2][5][7].
+</Callout>
+
+##### ii. ***Serum Calcium (Ca²⁺) and Phosphate (PO₄³⁻)***
+
+- **Why?** Two reasons [2][3]:
+  1. **Hypercalcaemia of malignancy** — some aggressive thyroid cancers or concurrent MEN-related parathyroid hyperplasia can cause raised calcium.
+  2. **Baseline pre-operative value** — after thyroidectomy, hypoparathyroidism is a major complication (inadvertent removal/devascularisation of parathyroid glands → hypocalcaemia). You need a pre-op baseline.
+
+##### iii. ***Thyroid Autoantibodies***
+
+- ***Anti-thyroglobulin (TG) antibodies should be measured to assess whether thyroglobulin can be used as a tumour marker for recurrence after total thyroidectomy*** [2].
+  - **Why?** Anti-TG antibodies interfere with the thyroglobulin assay, causing falsely low readings. If anti-TG antibodies are positive, serum thyroglobulin becomes **unreliable** as a surveillance marker. In such cases, anti-TG antibody levels themselves are followed as a surrogate marker (rising titres suggest recurrence).
+- **Anti-TPO antibodies**: if Hashimoto's thyroiditis is suspected (background for thyroid lymphoma).
+
+##### iv. ***Serum Thyroglobulin (Tg)***
+
+- ***Baseline tumour marker for differentiated thyroid carcinoma (DTC)*** [2].
+- Thyroglobulin is a glycoprotein produced exclusively by thyroid follicular cells. After total thyroidectomy + RAI ablation, Tg should become **undetectable** — any subsequent rise indicates **recurrence or residual disease**.
+- **NOT useful pre-operatively** for distinguishing benign from malignant (Tg is elevated in many benign thyroid conditions including goitre, thyroiditis).
+- **NOT appropriate** for patients who have had only hemithyroidectomy (remaining lobe produces Tg) or those with detectable anti-TG antibodies [2].
+
+##### v. ***Serum Calcitonin***
+
+- ***Baseline tumour marker for medullary thyroid carcinoma (MTC) — 95% of MTC produces calcitonin*** [1][2][7].
+- **When to order**: ***If there is history or clinical suspicion of familial medullary carcinoma or MEN2*** [1][5].
+- **Interpretation**: Basal calcitonin > 100 pg/mL is highly suggestive of MTC. ***If calcitonin > 500 pg/mL, consider metastatic disease → proceed to staging with CT thorax/abdomen/pelvis and bone scan*** [3].
+- Calcitonin can also be used as a **stimulated test** (pentagastrin or calcium stimulation) for borderline cases.
+
+##### vi. ***Serum CEA***
+
+- ***80% of medullary thyroid carcinoma produces CEA*** [1][2].
+- Used alongside calcitonin for MTC monitoring. A **rising CEA with rising calcitonin** post-operatively strongly suggests recurrence/metastatic disease.
+- A very high CEA:calcitonin ratio may indicate de-differentiation of MTC (worse prognosis).
+
+##### vii. ***Genetic Testing***
+
+- ***All patients with MTC should be tested for RET mutation*** [1][2][7].
+  - **Why?** ~25% of MTC is familial (MEN2A, MEN2B, isolated familial MTC) — all caused by germline RET proto-oncogene mutations. Identifying the mutation has profound implications:
+    - ***Screen asymptomatic relatives → prophylactic thyroidectomy (best done < 5–10 years old)*** [1][7]
+    - Must ***rule out phaeochromocytoma*** (24h urine metanephrines) before any surgery
+    - Must screen for parathyroid hyperplasia (Ca²⁺, PTH) in MEN2A
+- **Molecular testing on FNAC specimens** (e.g. ***ThyroSeq v3, Veracyte Afirma gene expression classifier***): increasingly used for Bethesda III–IV indeterminate nodules to improve risk stratification and reduce unnecessary diagnostic surgery [1][5]. ***Currently expensive, no universal standards, and not readily available in all centres*** [1][5].
+
+##### viii. ***CBC with Differentials***
+
+- Baseline haematological assessment. Also relevant if thyroid lymphoma is in the differential [2].
+
+<Callout title="Pre-operative Workup for MTC — Checklist" type="idea">
+***Rule out familial disease (25% of MTC)***: family history, RET mutation analysis.
+***Rule out phaeochromocytoma***: 24h urine metanephrines (MUST do BEFORE surgery — risk of catecholamine crisis).
+***Tumour markers***: calcitonin, CEA.
+***Ca²⁺ and PTH***: to detect parathyroid hyperplasia in MEN2A.
+***Staging if calcitonin > 500***: CT chest/abdomen/pelvis + bone scan [3].
 </Callout>
 
 ---
 
-#### 19.2 Ultrasound (USG) of the Neck
+#### B. Imaging
 
-***Ultrasonography (USG)*** [5][11]:
-- ***B-mode real-time***
-- ***Non-invasive, no radiation, convenient and cheap***
-- ***Highly sensitive but relatively low specificity***
-- ***Role*** [5][11]:
-  - ***Extend physical examination***
-  - ***Select nodules for FNAC***
-  - ***Guide needle aspiration***
-  - ***For all patients with goitre / palpable nodule***
-  - ***Not recommended as a screening test*** (in asymptomatic population)
+##### i. ***Thyroid Ultrasound (USG) — The Cornerstone Investigation***
 
-***USG is performed in all patients with a suspected thyroid nodule or nodular goitre on physical examination or incidental nodules on imaging studies*** [8].
+***USG is routine for ALL patients with goitre or palpable nodules*** [1][3][5][7].
 
-##### What USG Tells You
+| Aspect | Detail |
+|---|---|
+| **Technique** | ***7.5 or 10 MHz probes, B-mode*** [1][5]. High-frequency linear probe provides excellent resolution for superficial structures |
+| **Pros** | ***Readily available, non-invasive, high sensitivity*** [1][5] |
+| **Cons** | ***Low specificity*** — many benign nodules have "suspicious" features; ***NOT a screening test for healthy subjects*** [1][5] |
+| **Role** | Extension of physical examination to guide (not confirm) diagnosis; risk-stratify nodules for selective FNAC [1][5] |
 
-| USG Assessment | Clinical Relevance |
-|:---|:---|
-| **Solid vs cystic** | Solid nodules have higher malignancy risk; purely cystic nodules are almost always benign ( < 1%) |
-| **Solitary vs multiple** | Guides differential diagnosis |
-| **Sonographic features of the nodule** | Risk stratification → determines need for FNAC |
-| ***Detection of extrathyroidal invasion*** | ***Provides support for diagnosis of cancer*** [8] |
-| ***Cervical lymph node assessment*** | ***Identify involvement of local and regional lymph nodes***, especially ***deep nodes (Level VI)*** that cannot be palpated clinically [8][9] |
-| **Retrosternal extension** | Determines if CT is needed [9] |
-| **Guide FNAC** | USG-guided FNAC is more accurate than palpation-guided |
+**What to assess on USG** [1][2][5]:
 
-##### Sonographic Features Suspicious of Malignancy — "SHIT CME" [9]
+**The nodule itself:**
 
-***Most important features are solid and hypoechoic*** [9]:
+| Feature | High Risk (Suspicious) | Low Risk (Reassuring) | Pathophysiological Basis |
+|---|---|---|---|
+| ***Echogenicity*** | ***Hypoechoic*** | Hyperechoic or isoechoic | Malignant cells are densely packed with high nuclear:cytoplasmic ratio → less acoustic reflection → hypoechoic |
+| ***Calcifications*** | ***Microcalcifications ( < 0.2 mm)*** | Large coarse calcifications | ***Microcalcifications represent psammoma bodies in papillary CA*** — concentric laminated calcific deposits from dystrophic calcification of papillary tips [1][2][5] |
+| ***Shape*** | ***Taller than wide (AP > TS)*** | Wider than tall | Growth perpendicular to tissue planes suggests aggressive infiltration across normal tissue boundaries |
+| ***Margins*** | ***Irregular (infiltrative, microlobulated)*** | Smooth, well-defined | Irregular margins indicate invasive growth through the capsule |
+| ***Internal structure*** | Solid, or cystic with irregular septa | Spongiform (sponge-like microcystic), purely cystic | Solid components raise malignancy risk; spongiform pattern is ~99% benign |
+| ***Halo (perilesional rim)*** | ***Absent or incomplete halo*** | Complete halo | The halo represents compressed thyroid parenchyma around a benign encapsulated nodule. Absence suggests lack of capsule (invasive) |
+| ***Vascularity*** | ***Central/intranodular*** | Peripheral | Intranodular vascularity indicates tumour neoangiogenesis; peripheral vascularity reflects compression of normal peri-capsular vessels |
+| ***Extrathyroidal extension*** | Present | Absent | Direct invasion beyond the thyroid capsule into strap muscles, trachea, etc. |
 
-| Feature | Description | Pathological Basis |
-|:---|:---|:---|
-| ***S — Solid nodule*** | No cystic component | Malignant tumours are cellular, not fluid-filled |
-| ***H — Hypoechoic*** | Darker than surrounding thyroid parenchyma | Dense cellularity with minimal colloid → fewer acoustic reflections |
-| ***I — Irregular margin*** | Infiltrative, microlobulated borders | Tumour invades without respecting tissue planes |
-| ***T — Taller than wide (AP > TS)*** | Anterior-posterior diameter exceeds transverse | Tumour transgresses normal tissue planes (benign nodules expand along the path of least resistance, i.e., horizontally) |
-| ***C — Chaotic central vascularity*** | Disorganised blood flow centrally on Doppler | Tumour neoangiogenesis (VEGF-driven new vessels are tortuous and chaotic) |
-| ***M — Microcalcifications*** | Tiny, bright, punctate echogenic foci without acoustic shadowing | Psammoma bodies (pathognomonic for papillary carcinoma) |
-| ***E — Extrathyroidal extension*** | Tumour breaching the thyroid capsule | Direct invasion into surrounding structures |
+> **Mnemonic for suspicious USG features: "SHIT CME"** [3]: **S**olid, **H**ypoechoic, **I**rregular margins, **T**aller than wide, **C**haotic central vascularity, **M**icrocalcifications, **E**xtrathyroidal extension. ***The most important features are solid and hypoechoic*** [3].
 
-##### Sonographic Features Suggesting Benignity
+**Surrounding structures:**
 
-| Feature | Description | Why Benign? |
-|:---|:---|:---|
-| ***Hyperechoic*** | Brighter than surrounding thyroid | More colloid/interfaces → more reflections |
-| ***Spongiform appearance*** | Multiple small cystic spaces ( > 50% of volume) separated by thin septae | Degeneration of benign nodular goitre |
-| ***Comet-tail shadowing*** | Reverberation artefact behind bright foci | Colloid crystals within benign colloid nodules |
-| ***Wider than tall*** | Horizontal orientation | Grows along tissue planes, respecting boundaries |
-| ***Peripheral vascularity*** | Blood flow around the edge | Normal capsular supply, not neoangiogenesis |
-| ***Large coarse calcifications*** | Thick, rim-like calcification | Dystrophic calcification in old degenerated nodules (NOT psammoma bodies) |
-| ***Incomplete halo*** vs ***Complete halo*** | Thin sonolucent rim around nodule | Complete halo = compressed normal thyroid (benign); Incomplete/absent halo = suspicious |
+| Feature | What to Look For |
+|---|---|
+| **Other nodules** | Multiple nodules suggest MNG (somewhat reassuring, but a dominant nodule still needs evaluation) |
+| **Parenchymal abnormalities** | Diffuse heterogeneity, reduced echogenicity → suggests thyroiditis (Hashimoto's) |
+| ***Cervical lymph nodes*** | ***Sonographic features of malignant LN: Large > 2 cm, Roundish (taller than wide), Heterogeneous hypoechoic, Loss of central fatty hilum, Microcalcification, Intranodal cystic or coagulative necrosis*** [2][5] |
+| **Retrosternal extension** | Lower border of the thyroid not visible below the clavicle → need CT for further assessment |
 
-[8][9]
+**Sonographic Criteria for FNAC (ATA 2015 / ACR TI-RADS):**
 
-##### Sonographic Features of Malignant Lymph Nodes [8]
-
-***Sonographic features of malignant LN*** [8]:
-- ***Large > 2 cm***
-- ***Roundish (taller than wide)*** — normal LNs are oval/kidney-shaped
-- ***Heterogeneous hypoechoic*** — tumour cells replacing normal lymphoid architecture
-- ***Loss of central fatty hilum*** — the normal echogenic hilum is obliterated by tumour
-- ***Presence of microcalcification*** — papillary carcinoma deposits psammoma bodies even in metastatic LN
-- ***Presence of intranodal cystic or coagulative necrosis*** — tumour outgrows blood supply
-
-##### ATA Sonographic Risk Stratification — Criteria for FNAC
-
-***ATA guideline-based sonographic criteria for FNA*** [5][8][9]:
-
-| Sonographic Pattern | Ultrasound Findings | Risk of Malignancy | ***FNA Size Cut-off*** |
-|:---|:---|:---|:---|
-| ***High suspicion*** | ***Solid hypoechoic nodule + ≥ 1 suspicious feature*** (microcalcifications, taller-than-wide, irregular margins, ETE, rim calcification with extrusive soft tissue) | ***≥ 70-90%*** | ***FNA if ≥ 1 cm*** |
-| ***Intermediate suspicion*** | ***Hypoechoic solid nodule with smooth margins WITHOUT other suspicious features*** | ***10-20%*** | ***FNA if ≥ 1 cm*** |
-| ***Low suspicion*** | ***Isoechoic or hyperechoic nodule*** OR ***partially cystic with eccentric solid areas WITHOUT microcalcifications, taller-than-wide, or ETE*** | ***5-10%*** | ***FNA if ≥ 1.5 cm*** |
-| ***Very low suspicion*** | ***Spongiform nodules*** OR ***partially cystic WITHOUT features in high/intermediate/low patterns*** | ***< 3%*** | ***FNA if ≥ 2 cm (or observe)*** |
+| ***Sonographic Pattern*** | ***Ultrasound Findings*** | ***Risk of Malignancy*** | ***Size Cutoff for FNA*** |
+|---|---|---|---|
+| ***High suspicion*** | ***Solid hypoechoic nodule (OR) solid hypoechoic component of partially cystic nodule + ≥ 1 of: microcalcifications, rim calcification with extrusive soft tissue, taller-than-wide, irregular margins, extrathyroidal extension*** | ***> 70–90%*** | ***≥ 1 cm*** |
+| ***Intermediate suspicion*** | ***Hypoechoic solid nodule WITHOUT microcalcifications, taller-than-wide, or extrathyroidal extension*** | ***10–20%*** | ***≥ 1 cm*** |
+| ***Low suspicion*** | ***Isoechoic or hyperechoic nodule, partially cystic with eccentric solid area WITHOUT suspicious features*** | ***5–10%*** | ***≥ 1.5 cm*** |
+| ***Very low suspicion*** | ***Spongiform nodules, partially cystic WITHOUT high/intermediate/low features*** | ***< 3%*** | ***≥ 2 cm (or observe)*** |
 | ***Benign*** | ***Purely cystic nodules with no solid component*** | ***< 1%*** | ***NO FNA*** |
 
-[5][8][9]
+[2][3][5][7]
 
-<Callout title="Exam Must-Know" type="idea">
-The key principle: the more suspicious the ultrasound appearance, the SMALLER the nodule can be and still require FNAC. High suspicion → FNA at ≥ 1 cm. Very low suspicion → FNA only at ≥ 2 cm. Purely cystic → NO FNA at all. This is a risk-proportionate approach.
+<Callout title="Key Principle">
+The entire USG → FNAC pathway is a **risk-stratification tool**, not a diagnostic test. USG cannot definitively diagnose or exclude thyroid cancer — it identifies nodules that warrant tissue sampling. The definitive pre-operative diagnosis comes from FNAC cytology (Bethesda classification).
 </Callout>
 
 ---
 
-#### 19.3 Fine Needle Aspiration Cytology (FNAC)
+##### ii. ***Fine Needle Aspiration Cytology (FNAC) — The Single Most Important Investigation***
 
-***FNAC (+molecular testing)*** [5] is the **cornerstone investigation** for evaluating thyroid nodules.
+***FNAC is the single most important investigation for a thyroid nodule when TSH is not suppressed*** [1][5].
 
-***Core needle biopsy is NOT performed*** [8]:
-- ***Leads to massive bleeding since thyroid is a very vascularised structure***
-- ***FNAC is very accurate in identifying type of thyroid cancer***
+| Aspect | Detail |
+|---|---|
+| **Technique** | ***Trans-isthmic approach ± USG guidance***. USG guidance confirms presence of nodule and targets biopsy to the most suspicious region [1][5] |
+| **Accuracy** | ***90–95%*** → can avoid unnecessary diagnostic thyroidectomy [1][5] |
+| **Pros** | Minimally invasive, safe, high diagnostic yield, outpatient procedure |
+| **Cons** | ***Cannot demonstrate capsular or vascular invasion*** → ***cannot distinguish follicular adenoma from follicular carcinoma*** [1][2][3][5]. Also cannot diagnose lymphoma (needs core biopsy for architecture) |
+| **Complications** | Pain, bleeding, false negative (especially in cystic nodules where the solid component is missed) |
 
-The one exception: ***thyroid lymphoma requires core biopsy*** (FNAC cannot provide tissue architecture needed for lymphoma subtyping) [3].
+> ***Core needle biopsy is NOT routinely performed on the thyroid*** because the thyroid is a ***very vascularised structure*** and core biopsy would lead to massive bleeding. ***FNAC is very accurate in identifying the type of thyroid cancer*** [2].
 
-***FNAC is diagnostic and therapeutic for thyroid cysts*** (aspiration collapses the cyst) [9].
-
-##### Indications for FNAC [8]
-
-- ***Sonographic criteria for FNA*** (as per ATA risk stratification table above)
-- ***Hypofunctioning ("cold") nodules on thyroid scintigraphy***
+**Indications for FNAC** [2][5][7]:
+- Meets ***sonographic criteria for FNA*** (see table above)
+- ***Hypofunctioning (cold) nodules*** on thyroid scintigraphy (10–20% malignancy risk)
 - ***Dominant or atypical nodule in multinodular goitre***
 - ***Nodules associated with abnormal lymph nodes***
 - ***Complex or recurrent cystic nodules***
-
-##### The Bethesda System for Reporting Thyroid Cytopathology
-
-***Bethesda classification*** [5][8][9]:
-
-| ***Class*** | ***Diagnostic Category*** | ***Risk of Malignancy (%)*** | ***Usual Management*** |
-|:---|:---|:---|:---|
-| ***I*** | ***Non-diagnostic*** | ***1-4%*** | ***Repeat FNA*** |
-| ***II*** | ***Benign*** | ***0-3%*** | ***Clinical follow-up*** |
-| ***III*** | ***Atypia of undetermined significance (AUS) OR Follicular lesion of undetermined significance (FLUS)*** | ***5-15% (updated: 6-18%)*** | ***Repeat FNA (low risk) vs hemithyroidectomy (high risk); molecular testing*** |
-| ***IV*** | ***Follicular neoplasm / Hürthle cell neoplasm*** | ***15-30% (updated: 10-40%)*** | ***Surgical lobectomy (hemithyroidectomy)*** |
-| ***V*** | ***Suspicious for malignancy*** | ***60-75% (updated: 45-60%)*** | ***Surgical lobectomy ± frozen section with total thyroidectomy*** |
-| ***VI*** | ***Malignant*** | ***97-99% (updated: 94-96%)*** | ***Total thyroidectomy*** |
-
-[5][8][9]
-
-**Why are there two slightly different sets of numbers?** The original Bethesda 2009 system gave the first set of cancer risk percentages. The updated Bethesda 2023 (3rd edition) has refined these based on larger datasets and inclusion of non-invasive follicular thyroid neoplasm with papillary-like nuclear features (NIFTP), which is now considered non-malignant. The lecture slides [5] and senior notes [8][9] reflect slightly different editions but the management principles are the same.
-
-##### Key Cytological Features by Tumour Type [8]
-
-| Type | FNAC Appearance | Can FNAC Diagnose It? |
-|:---|:---|:---|
-| ***Papillary carcinoma*** | ***Papillary structures, psammoma bodies, Orphan Annie eye nuclei*** (ground-glass, "empty" nuclei), nuclear grooves, pseudo-inclusions | **YES** — diagnosed on nuclear features |
-| ***Follicular carcinoma*** | ***Follicular structures similar to normal thyroid***; ***cannot differentiate follicular adenoma from carcinoma***; ***diagnosis relies on capsular or vascular invasion which is not appreciated on FNAC due to limited architectural information*** [8] | **NO** — needs hemithyroidectomy for histology |
-| ***Medullary carcinoma*** | ***Distinctive deposits of acellular amyloid material*** due to altered calcitonin; ***multicentric C-cell hyperplasia in familial cases*** [8] | **YES** — amyloid + calcitonin immunostaining |
-| ***Anaplastic carcinoma*** | ***Small blue round cells that are highly anaplastic*** [8] | **YES** — highly pleomorphic undifferentiated cells |
-
-<Callout title="Common Exam Trap — Bethesda IV" type="error">
-Bethesda IV ("follicular neoplasm") is the category that trips up students the most. Remember:
-1. FNAC **cannot** distinguish follicular adenoma from follicular carcinoma (need capsular/vascular invasion on histology).
-2. ***After resection, the majority turns out to be papillary carcinoma (with psammoma bodies)*** — the follicular variant of PTC is common and gets classified as Bethesda IV on cytology [9].
-3. ***Hürthle cell neoplasm is not amenable to RAI*** → requires surgery regardless [9].
-4. The management is **hemithyroidectomy** (not total), because most Bethesda IV lesions turn out to be benign.
-</Callout>
-
-##### Molecular Testing — An Evolving Field [5]
-
-***Molecular testing*** can refine the diagnosis of indeterminate FNAC results (Bethesda III-IV) [5]:
-
-| Test Type | Examples | Sensitivity/Specificity | Clinical Use |
-|:---|:---|:---|:---|
-| ***Somatic mutation panels*** | ***BRAF (40-64%)***, ***panel of mutations (Asuragen miRInform): 63-80%*** | ***Not sensitive but specific: high PPV (rule-IN test)*** | If mutation detected → high confidence it is cancer → proceed to surgery |
-| ***Gene expression classifiers*** | ***ThyroSeq v3 multigene genomic classifier (DNA-RNA)***, ***Afirma genomic sequencing classifier (RNA)*** | ***Highly sensitive but not specific with high NPV (rule-OUT test)*** | ***For indeterminate (Bethesda III-IV: FLUS/FN) nodules*** → ***avoid diagnostic thyroidectomy in 50%*** |
-
-[5]
-
-The logic:
-- **Rule-in tests** (high specificity/PPV, e.g., BRAF mutation): If positive → cancer is very likely → go to surgery.
-- **Rule-out tests** (high sensitivity/NPV, e.g., Afirma GEC): If negative → cancer is very unlikely → can safely observe → avoids unnecessary thyroidectomy in ~50% of patients with indeterminate cytology.
-
-> **High Yield**: ***BRAF V600E mutation*** is found in ***40-64%*** of papillary thyroid carcinomas. When detected on molecular testing, it has high PPV for malignancy.
+- ***Symptomatic or large cysts*** (also therapeutic — aspiration decompresses)
+- ***Can proceed directly to total thyroidectomy if > 4 cm, gross invasion, or LN positive*** (FNAC may not change management) [1]
 
 ---
 
-#### 19.4 Thyroid Scintigraphy (Radionuclide Scan)
+##### iii. ***Bethesda System for Reporting Thyroid Cytopathology (TBSRTC)***
 
-***Radio-isotope scintigraphy (I-123 or Tc-99m)*** [5][8]:
-- ***Diagnosis of malignancy: low sensitivity and specificity*** — it is NOT a cancer test
-- ***Functional assessment in thyrotoxic patients*** — this is its main role [5]
+This is the **universal standardised reporting system** for thyroid FNAC [2][7]:
 
-***NOT recommended for routine diagnostic use*** [8]. Indicated only when:
-1. ***Patient has a thyroid nodule AND low/suppressed TSH*** → to determine if the nodule is autonomously functioning ("hot") [8]
-2. ***Multinodular goitre*** → to determine functional status of individual nodules [8]
+| ***Bethesda Category*** | ***Diagnostic Category*** | ***Risk of Malignancy (%)*** | ***Usual Management*** |
+|---|---|---|---|
+| ***I*** | ***Non-diagnostic / Unsatisfactory*** | ***1–4%*** | ***Repeat FNA*** (or surgery if radiologically suspicious) |
+| ***II*** | ***Benign*** | ***0–3%*** | ***Clinical follow-up*** (repeat USG in 12–24 months) |
+| ***III*** | ***Atypia of undetermined significance (AUS) OR Follicular lesion of undetermined significance (FLUS)*** | ***5–15%*** | ***Repeat FNA, molecular testing, or hemithyroidectomy if AUS × 2*** |
+| ***IV*** | ***Follicular neoplasm / Suspicious for follicular neoplasm*** | ***15–30%*** | ***Diagnostic hemithyroidectomy*** (± molecular testing) |
+| ***V*** | ***Suspicious for malignancy*** | ***60–75%*** | ***Hemithyroidectomy + frozen section → total thyroidectomy*** |
+| ***VI*** | ***Malignant*** | ***97–99%*** | ***Total thyroidectomy*** |
 
-***NOT performed in euthyroid (normal TSH) or high TSH states*** — because the nodule will never be "hot" in these situations, and you will need USG ± FNAC regardless [8].
+[1][2][3][5][7]
 
-##### Interpretation of Scintigraphy
+**Cytological findings by cancer type:**
 
-| Finding | Uptake Pattern | Malignancy Risk | Next Step |
-|:---|:---|:---|:---|
-| ***"Hot" (hyperfunctioning) nodule*** | ***Uptake greater than surrounding thyroid*** | ***Almost never malignant*** | ***Does NOT require FNAC*** → treat as toxic adenoma [8] |
-| ***"Cold" (hypofunctioning) nodule*** | ***Uptake less than surrounding thyroid*** | ***10-20% risk of cancer*** | ***Requires FNAC*** (if sonographic criteria met) [8] |
-| **"Warm" nodule** | Uptake similar to surrounding thyroid | Low risk | Evaluate sonographically |
+| Cancer Type | Cytological Features on FNAC |
+|---|---|
+| ***Papillary CA*** | ***Orphan Annie eye nuclei*** (empty, ground-glass appearance with nuclear clearing), ***nuclear pseudoinclusions*** (cytoplasmic invaginations into the nucleus), ***papillary architecture***, ***psammoma bodies*** (laminated calcified structures), nuclear grooves [1][2] |
+| ***Follicular CA*** | ***Follicular structures similar to normal thyroid*** — microfollicular pattern with scant colloid. ***Cannot differentiate follicular adenoma from carcinoma on FNAC*** because ***diagnosis of carcinoma relies on capsular or vascular invasion which is not appreciated on FNAC due to limited architectural information*** [2][3] |
+| ***Medullary CA*** | ***Distinctive deposits of acellular amyloid material*** (from altered calcitonin aggregation), plasmacytoid cells, positive calcitonin immunostaining. ***Multicentric C-cell hyperplasia in familial cases*** [2] |
+| ***Anaplastic CA*** | ***Small blue round cells that are highly anaplastic***, marked pleomorphism, bizarre giant cells, necrosis, high mitotic figures [2] |
+| ***Lymphoma*** | Lymphoid cells on FNAC — ***FNAC cannot diagnose lymphoma*** → need ***core biopsy*** for tissue architecture, immunohistochemistry, and flow cytometry |
 
-**Why are hot nodules almost never malignant?** A hot nodule is autonomously producing thyroid hormone (it is a functional machine). Cancer cells, by contrast, tend to be poorly differentiated and lose their ability to concentrate iodine efficiently. An autonomously functioning nodule is almost always a benign toxic adenoma.
+> **Why are "Orphan Annie" nuclei called that?** They are named after the cartoon character Little Orphan Annie, whose eyes appeared blank and empty. In papillary thyroid carcinoma, the nuclear clearing on haematoxylin and eosin (H&E) staining creates this characteristic "empty" appearance due to dispersal of chromatin to the nuclear periphery during tissue fixation.
 
-**Why are cold nodules suspicious?** Most thyroid cancers do NOT concentrate iodine well (the NIS is downregulated or the cells are de-differentiated), so they appear "cold" on scintigraphy. However, most cold nodules are still benign (colloid nodules, cysts) — only 10-20% are malignant.
+<Callout title="Frozen Section — Is It Useful?" type="idea">
+***Frozen section (FS) is NOT helpful in hemithyroidectomy for follicular neoplasm (Bethesda IV)***. It only gives diagnostic information in ~13% of cases and modifies the surgical procedure in only 3.3%, with misguided intervention in 5% [1][5]. ***One should wait for the final histology report after lobectomy***. If it shows encapsulated minimally invasive FTC ( < 5 vessel invasion, no wide invasion), lobectomy is curative. Otherwise, completion thyroidectomy + RAI ablation is needed [1][5].
 
----
-
-#### 19.5 Cross-Sectional Imaging (CT, MRI)
-
-***CT scan / MRI*** [5][9]:
-
-These are **NOT routine** investigations for a straightforward thyroid nodule. They are indicated selectively:
-
-1. ***Retrosternal goitre*** — ***cannot be visualised by USG*** (ultrasound cannot penetrate bone); CT delineates the extent of retrosternal extension, relationship to great vessels, and tracheal compression [9]
-2. ***Locally advanced thyroid cancer / bulky lymphadenopathy*** — CT provides ***better delineation of important structures within cervical fascial planes*** (carotid artery, IJV, trachea, oesophagus) for surgical planning [9]
-3. **Staging of advanced disease** — CT chest/abdomen/pelvis for distant metastases
-
-<Callout title="CT Contrast and Thyroid Cancer" type="error">
-Iodinated CT contrast contains a massive iodine load. This can **saturate the thyroid** and delay subsequent **radioactive iodine (RAI) therapy** by 6-8 weeks (the thyroid follicular cells are already loaded with "cold" iodine and cannot take up ¹³¹I). Therefore, if RAI therapy is planned in the near future, try to **avoid iodinated contrast** CT. If contrast CT is essential for staging, you must wait before administering RAI.
+However, FS **is** useful for ***Bethesda V (suspicious for malignancy)*** — if FS confirms malignancy intra-operatively, the surgeon can proceed directly to total thyroidectomy in the same operation, avoiding a second surgery.
 </Callout>
 
 ---
 
-#### 19.6 Other Imaging Modalities
+##### iv. ***Thyroid Scintigraphy (Radionuclide Scan)***
 
-| Modality | Indication | Key Finding |
-|:---|:---|:---|
-| ***CXR*** | ***Tracheal deviation; mediastinal shadow for retrosternal extension; lung metastasis*** [8] | Retrosternal goitre appears as superior mediastinal widening; cannonball metastases (follicular CA) |
-| ***CT thorax*** | ***Determine extent of retrosternal goitre or thyroid tumour; identify tumour invasion of great vessels and upper aerodigestive tract*** [8] | |
-| ***PET-CT scan (¹⁸F-FDG)*** | ***Detect distant metastasis***; no routine diagnostic role [9] | FDG-avid thyroid incidentaloma has ~30-35% malignancy risk; also used for RAI-refractory disease surveillance |
-| ***Bronchoscopy*** | ***Invasion into trachea*** [8] | Assess luminal involvement |
-| ***OGD*** | ***Invasion into oesophagus*** [8] | |
-| ***Skeletal X-ray / Bone scan*** | ***Detect bone metastasis (lytic lesions)*** — especially follicular carcinoma [8] | |
-| ***CT / MRI brain, neck, chest, abdomen, pelvis*** | ***Identify distant metastasis*** [8] | Comprehensive staging in advanced disease |
+| Aspect | Detail |
+|---|---|
+| **Radiopharmaceuticals** | ***⁹⁹ᵐTc pertechnetate*** (iodine trapping only — has similar ionic size to iodide, taken up by NIS), ***¹²³I or ¹³¹I*** (trapping + organification) [8] |
+| **Principle** | ***Radioactive iodine is handled in the same manner as normal iodine. Level of uptake reflects metabolic activity*** [8] |
+| **Images** | Anterior, left anterior oblique (LAO), and right anterior oblique (RAO) views [8] |
 
-[8]
+**Indications** [2][5][7]:
+- ***ONLY in patients with a thyroid nodule AND suppressed TSH (↓TSH)*** → to determine if the nodule is hot or cold
+- ***NOT recommended for routine diagnostic use in euthyroid patients*** [2][7]
+- Also indicated in ***multinodular goitre (MNG)*** to determine functional status of different nodules
+
+**Interpretation:**
+
+| Scintigraphic Finding | Definition | Clinical Significance |
+|---|---|---|
+| ***Hot nodule (hyperfunctioning)*** | Uptake greater than surrounding thyroid tissue | ***Almost never malignant → does NOT require FNAC***. Treat as toxic adenoma [2][5][7] |
+| ***Cold nodule (hypofunctioning)*** | Uptake less than surrounding thyroid tissue | ***10–20% risk of malignancy → requires FNAC*** provided sonographic criteria are met [2][5][7] |
+| Warm nodule (indeterminate) | Uptake similar to surrounding tissue | Intermediate risk; proceed based on USG features |
+
+> ***Why is scintigraphy NOT done when TSH is normal or elevated?*** Because a euthyroid or hypothyroid patient's nodule will never be "hot" — by definition, a hot nodule suppresses TSH via autonomous hormone production. If TSH is normal, the nodule is not autonomously functioning, and scintigraphy provides no additional discriminatory information beyond what USG + FNAC can give [2].
+
+**Clinical indications for thyroid scintigraphy** [8]:
+- Assessment of thyroid nodules, goitre, organification defect, thyroid cancer
+- Evaluation of ectopic thyroid
+- Diagnosis of causes of thyrotoxicosis or hypothyroidism
+- ***Post-surgery or radiotherapy assessment of residual thyroid gland***
 
 ---
 
-#### 19.7 Investigations — Summary Table by Routine vs Selective [9]
+##### v. ***CT Scan / MRI***
 
-| | ***Routine*** | ***Selective*** |
-|:---|:---|:---|
-| ***History + Physical exam*** | ✓ | |
-| ***Thyroid function test*** | ✓ | |
-| ***USG thyroid ± FNAC*** | ✓ | |
-| ***Thyroid scan*** | ✗ | ***Only in toxic (suppressed TSH) + nodules*** |
-| ***CT scan*** | ✗ | ***Only for (1) retrosternal goitre, (2) locally advanced thyroid cancer*** |
-| ***PET scan*** | ✗ | ***No diagnostic role at all*** (only for staging/surveillance in specific contexts) |
+| Aspect | Detail |
+|---|---|
+| **Indications** | ***NOT routine*** — only when: (1) ***retrosternal goitre*** (cannot be visualised by USG, needed for surgical planning), (2) ***locally advanced thyroid cancer*** (delineation of important structures within cervical fascia), (3) staging for distant mets [1][2][3][5] |
+| **CT thorax** | Determine extent of retrosternal goitre or thyroid tumour; identify tumour invasion of great vessels and upper aerodigestive tract [2] |
+| **MRI** | Better soft tissue contrast than CT; useful for assessing extent of local invasion (trachea, oesophagus, carotid sheath) |
 
-[9]
+<Callout title="Contrast CT Warning" type="error">
+***The use of iodinated contrast in CT may affect post-operative radioactive iodine (RAI) whole-body scan and therapy*** [1][5]. Iodine contrast "loads" the body with stable iodine, which competes with ¹³¹I for uptake by residual thyroid/tumour tissue, reducing the efficacy of both diagnostic scanning and therapeutic RAI. A delay of 4–8 weeks after iodinated contrast is recommended before RAI. Plan imaging accordingly!
+</Callout>
+
+##### vi. ***CXR***
+
+- ***Tracheal deviation*** (mass effect of large goitre/tumour)
+- ***Mediastinal shadow*** for retrosternal extension
+- ***Lung metastases*** (cannonball or miliary pattern — especially in follicular CA with haematogenous spread) [2]
+
+##### vii. ***PET-CT (¹⁸F-FDG)***
+
+- ***No role in routine primary diagnosis*** of thyroid cancer [3]
+- Used for:
+  - **Staging of aggressive thyroid cancers** (anaplastic, poorly differentiated)
+  - **Radioiodine-refractory DTC** — FDG-avid tumour that does NOT take up ¹³¹I (the "flip-flop" phenomenon: as tumours de-differentiate, they lose NIS expression → ↓RAI uptake, but gain GLUT-1 expression → ↑FDG uptake)
+  - **Detection of recurrence** when thyroglobulin is rising but RAI whole-body scan is negative
+
+##### viii. ***Endoscopy***
+
+| Modality | Indication | Finding |
+|---|---|---|
+| ***Direct laryngoscopy*** | ***Pre-operative assessment of vocal cord function (RLN status)*** — ***mandatory before thyroid surgery*** [1][5] | Documents pre-existing vocal cord paralysis (from tumour invasion of RLN vs pre-existing pathology) |
+| ***Bronchoscopy*** | ***Invasion into trachea*** — if airway involvement suspected (stridor, haemoptysis) [2] | Mucosal involvement, intraluminal tumour |
+| ***OGD (oesophagogastroduodenoscopy)*** | ***Invasion into oesophagus*** — if dysphagia suggests oesophageal involvement [1][2][5] | Extrinsic compression or mucosal invasion |
+
+##### ix. ***Other Imaging for Metastasis Workup***
+
+| Modality | Purpose |
+|---|---|
+| ***Skeletal X-ray*** | Detect bone metastasis (lytic lesions — especially in follicular CA) [2] |
+| ***CT/MRI brain, neck, chest, abdomen, pelvis*** | Identify distant metastasis in advanced disease [2] |
+| ***Bone scintigraphy*** | If bone metastases suspected clinically (bone pain, raised ALP) |
 
 ---
 
-### 20. Staging of Thyroid Cancer — AJCC 8th Edition / TNM Classification
+### 11.4 Staging Systems
 
-Once thyroid cancer is confirmed, staging determines prognosis and guides management.
+Once thyroid cancer is diagnosed, staging determines prognosis and guides post-operative management.
 
-#### 20.1 T Staging [9][12]
+#### i. ***AJCC/UICC 8th Edition TNM Staging (2017)***
 
-| T Stage | Definition |
-|:---|:---|
+**T Staging (Tumour):**
+
+| Stage | Criteria |
+|---|---|
+| ***T1*** | ***Tumour ≤ 2 cm, limited to thyroid*** |
 | ***T1a*** | ***Tumour ≤ 1 cm*** |
-| ***T1b*** | ***1 cm < tumour ≤ 2 cm*** |
-| ***T2*** | ***2 cm < tumour ≤ 4 cm*** |
-| ***T3a*** | ***Tumour > 4 cm but limited to thyroid*** [12] |
-| ***T3b*** | ***Tumour of any size with gross extrathyroidal extension invading only strap muscles (sternohyoid, sternothyroid, or omohyoid muscles)*** [12] |
-| ***T4a*** | Tumour invades subcutaneous soft tissues, larynx, trachea, oesophagus, or RLN |
-| ***T4b*** | Tumour invades prevertebral fascia or encases carotid artery or mediastinal vessels |
+| ***T1b*** | ***Tumour > 1 cm and ≤ 2 cm*** |
+| ***T2*** | ***Tumour > 2 cm but ≤ 4 cm, limited to thyroid*** |
+| ***T3*** | ***Tumour > 4 cm limited to thyroid, OR gross extrathyroidal extension invading only strap muscles*** |
+| ***T3a*** | ***Tumour > 4 cm limited to thyroid*** |
+| ***T3b*** | ***Gross extrathyroidal extension invading only strap muscles*** |
+| ***T4*** | ***Gross extrathyroidal extension beyond strap muscles*** |
+| ***T4a*** | ***Invading subcutaneous soft tissues, larynx, trachea, oesophagus, or RLN*** |
+| ***T4b*** | ***Invading prevertebral fascia or encasing carotid artery or mediastinal vessels*** |
 
-***The definition of T3 has been revised*** [12]: T3a is now purely size-based ( > 4 cm, intrathyroidal), and T3b is gross ETE into strap muscles only.
+**Specifier**: (s) = solitary tumour; (m) = multifocal tumour [1]
 
-#### 20.2 N Staging [9]
+**N Staging (Nodes):**
 
-| N Stage | Definition |
-|:---|:---|
-| ***N1a*** | ***Level VI / VII nodes*** (central compartment) |
-| ***N1b*** | ***Level I-V nodes*** (lateral compartment) |
+| Stage | Criteria |
+|---|---|
+| ***N1a*** | ***Level VI and/or Level VII nodes (central compartment)*** |
+| ***N1b*** | ***Level I–V nodes (lateral compartment)*** |
 
-#### 20.3 Stage Grouping — Differentiated Thyroid Cancer (AJCC 8th Edition)
+[3]
 
-***The age threshold for staging has changed from 45 years to 55 years*** [12].
+**Overall Stage Grouping — Differentiated Thyroid Cancer (PTC, FTC):**
 
-**Patients < 55 years old** — ***age-dependent staging*** [9][12]:
+| | ***Age < 55 years*** | ***Age ≥ 55 years*** |
+|---|---|---|
+| ***Stage I*** | ***Any T, Any N, M0*** | ***T1–T2, N0, M0*** |
+| ***Stage II*** | ***Any T, Any N, M1*** | ***T1–T2, N1, M0 / T3, Any N, M0*** |
+| ***Stage III*** | — | ***T4a, Any N, M0*** |
+| ***Stage IVA*** | — | ***T4b, Any N, M0*** |
+| ***Stage IVB*** | — | ***Any T, Any N, M1*** |
 
-| Stage | Definition |
-|:---|:---|
-| ***Stage I*** | ***Any T, Any N, M0*** |
-| ***Stage II*** | ***Any T, Any N, M1*** |
+[1][3]
 
-→ ***Patients < 55 can never be Stage III or IV*** [9]. This reflects the excellent prognosis of differentiated thyroid cancer in younger patients — even with extensive nodal disease, their outcomes are superb.
+> ***Key point: Age < 55 years → maximum Stage II even with distant metastases.*** This reflects the remarkably good prognosis of differentiated thyroid cancer in young patients (5-year survival > 98% even with M1 disease). ***Anaplastic carcinoma is automatically Stage IV regardless of extent*** [1][3].
 
-**Patients ≥ 55 years old** [12]:
+#### ii. ***MACIS System (Predicts Disease-Specific Mortality for PTC)***
 
-| Stage | Definition |
-|:---|:---|
-| ***Stage I*** | ***T1a, T1b, T2, N0, M0*** |
-| ***Stage II*** | ***T3, N0, M0*** OR ***T1-T3, N1, M0*** |
-| ***Stage III*** | ***T4a, Any N, M0*** |
-| ***Stage IVA*** | ***T4b, Any N, M0*** |
-| ***Stage IVB*** | ***Any T, Any N, M1*** |
+- ***M*** — **M**etastasis
+- ***A*** — **A**ge
+- ***C*** — **C**ompleteness of resection
+- ***I*** — **I**nvasion (extrathyroidal extension)
+- ***S*** — **S**ize
 
-***Anaplastic thyroid carcinoma: automatically Stage IV*** [9] — regardless of T, N, or M status. This reflects its universally dismal prognosis.
+[2]
 
-<Callout title="Why Is Age So Important in Thyroid Cancer Staging?">
-Young patients with differentiated thyroid cancer have an excellent prognosis even with advanced locoregional disease (nodal metastases, large tumours) — their 10-year survival approaches 98-99%. The AJCC staging system incorporates age because it is one of the strongest independent prognostic factors. A 25-year-old with T3N1bM0 papillary carcinoma is Stage I (not Stage II or III), reflecting the fact that this patient will almost certainly be cured.
-</Callout>
+#### iii. ***ATA Risk Stratification (Predicts Disease Recurrence Risk)***
 
----
-
-#### 20.4 ATA Risk Stratification — For Post-Operative Management
-
-This is separate from TNM staging and is used to guide the intensity of post-operative treatment (RAI ablation, TSH suppression, surveillance) [12]:
-
-***2015 ATA Risk Stratification System*** [12]:
-
-| Risk Level | Features | Clinical Implication |
-|:---|:---|:---|
-| ***ATA Low Risk*** | ***No local or distant metastases; all macroscopic tumour resected; no loco-regional invasion; no aggressive histology (tall cell, hobnail, columnar); no vascular invasion; clinical N0 or < 5 pathologic N1 micrometastases ( < 0.2 cm); intrathyroidal encapsulated follicular variant of PTC; intrathyroidal well-differentiated FTC with capsular invasion and no or minimal ( < 4 foci) vascular invasion; papillary microcarcinoma (uni- or multifocal) including BRAF V600E mutated*** | No TSH suppression needed; TSH target 0.5-2.0 mIU/L; RAI usually NOT required |
-| ***ATA Intermediate Risk*** | ***Microscopic invasion into perithyroidal soft tissues; RAI-avid metastatic foci in neck on post-treatment WBS; aggressive histology; PTC with vascular invasion; clinical N1 or > 5 pathologic N1 with all involved LN < 3 cm; multifocal papillary microcarcinoma with ETE and BRAF V600E*** | Low TSH suppression (0.1-0.5 mIU/L); RAI ablation considered |
-| ***ATA High Risk*** | ***Macroscopic invasion (gross ETE); incomplete tumour resection; distant metastases; postoperative Tg suggestive of distant mets; pathologic N1 with any LN > 3 cm; FTC with extensive vascular invasion ( > 4 foci)*** | High TSH suppression ( < 0.1 mIU/L); RAI ablation indicated |
-
-[12]
+Covered in detail in Section 6.3 of prior notes. This is used **post-operatively** to guide the intensity of adjuvant therapy (RAI ablation) and surveillance.
 
 ---
 
-### 21. Complete Diagnostic Algorithm — Mermaid Diagram
+### 11.5 Putting It All Together — A Systematic Approach
 
-```mermaid
-graph TD
-    A["Patient presents with thyroid nodule\nor incidental thyroid lesion"] --> B["Step 1: Bloods\nTFT, Ca/PO4, Thyroid Ab"]
-    B --> C{"TSH result?"}
-    C -->|"Low/suppressed TSH"| D["Thyroid Scintigraphy\n— I-123 or Tc-99m"]
-    D -->|"Hot nodule"| E["Almost never malignant\n→ No FNAC needed\n→ Treat as toxic adenoma"]
-    D -->|"Cold or warm nodule"| F["Proceed to USG"]
-    C -->|"Normal or elevated TSH"| F
-    F --> G["Step 2: Thyroid USG\nAssess nodule + cervical LN"]
-    G --> H{"ATA Sonographic Pattern\nRisk Stratification"}
-    H -->|"Purely cystic = Benign"| I["No FNAC\nObserve or aspirate if symptomatic"]
-    H -->|"Very low suspicion"| J["FNAC if >= 2 cm"]
-    H -->|"Low suspicion"| K["FNAC if >= 1.5 cm"]
-    H -->|"Intermediate suspicion"| L["FNAC if >= 1 cm"]
-    H -->|"High suspicion"| M["FNAC if >= 1 cm"]
-    J --> N["Step 3: FNAC under USG guidance"]
-    K --> N
-    L --> N
-    M --> N
-    N --> O{"Bethesda Classification"}
-    O -->|"I: Non-diagnostic"| P["Repeat FNAC"]
-    O -->|"II: Benign"| Q["Clinical + USG follow-up"]
-    O -->|"III: AUS/FLUS"| R["Repeat FNAC or\nMolecular testing\n± Hemithyroidectomy"]
-    O -->|"IV: Follicular neoplasm"| S["Hemithyroidectomy\n— Definitive histology\nfor capsular/vascular invasion"]
-    O -->|"V: Suspicious"| T["Hemithyroidectomy\n± Frozen section → Total thyroidectomy"]
-    O -->|"VI: Malignant"| U["Total thyroidectomy"]
-    U --> V["Step 4: Staging\nTNM + ATA Risk Stratification"]
-    V --> W["Additional staging investigations:\nCT, CXR, PET-CT, bone scan\nas indicated"]
-    W --> X["Step 5: Post-op surveillance\nTg, Anti-TG Ab, Neck USG\n± Whole-body RAI scan"]
-```
+Here is how a clinician should approach a thyroid nodule, step by step:
 
----
+| Step | Action | Rationale |
+|---|---|---|
+| **1** | History + Physical Examination | Identify red flags for malignancy (Section 8.3) |
+| **2** | ***TFT (TSH ± fT4)*** — **FIRST blood test** | Determine functional status; suppressed TSH → scintigraphy [1][5][7] |
+| **3** | ***Thyroid USG*** — **ROUTINE for ALL** | Risk-stratify the nodule; assess cervical LNs; guide FNAC [1][3][5][7] |
+| **4** | ***Thyroid scintigraphy*** — **ONLY if TSH suppressed** | Hot nodule = benign (no FNAC needed); cold nodule → FNAC [2][5][7] |
+| **5** | ***USG-guided FNAC*** — for suspicious nodules meeting size criteria | Bethesda classification guides management [1][2][5][7] |
+| **6** | Bethesda I–II → Follow-up; III → Repeat or molecular test; IV–VI → Surgery | See Bethesda table above |
+| **7** | If malignancy confirmed/suspected → **Pre-operative workup** | CT neck/chest (if locally advanced), ***direct laryngoscopy*** (vocal cord function), tumour markers (Tg, calcitonin, CEA), Ca/PO₄, genetic testing if MTC |
+| **8** | Post-operative → Histopathology → **TNM staging + ATA risk stratification** | Determines need for completion thyroidectomy, RAI, TSH suppression |
 
-### 22. Approach to Multiple Nodules [9]
+***Routine for ALL patients: History, PE, TFT, thyroid USG ± FNAC*** [3].
 
-***Malignancy risk is much lower*** with multiple nodules compared to a solitary nodule [9].
-
-- ***USG: assess each nodule separately***
-- ***FNAC depends on USG result***:
-  - ***If no suspicious nodules: FNA the largest nodule***
-  - ***Any suspicious nodules: FNA ALL suspicious nodules*** [9]
-
----
-
-### 23. Post-Operative Disease Monitoring (Surveillance Investigations)
-
-After thyroidectomy for differentiated thyroid cancer, monitoring involves [9]:
-
-| Investigation | Frequency | Target/Interpretation |
-|:---|:---|:---|
-| **Neck USG** | Every 6 months initially | Detect local recurrence, suspicious LN |
-| **TSH and Thyroglobulin** | Every 3 months (on thyroxine suppression) | TSH: within target range for risk category; **Tg: should be undetectable after total thyroidectomy + RAI** |
-| **Anti-TG antibodies** | With each Tg measurement | If positive, Tg is unreliable; use anti-TG Ab titre trend as surrogate |
-| **Tg targets** | Post-total thyroidectomy: ***Tg < 0.2 ng/mL***; Post-hemithyroidectomy: ***Tg < 30 ng/mL*** [9] | Rising Tg or Tg above threshold → suspect recurrence |
-
-<Callout title="Why Does Residual Thyroid Tissue Interfere with Monitoring?">
-***Residual thyroid tissue is actually non-functional (requires T4 supplementation anyway), but it interferes with post-op thyroglobulin monitoring and also cannot rule out residual malignancy*** [9]. This is one of the rationale for **remnant ablation** with RAI: destroying all residual normal thyroid tissue makes Tg a more reliable tumour marker (any detectable Tg then definitively indicates recurrence).
-</Callout>
-
----
-
-### 24. Summary — Key Investigation Principles
-
-| Principle | Explanation |
-|:---|:---|
-| **TFT first** | Identifies toxic nodules that don't need FNAC |
-| **USG for all** | Extends examination; risk-stratifies; guides FNAC |
-| **FNAC = cornerstone** | Bethesda system dictates management; but cannot diagnose follicular carcinoma |
-| **Molecular testing for indeterminate** | Rule-in (BRAF, mutation panels) and rule-out (Afirma, ThyroSeq) tests for Bethesda III-IV |
-| **Scintigraphy only if TSH is low** | Hot = benign; Cold = needs FNAC |
-| **CT only for retrosternal or locally advanced** | Not routine |
-| **PET has no diagnostic role** | Only for staging/surveillance |
-| **Staging uses AJCC 8th edition** | Age < 55: max Stage II; Age ≥ 55: up to Stage IVB; Anaplastic = always Stage IV |
+***Selective investigations (not routine):*** [3]
+- Thyroid scintigraphy: only if TSH suppressed + nodule
+- CT scan: only if retrosternal goitre or locally advanced cancer
+- PET scan: ***no diagnostic role*** — only for staging aggressive/RAI-refractory disease
 
 ---
 
 <Callout title="High Yield Summary">
 
-**First-line investigations for ALL thyroid nodules**: TFT + thyroid USG ± FNAC.
+**Investigation hierarchy**: TFT (TSH) → USG → FNAC (± scintigraphy if TSH suppressed).
 
-**Scintigraphy**: Only when TSH is suppressed. Hot nodule = almost never cancer = no FNAC. Cold nodule = 10-20% cancer risk = needs FNAC.
+**TSH is the first test**: Suppressed → scintigraphy; Normal/elevated → USG ± FNAC directly.
 
-**USG risk stratification (ATA system)**: Determines if and at what size FNAC is performed. SHIT CME mnemonic for suspicious features.
+**USG suspicious features (SHIT CME)**: Solid, Hypoechoic, Irregular margins, Taller-than-wide, Chaotic central vascularity, Microcalcifications, Extrathyroidal extension.
 
-**FNAC + Bethesda System**: I = repeat; II = follow-up; III = repeat/molecular; IV = hemithyroidectomy (cannot distinguish adenoma from carcinoma); V = hemithyroidectomy ± frozen section → total; VI = total thyroidectomy.
+**FNAC is the single most important investigation**: Bethesda classification guides management. Cannot diagnose follicular CA (need histological capsular/vascular invasion). Cannot diagnose lymphoma (need core biopsy).
 
-**Molecular testing**: BRAF = rule-in (high PPV); Afirma/ThyroSeq = rule-out (high NPV); avoids unnecessary surgery in 50% of Bethesda III-IV.
+**Hot nodule on scintigraphy = almost never malignant → NO FNAC needed. Cold nodule = 10–20% malignancy risk → needs FNAC.**
 
-**MTC workup**: Calcitonin, CEA, 24hr urine metanephrines (rule out phaeo), RET mutation, Ca/PTH.
+**Bethesda IV (follicular neoplasm)**: Diagnostic hemithyroidectomy — final diagnosis requires histological capsular/vascular invasion.
 
-**AJCC 8th edition staging**: Age < 55 → max Stage II even with extensive disease. Age ≥ 55 → up to IVB. Anaplastic = automatic Stage IV.
+**Pre-op for MTC**: RET mutation, calcitonin, CEA, 24h urine metanephrines, Ca/PTH.
 
-**ATA risk stratification**: Low/Intermediate/High → guides RAI ablation and TSH suppression target.
+**Iodinated contrast CT can interfere with subsequent RAI scan/therapy** — plan accordingly.
 
-**Post-op monitoring**: Tg (must check anti-TG Ab first), neck USG, TSH.
+**TNM staging**: Age < 55 with DTC → max Stage II. Anaplastic → auto Stage IV.
 
 </Callout>
 
@@ -456,38 +432,37 @@ After thyroidectomy for differentiated thyroid cancer, monitoring involves [9]:
   title="Active Recall - Diagnosis of Thyroid Cancer"
   items={[
     {
-      question: "List the routine investigations for ALL patients presenting with a thyroid nodule. Which investigations are only performed selectively and what are their specific indications?",
-      markscheme: "Routine: (1) TFT, (2) Thyroid USG +/- FNAC. Selective: Thyroid scintigraphy — only when TSH is low/suppressed (to identify hot vs cold nodule). CT scan — only for retrosternal goitre or locally advanced thyroid cancer. PET scan — no diagnostic role at all.",
+      question: "A patient presents with a thyroid nodule. TFT shows a suppressed TSH. What is the next investigation and what are the possible results and their implications?",
+      markscheme: "Thyroid scintigraphy (I-123 or Tc-99m). Hot nodule = autonomously functioning, rarely malignant, no FNAC needed, treat as toxic adenoma. Cold nodule = 10-20% malignancy risk, requires USG-guided FNAC if sonographic criteria met.",
     },
     {
-      question: "A patient has a Bethesda III (AUS/FLUS) result on thyroid FNAC. What are the management options and how can molecular testing help?",
-      markscheme: "Options: (1) Repeat FNAC if low risk, (2) Hemithyroidectomy if high risk or persistently Class III on repeat. Molecular testing: Rule-in tests (BRAF mutation panel, high PPV) — if positive, confident it is cancer, proceed to surgery. Rule-out tests (Afirma GEC/ThyroSeq, high NPV) — if negative, cancer very unlikely, can safely observe. Avoids diagnostic thyroidectomy in approximately 50% of patients.",
+      question: "State the Bethesda classification categories I through VI, the associated risk of malignancy for each, and the recommended management.",
+      markscheme: "I: Non-diagnostic (1-4%) - repeat FNA. II: Benign (0-3%) - clinical follow-up. III: AUS/FLUS (5-15%) - repeat FNA or molecular testing. IV: Follicular neoplasm (15-30%) - diagnostic hemithyroidectomy. V: Suspicious for malignancy (60-75%) - hemithyroidectomy with frozen section then total thyroidectomy. VI: Malignant (97-99%) - total thyroidectomy.",
     },
     {
-      question: "Why must anti-thyroglobulin antibodies be measured alongside serum thyroglobulin when monitoring for recurrence of differentiated thyroid cancer?",
-      markscheme: "Anti-TG antibodies interfere with thyroglobulin immunometric assays, causing falsely low Tg readings. If anti-TG Ab are present, a low Tg may be falsely reassuring and cannot be relied upon. In such cases, serial anti-TG Ab titres can be used as a surrogate marker — a rising titre suggests recurrence.",
+      question: "List the sonographic features suspicious for thyroid malignancy using the mnemonic SHIT CME. Which two features are the MOST important?",
+      markscheme: "Solid, Hypoechoic, Irregular margins, Taller-than-wide, Chaotic central vascularity, Microcalcifications, Extrathyroidal extension. The most important features are Solid and Hypoechoic.",
     },
     {
-      question: "A 30-year-old female has papillary thyroid cancer staged as T3N1bM0. What is her AJCC 8th edition stage and why?",
-      markscheme: "Stage I. Under the AJCC 8th edition, patients aged less than 55 with differentiated thyroid cancer can only be Stage I (any T, any N, M0) or Stage II (any T, any N, M1). She is M0, therefore Stage I regardless of T3 and N1b disease. This reflects the excellent prognosis of differentiated thyroid cancer in young patients.",
+      question: "Why must anti-thyroglobulin antibodies be measured before using thyroglobulin as a tumour marker? What happens if they are positive?",
+      markscheme: "Anti-TG antibodies interfere with the thyroglobulin immunoassay, causing falsely low readings. If positive, thyroglobulin levels are unreliable as a surveillance marker. Instead, anti-TG antibody levels themselves are followed as a surrogate marker - rising titres suggest recurrence.",
     },
     {
-      question: "Explain the difference between ATA risk stratification and AJCC TNM staging. What is each used for?",
-      markscheme: "AJCC TNM staging predicts overall survival and is used for prognostication and communication. ATA risk stratification predicts risk of recurrence and is used to guide post-operative management intensity: specifically RAI ablation decisions and degree of TSH suppression. Low risk = no TSH suppression (0.5-2.0). Intermediate = low suppression (0.1-0.5). High = high suppression (less than 0.1).",
+      question: "Explain why iodinated contrast CT should be avoided or timed carefully before radioactive iodine therapy.",
+      markscheme: "Iodinated contrast loads the body with stable iodine, which competes with I-131 for uptake via the sodium-iodide symporter on residual thyroid/tumour tissue, reducing both diagnostic scanning sensitivity and therapeutic RAI efficacy. A delay of 4-8 weeks after contrast is recommended before RAI.",
     },
     {
-      question: "Why should iodinated CT contrast be avoided if radioactive iodine therapy is planned in the near future?",
-      markscheme: "Iodinated contrast delivers a massive iodine load that saturates thyroid follicular cells (and residual cancer cells) with stable iodine. This competitively inhibits uptake of radioactive I-131, rendering RAI therapy ineffective. A washout period of 6-8 weeks is needed after contrast CT before RAI can be administered.",
+      question: "In AJCC 8th edition staging for differentiated thyroid cancer, what is the maximum stage for a patient aged less than 55 years? Why?",
+      markscheme: "Maximum Stage II, even with distant metastases. This reflects the excellent prognosis of DTC in young patients (5-year survival over 98% even with M1 disease). The biology is more differentiated, more radioiodine-avid, and less likely to harbour aggressive mutations like TERT promoter mutations.",
     },
   ]}
 />
 
----
-
 ## References
 
-[3] Senior notes: maxim.md (Thyroid cancer overview — lymphoma requires core biopsy)
-[5] Lecture slides: GC 177. A thyroid nodule benign thyroid nodules; thyroid cancer.pdf (p5, p7, p8, p9, p10, p11, p12, p13)
-[8] Senior notes: felixlai.md (Thyroid Cancer — Diagnosis sections VIII: biochemical tests, USG, FNAC, Bethesda, scintigraphy, CXR, CT, staging)
-[9] Senior notes: maxim.md (Investigations, SHIT CME, FNAC indications, Bethesda system, staging, routine vs selective investigations, post-op monitoring)
-[12] Lecture slides: Management of differentiated thyroid carcinoma.pdf (p11 — ATA risk stratification; p14 — AJCC 8th edition TNM)
+[1] Senior notes: Ryan Ho Endocrine.pdf (Sections 1.6, 1.6.1, 1.6.2, pp. 19–20, 33–38)
+[2] Senior notes: felixlai.md (Thyroid cancer sections VIII–X, pp. 983–1014)
+[3] Senior notes: maxim.md (Thyroid cancer investigations, staging, approach to thyroid nodules)
+[5] Senior notes: Ryan Ho Fundamentals.pdf (pp. 426–428)
+[7] Lecture slides: GC 177. A thyroid nodule benign thyroid nodules; thyroid cancer.pdf (pp. 5, 7, 10, 13, 27)
+[8] Senior notes: Ryan Ho Diagnostic Radiology.pdf (p. 59 — thyroid scintigraphy)

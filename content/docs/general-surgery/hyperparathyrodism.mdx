@@ -1,0 +1,39 @@
+---
+title: Hyperparathyrodism
+description: "Hyperparathyroidism is a condition characterized by excessive secretion of parathyroid hormone, leading to hypercalcemia, bone resorption, and disturbances in calcium-phosphorus metabolism."
+---
+
+import EtiologySection from "../../fragments/general-surgery/hyperparathyrodism/etiology.mdx";
+import DdxSection from "../../fragments/general-surgery/hyperparathyrodism/ddx.mdx";
+import DxSection from "../../fragments/general-surgery/hyperparathyrodism/dx.mdx";
+import MxSection from "../../fragments/general-surgery/hyperparathyrodism/mx.mdx";
+import ComplicationsSection from "../../fragments/general-surgery/hyperparathyrodism/complications.mdx";
+
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+
+<Tab value="Etiology">
+  <EtiologySection components={props.components} />
+
+</Tab>
+
+<Tab value="DDx">
+  <DdxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Dx">
+  <DxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Mx">
+  <MxSection components={props.components} />
+
+</Tab>
+
+<Tab value="Complications">
+  <ComplicationsSection components={props.components} />
+
+</Tab>
+
+</Tabs>

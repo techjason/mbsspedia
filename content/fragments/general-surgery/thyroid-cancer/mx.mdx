@@ -1,588 +1,390 @@
 ## Management of Thyroid Cancer
 
-### 25. Management Philosophy — First Principles
+### 12.1 Overview — Management Principles
 
-The management of thyroid cancer is guided by three overarching principles:
+The management of thyroid cancer is **type-dependent** and follows a logical sequence: (1) initial surgical treatment, (2) post-operative risk stratification, (3) adjuvant therapies, and (4) long-term surveillance. The beauty of thyroid cancer management lies in how the biology of the tumour dictates each treatment decision — well-differentiated cancers that retain iodine-avidity are exploited with radioiodine, while de-differentiated cancers that lose this property require alternative strategies.
 
-1. **Remove the primary tumour and regional metastases** (surgery).
-2. **Destroy residual microscopic disease** (radioactive iodine ablation for differentiated cancers).
-3. **Suppress the growth stimulus** (TSH suppression with levothyroxine for differentiated cancers).
-
-The *extent* of each treatment modality is risk-stratified — low-risk patients receive less aggressive treatment to minimise morbidity, while high-risk patients receive comprehensive multimodal therapy to maximise cure.
-
-***WDTC — treatment strategy*** [4][13]:
-- ***Surgery***
-  - ***Primary tumour***
-  - ***Metastatic cervical lymph nodes***
-- ***Adjuvant therapy***
-  - ***Radioactive iodine***
-  - ***T4 suppressive therapy***
-  - ***External beam irradiation***
-  - ***Chemotherapy***
-
-***Well-differentiated thyroid carcinoma — management considerations*** [5]:
+***Management considerations for well-differentiated thyroid carcinoma (WDTC)*** [4][7]:
 - ***Extent of thyroidectomy: hemithyroidectomy vs total (bilateral) thyroidectomy***
 - ***Nature/aim and extent of lymph node/neck dissection: prophylactic or therapeutic; central and/or lateral compartments***
-- ***Postoperative adjuvant therapies: radioiodine (I-131) ablation; external beam irradiation; thyroxine (T4) suppressive therapy***
+- ***Postoperative adjuvant therapies: radioiodine (¹³¹I) ablation, external beam irradiation, thyroxine (T4) suppressive therapy***
 
 ---
 
-### 26. Preoperative Preparation
+### 12.2 Master Management Algorithm
 
-Before any thyroid surgery, several preparatory steps are essential [8]:
+```mermaid
+flowchart TD
+    A["Thyroid cancer diagnosed\n or strongly suspected"] --> B{"Histological type?"}
+    
+    B -- "Differentiated\n Papillary / Follicular" --> C["Risk stratification\n Pre-op: USG, CT if locally advanced,\n laryngoscopy"]
+    B -- "Medullary" --> D["Total thyroidectomy\n + Routine central compartment dissection\n + Consider lateral dissection"]
+    B -- "Anaplastic" --> E["Stage IV automatically\n Multimodal palliative:\n Chemoirradiation + surgical debulking\n + tracheostomy if needed"]
+    B -- "Lymphoma" --> F["R-CHOP + EBRT\n Standard therapy"]
+    
+    C --> G{"Tumour size and features?"}
+    
+    G -- "Microcarcinoma < 1cm\n no ETE, no vascular invasion" --> H["Hemithyroidectomy\n or active surveillance"]
+    G -- "1-4 cm, no ETE,\n no vascular invasion, N0" --> I["Hemithyroidectomy OR\n Total thyroidectomy\n Patient/team preference"]
+    G -- "> 4 cm OR ETE\n OR N1 OR M1" --> J["Total thyroidectomy"]
+    
+    J --> K["Lymph node dissection\n Therapeutic for confirmed LN+\n Prophylactic CCD for advanced T3-T4"]
+    I --> L["Post-op histopathology\n TNM staging + ATA risk stratification"]
+    H --> L
+    K --> L
+    
+    L --> M{"ATA risk category?"}
+    
+    M -- "Low risk" --> N["T4 replacement\n TSH 0.5-2.0 mIU/L\n No TSH suppression\n No RAI needed"]
+    M -- "Intermediate risk" --> O["T4 with low TSH suppression\n TSH 0.1-0.5 mIU/L\n Consider RAI ablation"]
+    M -- "High risk" --> P["T4 with high TSH suppression\n TSH < 0.1 mIU/L\n Therapeutic RAI\n Consider EBRT if R2"]
+    
+    N --> Q["Surveillance:\n USG Q6m, TSH + Tg Q3-6m"]
+    O --> Q
+    P --> Q
+    
+    D --> R["Post-op: T4 replacement\n to keep euthyroid\n NOT TSH suppression\n F/U: calcitonin + CEA Q6m"]
+    
+    E --> S["Median survival < 6 months\n Palliative tracheostomy\n for airway obstruction"]
+```
 
-| Preparation | Rationale |
-|:---|:---|
-| ***Anti-thyroid drugs or beta-blockers*** | ***Prevention of thyroid storm*** — manipulation of a thyrotoxic gland can release a bolus of thyroid hormones intraoperatively, triggering storm. The patient must be **biochemically euthyroid** before surgery [8][9] |
-| ***Calcium supplements and vitamin D*** | ***Prevention of postoperative hypocalcaemia*** and ***hungry bone syndrome*** [8]. Baseline Ca²⁺ and vitamin D levels must be monitored pre-operatively |
-| ***Lugol's solution*** (potassium iodide — used selectively in Graves' disease) | ***Block iodine uptake and secretion of thyroid hormone; decrease vascularity of thyroid gland to reduce intraoperative bleeding*** [8]. The Wolff-Chaikoff effect: excess iodide temporarily inhibits thyroid hormone synthesis and organification |
-| ***Vocal cord function by laryngoscopy*** [9] | **Baseline assessment** — if the patient already has a vocal cord palsy pre-operatively (from tumour invasion of RLN), the surgical strategy changes (must protect the contralateral RLN at all costs; bilateral palsy = airway emergency) |
-| ***Maintain biochemically euthyroid*** [9] | Standard for all thyroid surgery |
+[1][2][3][4][7][9]
 
 ---
 
-### 27. Surgical Treatment — Extent of Thyroidectomy
+### 12.3 Pre-operative Preparation
 
-#### 27.1 Terminology [9]
+Before any thyroid surgery, there is a systematic pre-operative checklist:
+
+| Pre-op Step | Rationale | Detail |
+|---|---|---|
+| ***Ensure biochemically euthyroid*** | ***Prevention of thyroid storm*** during surgery — a hyperthyroid patient undergoing neck manipulation risks intra-operative thyroid storm (massive release of T3/T4 from gland manipulation) [2][3] | Anti-thyroid drugs (carbimazole/propylthiouracil) until euthyroid; β-blockers for 2 weeks for symptom control |
+| ***Vocal cord function by laryngoscopy*** | ***Mandatory pre-operative documentation of vocal cord function*** — medico-legal requirement. If a patient already has RLN palsy pre-operatively (from tumour invasion), this changes the surgical approach (must preserve the contralateral nerve at all costs to avoid bilateral palsy → airway obstruction) [1][3] | Direct or fibreoptic laryngoscopy |
+| ***Calcium and vitamin D levels*** | ***Prevention of postoperative hypocalcaemia*** and ***hungry bone syndrome*** [2][3] | Monitor Ca²⁺ and vitamin D; supplement if low pre-operatively |
+| ***Lugol's iodine solution*** (for Graves'/toxic) | ***Blocks iodine uptake and secretion of thyroid hormone; decreases vascularity of thyroid gland to reduce intraoperative bleeding*** [2] | Given 10 days prior to surgery. Wolff-Chaikoff effect: excess iodine paradoxically inhibits thyroid hormone synthesis |
+| ***Imaging*** | Risk stratification and surgical planning | USG thyroid + neck LNs; ± CT/MRI if locally advanced; ± PET-CT for advanced disease [1] |
+| ***Pre-op workup for MTC*** | Rule out phaeochromocytoma (catecholamine crisis risk under GA), assess familial disease | 24h urine metanephrines, Ca²⁺/PTH, calcitonin, CEA, RET mutation analysis [1][3] |
+
+<Callout title="Critical Safety Point" type="error">
+***NEVER take a patient with suspected MEN2-associated MTC to theatre without first ruling out phaeochromocytoma.*** If a phaeochromocytoma is present and undiagnosed, induction of anaesthesia or surgical manipulation can trigger a life-threatening catecholamine crisis with malignant hypertension, arrhythmias, and cardiovascular collapse. Always check 24h urine metanephrines/plasma metanephrines first.
+</Callout>
+
+---
+
+### 12.4 Surgical Management
+
+#### A. Types of Thyroid Surgery — Terminology
 
 | Term | Definition |
-|:---|:---|
-| ***Total thyroidectomy*** | ***Resection of both lobes + isthmus + pyramidal lobe*** |
-| ***Subtotal thyroidectomy*** | ***Resection of > 1/2 of both lobes + isthmus*** |
-| ***Hemithyroidectomy*** | ***Resection of one lobe + isthmus*** |
-| ***Lobectomy*** | ***Resection of one lobe (isthmus preserved)*** |
+|---|---|
+| ***Total thyroidectomy*** | ***Resection of both lobes + isthmus + pyramidal lobe*** [3] |
+| ***Subtotal thyroidectomy*** | ***Resection of > 1/2 of both lobes + isthmus*** [3] (rarely done for cancer) |
+| ***Hemithyroidectomy*** | ***Resection of one lobe + isthmus*** [3] |
+| ***Lobectomy*** | ***Resection of one lobe (isthmus preserved)*** [3] |
+| ***Near-total thyroidectomy*** | Removal of virtually all thyroid tissue except a small remnant ( < 1 g) near the RLN on one side |
+| ***Completion thyroidectomy*** | Removal of the remaining lobe after initial hemithyroidectomy, when final histopathology reveals cancer requiring total thyroidectomy |
 
-***General indications for thyroidectomy (4C mnemonic)*** [9]:
-- ***CA thyroid***
-- ***Uncontrolled thyrotoxicosis (Cannot control)***
-- ***Compression***
-- ***Cosmetic concern***
+***Alternative surgical approaches (for cosmesis)*** [3]:
+- Bilateral axillo-breast approach (BABA)
+- Transoral vestibular approach
+- Retro-auricular trans-hairline approach (RATH)
 
-***Alternative surgical approaches (reference)*** [9]:
-- ***Bilateral axillo-breast approach (BABA)***
-- ***Transoral vestibular approach***
-- ***Retro-auricular trans-hairline approach (RATH)***
-
-These are scarless or remote-access approaches — cosmetically superior but technically demanding and not universally available.
+***General indications for thyroidectomy (the "4 C's")*** [3]:
+- **C**A thyroid
+- Uncontrolled thyrotoxicosis (**C**annot be treated medically)
+- **C**ompression symptoms
+- **C**osmetic concern
 
 ---
 
-#### 27.2 Surgical Treatment by Tumour Type
+#### B. Surgical Approach by Cancer Type
 
-##### A. Papillary Thyroid Carcinoma (PTC)
+##### i. ***Differentiated Thyroid Carcinoma (Papillary and Follicular)***
 
-***WDTC — surgical treatment: Primary tumour*** [4]:
-- ***Hemithyroidectomy***
-- ***Total or near-total thyroidectomy***
+This is the most nuanced decision-making area — the choice between hemithyroidectomy and total thyroidectomy depends on tumour size, risk features, and patient/team preference.
 
-***ATA guidelines 2015*** [4]:
-***For patients with thyroid cancer > 1 cm and < 4 cm without extrathyroidal extension, and without clinical evidence of any lymph node metastases (N0), the initial surgical procedure can be either a bilateral procedure (near-total or total thyroidectomy) or a unilateral procedure (lobectomy). Thyroid lobectomy alone may be sufficient initial treatment for low-risk papillary and follicular carcinomas; however, the treatment team may choose total thyroidectomy to enable RAI therapy or to enhance follow-up based upon disease features and/or patient preferences.***
+**Hemithyroidectomy (Lobectomy + Isthmusectomy):**
 
-***Strong recommendation, moderate-quality evidence*** [4].
+| Indication | Rationale |
+|---|---|
+| ***Microcarcinoma (tumour < 1 cm) WITHOUT extrathyroidal extension or vascular invasion*** [2][7] | Excellent prognosis; completion thyroidectomy can be done later if higher-risk features found on final histology |
+| ***Tumour 1–4 cm WITHOUT extrathyroidal extension or vascular invasion, N0*** [2][4][7][9] | ATA 2015: "Thyroid lobectomy alone may be sufficient initial treatment for low-risk papillary and follicular carcinomas" |
+| Bethesda IV (follicular neoplasm) — diagnostic | To obtain histological diagnosis; completion TT if cancer confirmed on final pathology |
 
-The decision framework [8][9]:
+***Arguments for hemithyroidectomy*** [7]:
+- ***Lower morbidity*** (avoids bilateral RLN risk, lower hypoparathyroidism risk)
+- ***Avoid lifelong T4 replacement*** (remaining lobe maintains thyroid function in ~80% of patients)
 
-| Indication | Surgery |
-|:---|:---|
-| ***Microcarcinoma (tumour < 1 cm) WITHOUT extrathyroidal extension or vascular invasion*** | ***Hemithyroidectomy*** (or even ***active observation*** — see below) |
-| ***Tumour 1-4 cm WITHOUT extrathyroidal extension or vascular invasion*** | ***Hemithyroidectomy OR total thyroidectomy*** (shared decision-making) |
-| ***Tumour > 4 cm*** | ***Total thyroidectomy*** |
-| ***Tumour with extrathyroidal extension*** | ***Total thyroidectomy*** |
-| ***Tumour with metastasis to lymph node or distant sites*** | ***Total thyroidectomy*** |
-| ***Bilateral or multifocal disease*** | ***Total thyroidectomy*** |
-| ***Familial disease (high risk)*** | ***Total thyroidectomy*** |
+**Total Thyroidectomy (or Near-Total Thyroidectomy):**
 
-[8][9]
+| Indication | Rationale |
+|---|---|
+| ***Tumour > 4 cm*** [2][4][9] | Large tumours carry higher recurrence risk; need RAI ablation post-op |
+| ***Tumour with extrathyroidal extension (ETE)*** [2][4][9] | Aggressive feature indicating higher stage disease |
+| ***Tumour with lymph node metastasis (N1) or distant metastasis (M1)*** [2][4][9] | Need RAI for adjuvant treatment; need Tg monitoring |
+| ***Aggressive histology*** (tall cell, columnar cell, diffuse sclerosing, poorly differentiated PTC, Hürthle cell) [3] | Higher recurrence risk |
+| ***Bilateral or multifocal disease*** [7] | Papillary CA is commonly multifocal (70%) and bilateral |
+| Patient/team preference when RAI ablation or Tg monitoring desired [7][9] | Total thyroidectomy enables RAI and makes Tg a reliable tumour marker |
 
-***Papillary thyroid carcinoma — management controversy for low-risk patients*** [5]:
+***Arguments for total thyroidectomy*** [7]:
+- ***Commonly multifocal and bilateral*** → addresses occult contralateral disease
+- ***Excellent survival and low recurrence***
+- ***Allows RAI ablation and thyroglobulin (Tg) monitoring***
+- ***Low morbidity rate by experienced surgeons***
 
-***Early stage: < 4 cm, no invasion, no LN metastasis. Majority as papillary microcarcinomas (PTMC): < 1 cm. Survival: nearly 100%.*** [5]
-
-***Overtreatment/surgical risk vs avoid recurrence/facilitate follow-up. Patients' vs physicians' preference. Personalised treatment.*** [5]
-
-| ***Total Thyroidectomy*** | ***Hemithyroidectomy*** |
-|:---|:---|
-| ***Commonly multifocal and bilateral*** → removes all disease | ***Excellent survival and low recurrence*** |
-| ***Allows RAI ablation and thyroglobulin (Tg) monitoring*** | ***Avoid lifelong T4 replacement*** (some residual thyroid maintains euthyroidism) |
-| ***Low morbidity rate by experienced surgeons*** | ***Lower morbidity*** (especially parathyroid and RLN injury) |
-| Prevents local recurrence → prevents progression to anaplastic CA | No evidence of inferior prognosis for low-risk disease |
-
-[5][9]
-
-<Callout title="Why Does Total Thyroidectomy Allow Better Monitoring?">
-After total thyroidectomy, there is NO normal thyroid tissue left. This means:
-1. **Thyroglobulin (Tg)** should be undetectable — any detectable Tg = recurrence. After hemithyroidectomy, residual normal thyroid produces Tg, so you cannot use this marker reliably (Tg < 30 is the threshold).
-2. **RAI whole-body scan** can detect micrometastases — normal thyroid tissue would preferentially take up RAI and "outcompete" small tumour deposits.
-3. **RAI ablation** can destroy residual tumour — again, normal thyroid would absorb all the RAI before it reaches cancer cells.
+<Callout title="The Controversy for Low-Risk PTC" type="idea">
+***For early-stage PTC ( < 4 cm, no invasion, no LN metastasis), there is genuine management controversy*** [7]. ***Survival is nearly 100%*** regardless of whether hemithyroidectomy or total thyroidectomy is performed. The debate centres on ***overtreatment/surgical risk vs avoiding recurrence/facilitating follow-up***. ***Patients' vs physicians' preference*** matters, and this is moving towards ***personalised treatment*** [7]. ***Active surveillance (watchful waiting) is now an accepted option for papillary microcarcinomas ( < 1 cm)*** in selected patients — pioneered by Japanese centres (Kuma Hospital, Miyauchi protocol).
 </Callout>
 
-##### Papillary Thyroid Microcarcinoma (PTMC) — Active Observation [5]
+***ATA 2015 Guideline Statement*** [9]:
+> ***"For patients with thyroid cancer > 1 cm and < 4 cm without extrathyroidal extension, and without clinical evidence of any lymph node metastases (cN0), the initial surgical procedure can be either a bilateral procedure (near-total or total thyroidectomy) or a unilateral procedure (lobectomy). Thyroid lobectomy alone may be sufficient initial treatment for low-risk papillary and follicular carcinomas; however, the treatment team may choose total thyroidectomy to enable RAI therapy or to enhance follow-up based upon disease features and/or patient preferences." — Strong recommendation, moderate-quality evidence***
 
-***Active observation for PTMC*** [5]:
-- ***Biopsy proven incidental PTMC***
-- ***No metastases / invasion / high-grade subtype***
-- ***Tumour progression (up to 20 years)***: ***increase in size (3 mm): 8%; novel nodal metastases: 3.5%***
-- ***Surgical treatment for tumour progression***
-- ***Feasible treatment option***
+##### ii. ***Follicular Thyroid Carcinoma — Special Considerations***
 
-This is a paradigm shift from "always operate." Evidence from Japan (Kuma Hospital, Ito & Miyauchi) shows that most PTMCs are biologically indolent and can be safely watched with serial USG. Surgery is reserved for those showing progression.
+- FTC is usually diagnosed ***post-operatively*** (because FNAC cannot distinguish follicular adenoma from carcinoma — Bethesda IV).
+- Initial surgery is typically **diagnostic hemithyroidectomy**. The decision to perform **completion thyroidectomy** is based on the final histopathology:
+  - ***Encapsulated, minimally invasive FTC ( < 5 foci of vascular invasion, no wide invasion) → lobectomy is curative*** [1][5]
+  - ***Widely invasive FTC or extensive vascular invasion ( > 4 foci) → completion total thyroidectomy + RAI ablation*** due to ↑risk of distant metastases [1][5]
+- ***Hemithyroidectomy post-op: thyroxine replacement is NOT required immediately — measure TSH 6 weeks later*** [2]
 
-***Thermal ablation*** [5]:
-- ***Meta-analysis and propensity matched analysis***
-- ***Complete ablation / volume reduction / safety***
-- ***Tumour progression, recurrence, nodal metastasis same***
-- ***Possibly another alternative for PTMC without metastasis***
+##### iii. ***Medullary Thyroid Carcinoma (MTC)***
 
----
+| Management Step | Detail | Rationale |
+|---|---|---|
+| ***Total thyroidectomy*** | ***ALL medullary carcinoma should undergo total thyroidectomy*** [1][2][7] | ***Aggressive nature; majority already locally advanced or metastatic at diagnosis; risk of multifocality and bilaterality; association with MEN*** [2] |
+| ***Central compartment dissection (Level VI)*** | ***Prophylactic dissection indicated in ALL cases*** whether or not there is evidence of LN involvement [2][7] | MTC has early nodal metastasis; Level VI is the first echelon |
+| ***Lateral neck dissection*** | ***Prophylactic if central compartment is involved***; therapeutic if lateral nodes confirmed [2][3] | Depends on calcitonin level and imaging: ipsilateral LCD if calcitonin < 200; bilateral LCD if calcitonin > 200 [3] |
+| ***Genetic analysis: RET proto-oncogene*** | ***Test all MTC patients*** [1][7] | 25% are familial (MEN2A/2B/FMTC) |
+| ***Prophylactic thyroidectomy in RET carriers*** | ***Best done at age 5–10 years*** [1][7] | Virtually 100% penetrance for MTC in MEN2 |
+| ***Aim: biochemical cure*** | ***Normalised calcitonin*** post-operatively [1] | Rising calcitonin post-op → screen for residual/metastatic disease |
+| ***Post-op T4 replacement*** | ***Keep euthyroid — NOT TSH suppression*** (unlike DTC) [1] | MTC arises from C cells which do NOT express TSH receptors → TSH suppression has no anti-tumour effect |
+| ***No good adjuvant treatment*** | ***No role for RAI*** (C cells don't take up iodine) [1] | C cells lack NIS expression |
+| ***Follow-up*** | Serum ***calcitonin and CEA 6 months post-op*** [1]; ***↑calcitonin → screen for residual/metastatic disease → surgical Tx ± chemo/RT*** [1] | |
 
-##### B. Follicular Thyroid Carcinoma (FTC)
+> **Why doesn't MTC respond to RAI?** MTC arises from parafollicular C cells, not follicular epithelial cells. C cells do not express the sodium-iodide symporter (NIS) and do not organify iodine — they have a completely different embryological origin (neural crest) and function (calcitonin secretion). Therefore, radioiodine cannot be concentrated in medullary carcinoma cells.
 
-The unique challenge with FTC is that **you don't know it's a carcinoma until AFTER excision** — FNAC only tells you "follicular neoplasm" (Bethesda IV).
+##### iv. ***Anaplastic Thyroid Carcinoma***
 
-**Step 1**: ***ALL patients with follicular neoplasm (adenoma or carcinoma) detected by FNAC should undergo hemithyroidectomy*** [8].
+| Management | Detail |
+|---|---|
+| ***Automatically Stage IV*** | All anaplastic CA is Stage IV at diagnosis regardless of extent [1][3] |
+| ***Total thyroidectomy with post-operative chemoradiotherapy*** | ***Indicated in patients with intrathyroidal anaplastic carcinoma or locally advanced disease. Post-operative combined chemotherapy and radiotherapy prolong survival*** [2] |
+| ***Chemoirradiation ± surgical debulking*** | For surgically inoperable disease [1][2][7] |
+| ***Palliative tracheostomy*** | ***Death is usually attributable to upper airway obstruction and suffocation; tracheostomy is indicated to secure the airway*** [2] |
+| ***Targeted therapy*** | ***Chemoirradiation + resection + targeted Rx*** [7]. Dabrafenib + trametinib for BRAF V600E-mutant anaplastic CA (FDA approved 2018, landmark ROAR basket trial); lenvatinib; immunotherapy (pembrolizumab if PD-L1+/MSI-H) |
+| ***Prognosis*** | ***Median survival < 6 months. Lack of effective treatment. Invariably palliative and fatal*** [1][7] |
 
-**Step 2**: ***Wait for histological confirmation*** — ***paraffin section (5-7 days later)*** [4] — whether the follicular neoplasm is adenoma or carcinoma (look for capsular/vascular invasion).
+##### v. ***Thyroid Lymphoma***
 
-***FTC management*** [4]:
-- ***For widely-invasive or angio-invasive FTC → completion total thyroidectomy***
-- ***For minimally invasive (encapsulated) FTC → observation***
-
-***FTC with distant metastases*** [4]:
-- ***Histological confirmation of metastases***
-- ***+/- detection of primary tumour***
-- ***Total thyroidectomy***
-- ***Adjuvant therapy: ablation, radioiodine therapy, thyroxine suppression therapy***
-
-<Callout title="The FTC Two-Stage Approach">
-Unlike PTC (where FNAC can diagnose cancer and you can go straight to definitive surgery), FTC always follows a **two-stage approach**:
-1. **Hemithyroidectomy** (diagnostic + therapeutic) → send for paraffin histology
-2. If carcinoma confirmed (especially widely-invasive) → **completion total thyroidectomy** within 2-4 weeks
-
-This is because performing total thyroidectomy for every Bethesda IV nodule would mean subjecting the ~60-70% of patients who have benign adenomas to unnecessarily extensive surgery with its attendant complications (hypoparathyroidism, bilateral RLN risk).
-</Callout>
-
----
-
-##### C. Medullary Thyroid Carcinoma (MTC)
-
-***Medullary thyroid carcinoma (MTC)*** [5]:
-- ***Total thyroidectomy***
-- ***Central + lateral neck dissection***
-- ***Familial cases (1/3)***: ***MEN IIA, MEN IIB, familial MTC***
-- ***Genetic analysis: RET proto-oncogene***
-- ***Prophylactic thyroidectomy (5-10 yrs)*** [5]
-
-***ALL medullary carcinoma should undergo total thyroidectomy*** due to [8]:
-- ***Aggressive nature — majority of cases are already locally advanced or have metastasised at diagnosis***
-- ***Risk of multifocality and bilaterality and association with MEN***
-
-**MTC does NOT respond to RAI** (C cells do not express NIS and do not take up iodine) and **does NOT respond to TSH suppression** (C cells do not have TSH receptors). Therefore, the only curative treatment is **complete surgical excision**.
+| Management | Detail |
+|---|---|
+| ***R-CHOP + EBRT*** | ***Standard therapy*** [1] |
+| ***Prognosis*** | ***Better than anaplastic CA; median survival 9 years*** [1] |
 
 ---
 
-##### D. Anaplastic Carcinoma
+#### C. Lymph Node Dissection — Detailed Approach
 
-***Anaplastic carcinoma*** [5]:
-- ***Elderly with poor co-morbid state***
-- ***Aggressive and rapidly growing***
-- ***Locally advanced disease***
-- ***Frequent distant metastases***
-- ***Lack of effective treatment***
-- ***Chemoirradiation + resection + target Rx***
-- ***Invariable palliative and fatal***
+Understanding lymph node dissection terminology and indications is critical:
 
-***Total thyroidectomy with post-operative chemoradiotherapy*** — indicated in patients with intrathyroidal anaplastic carcinoma or locally advanced disease [8].
+**Terminology:**
 
-| Scenario | Treatment |
-|:---|:---|
-| **Intrathyroidal or locally advanced (resectable)** | ***Total thyroidectomy + post-operative combined chemotherapy and radiotherapy*** (prolongs survival) [8] |
-| **Surgically inoperable disease** | ***Chemotherapy*** (doxorubicin-based) and/or ***external beam radiotherapy (EBRT)*** [8] |
-| **Airway compromise** | ***Tracheostomy*** — ***death is usually attributable to upper airway obstruction and suffocation*** [8] |
+| Type | Extent |
+|---|---|
+| ***Central compartment dissection (CCD)*** | ***Level VI (± Level VII)*** — pretracheal, paratracheal, prelaryngeal nodes |
+| ***Lateral neck dissection (LCD)*** | ***Level II–V*** nodes |
+| ***Radical neck dissection (RND)*** | Removal of all ipsilateral lymphatic structures + IJV + SCM + CN XI (rarely done now) [1] |
+| ***Modified radical neck dissection (MRND)*** | 1–3 of IJV, SCM, CN XI preserved [1] |
+| ***Functional neck dissection*** | All 3 of IJV, SCM, CN XI preserved [1] |
+| ***Selective neck dissection*** | Only selected levels dissected |
 
-**Targeted therapy**: Recent advances include **BRAF + MEK inhibitor combination** (dabrafenib + trametinib) for BRAF V600E-mutant anaplastic carcinoma — FDA-approved based on dramatic response rates. Also lenvatinib (multi-kinase inhibitor) has shown some activity. This is what the lecture slides refer to as ***target Rx*** [5].
+**Indications by Cancer Type:**
 
-<Callout title="Anaplastic Carcinoma — The One You Can't Win" type="error">
-Do not confuse anaplastic with differentiated thyroid cancer. RAI does NOT work (no NIS expression). TSH suppression does NOT work (no TSH receptors). The median survival is less than 6 months. The management is fundamentally palliative in most cases. The only hope for cure is the rare patient with intrathyroidal disease caught early (which is uncommon, as anaplastic typically presents with extensive local invasion).
-</Callout>
+| Cancer | Central Compartment (Level VI) | Lateral Compartment (Levels II–V) |
+|---|---|---|
+| ***Papillary CA*** | ***Therapeutic CCD if confirmed involved***; ***Prophylactic CCD controversial — only for advanced disease (T3–T4) or lateral LN involvement*** [1][2][3] | ***Therapeutic LCD if confirmed involved***; ***NO prophylactic lateral dissection*** [2][3] |
+| ***Follicular CA*** | ***Usually not required*** (haematogenous spread; LN metastasis uncommon at 8–13%) [3] | Rare |
+| ***Medullary CA*** | ***Prophylactic CCD for ALL patients*** [2][3][7] | ***Prophylactic LCD if central compartment involved; therapeutic if lateral nodes confirmed*** [2][3] |
+| ***Anaplastic CA*** | If resectable — but usually palliative | If resectable |
 
----
-
-#### 27.3 Summary Table — Extent of Surgery by Tumour Type
-
-| Tumour Type | Extent of Thyroidectomy | Key Reasoning |
-|:---|:---|:---|
-| **PTC — microcarcinoma ( < 1 cm), no high-risk features** | Hemithyroidectomy OR active observation | Near 100% survival; avoid overtreatment |
-| **PTC — 1-4 cm, no ETE, N0** | Hemithyroidectomy OR total thyroidectomy | Shared decision; lobectomy sufficient for low-risk |
-| **PTC — > 4 cm / ETE / N1 / M1 / bilateral / familial** | Total thyroidectomy | Remove all disease; enable RAI + Tg monitoring |
-| **FTC — initial (Bethesda IV)** | Hemithyroidectomy (diagnostic) | Don't know if adenoma or carcinoma yet |
-| **FTC — widely-invasive on final histology** | Completion total thyroidectomy | Enable RAI ablation |
-| **FTC — minimally invasive on final histology** | Observation (no completion surgery) | Excellent prognosis with hemithyroidectomy alone |
-| **MTC** | Total thyroidectomy | Aggressive; multifocal; bilateral; MEN association |
-| **Anaplastic (resectable)** | Total thyroidectomy + chemoRT | Only chance of cure in rare resectable cases |
-| **Anaplastic (unresectable)** | Chemoirradiation ± targeted Rx; palliative | Inoperable disease |
+> ***Central LN metastasis is present in 50% of papillary thyroid carcinoma cases*** [1]. However, ***prophylactic central dissection is NOT routinely recommended unless there is advanced disease*** (T3–T4) or lateral LN involvement, because: (1) most micro-metastases may not be clinically significant, (2) increased risk of hypoparathyroidism and RLN injury with bilateral central dissection [1].
 
 ---
 
-### 28. Lymph Node Dissection
+### 12.5 Post-operative Management
 
-#### 28.1 Terminology
+#### A. Post-operative Evaluation
 
-| Term | Levels | Description |
-|:---|:---|:---|
-| ***Central compartment dissection (CCD)*** | ***Level VI (+/- VII)*** | Pre-tracheal, para-tracheal, pre-laryngeal nodes; accessed through the same thyroidectomy incision [5] |
-| ***Lateral neck dissection (LCD)*** | ***Level II-V*** | Requires extension of the incision; more morbid [5] |
+| Step | Detail |
+|---|---|
+| ***Histopathology*** | Determines final T, N staging; identifies aggressive features (ETE, vascular invasion, histological subtype) |
+| ***Thyroglobulin*** | Post-op baseline: ***< 5 ng/mL after total thyroidectomy; < 30 ng/mL after hemithyroidectomy*** [1][3] |
+| ***TNM staging*** | Predicts disease-specific mortality |
+| ***ATA risk stratification*** | Predicts risk of recurrence → guides intensity of adjuvant therapy [1][9] |
 
-***Key anatomical principle***: ***Normal lymph node metastasis spreads from central compartment (Level VI) to the lateral compartment.*** Therefore, ***lymph node dissection for lateral compartment MUST also include dissection of the central compartment*** [8].
+#### B. ***Thyroxine (T4) Therapy***
 
-#### 28.2 Types of Neck Dissection [5]
+T4 therapy post-thyroidectomy serves a ***dual role*** [2][3]:
+1. **Replacement** — prevent hypothyroidism (mandatory after total thyroidectomy)
+2. **Suppression** — suppress TSH to reduce stimulation of any residual DTC cells (because ***differentiated thyroid carcinoma expresses TSH receptors*** → TSH is a growth factor)
 
-***Metastatic cervical lymph nodes*** — options [4]:
-- ***Central compartment neck dissection***
-- ***Functional neck dissection***
-- ***Selective neck dissection***
-- ***Compartmental neck dissection***
-- ***Excision of lymph nodes***
-- ***"Prophylactic" neck dissection***
+***Target TSH depends on risk*** — ***note that the low-risk group does NOT require TSH suppression*** [3]:
 
-The distinction between **prophylactic** (no clinical/radiological evidence of nodal disease) and **therapeutic** (clinically or radiologically proven nodal disease) is critical.
+| ***ATA Risk*** | ***Features*** | ***Target TSH*** |
+|---|---|---|
+| ***Low risk*** | ***None of the high/intermediate features*** | ***No TSH suppression: 0.5–2.0 mIU/L*** [3] |
+| ***Intermediate risk*** | ***T3, N1, aggressive histology, vascular invasion*** | ***Low TSH suppression: 0.1–0.5 mIU/L*** [3] |
+| ***High risk*** | ***T4, M1, incomplete resection*** | ***High TSH suppression: < 0.1 mIU/L*** [1][3][9] |
 
-#### 28.3 Lymph Node Dissection by Tumour Type
+**After hemithyroidectomy** [2]:
+- ***Do NOT start T4 therapy immediately post-operatively***
+- ***Measure serum TSH 6 weeks after surgery*** and determine need for T4 based on TSH and evaluation of post-operative disease status
 
-##### Papillary Carcinoma — LN Dissection [5][8][9]
+**After total thyroidectomy** [2]:
+- If ***NO RAI ablation needed*** → start T4 immediately post-operatively
+- If ***RAI ablation required AND patient CAN tolerate prolonged hypothyroidism*** → ***withhold T4 for ≥ 4 weeks*** (or T3 for ≥ 2 weeks) before RAI to allow TSH to rise
+- If ***RAI ablation required AND patient CANNOT tolerate prolonged hypothyroidism*** (e.g. cardiovascular disease) → ***start T3 therapy*** (shorter half-life, ~1 day vs T4 ~7 days) and stop 2 weeks prior to RAI, OR use ***recombinant human TSH (rhTSH, Thyrogen®) injection*** [2]
 
-***Cervical lymph nodes in PTC*** [5]:
+***Precautions of long-term TSH suppression*** [2]:
+- ***Osteoporosis*** → calcium supplements required (chronic subclinical hyperthyroidism accelerates bone resorption)
+- ***Atrial fibrillation and cardiac dysfunction*** → may need to relax TSH target in elderly or those with cardiac disease
 
-***Central (Level VI: pre- and para-tracheal): same incision*** [5]:
-- ***Prophylactic/routine vs therapeutic***
-- ***Reduction in disease recurrence/reoperations***
-- ***Upstaging disease and increased use of I-131***
-- ***Increased in morbidity: hypoparathyroidism***
-
-***Lateral (Level II-V): extend incision*** [5]:
-- ***Usually therapeutic***
-- ***Clinically involved or FNAC proven nodes***
-- ***Excisional (berry-picking)***
-- ***Modified/functional/selective neck dissection***
-
-Summary for PTC [8][9]:
-
-| Compartment | Prophylactic | Therapeutic |
-|:---|:---|:---|
-| **Central (Level VI)** | ***Prophylactic dissection indicated in advanced tumour > 4 cm or clinically involved lateral compartment*** [8]; otherwise debated | ***Therapeutic dissection if involved*** |
-| **Lateral (Level II-V)** | ***NO prophylactic dissection*** [8] | ***Therapeutic dissection if involved*** |
-
-<Callout title="The Prophylactic CCD Controversy in PTC" type="idea">
-Prophylactic CCD (removing clinically normal Level VI nodes) is debated because:
-- **For**: Up to 30-60% of PTC has occult central node metastases; prophylactic CCD reduces recurrence and avoids difficult re-operative surgery in the central compartment (which carries higher RLN/parathyroid injury risk).
-- **Against**: No proven survival benefit; increases hypoparathyroidism rates; microscopic nodal disease may never become clinically relevant.
-The ATA guidelines leave this as surgeon/patient preference for T1-T2 tumours but recommend it for T3-T4 or when lateral nodes are involved.
-</Callout>
-
-##### Follicular Carcinoma — LN Dissection [9]
-
-- ***Usually not required*** — FTC spreads haematogenously, not via lymphatics [9].
-- Therapeutic dissection only if nodes are clinically involved (rare).
-
-##### Medullary Carcinoma — LN Dissection [8][9]
-
-MTC is the most aggressive in terms of nodal management — ***often need to dissect one level up*** [9]:
-
-| Scenario | Neck Dissection |
-|:---|:---|
-| ***All MTC patients*** | ***Prophylactic CCD for all patients*** [8][9] |
-| ***Ipsilateral central LN positive*** | + ***Ipsilateral LCD*** |
-| ***Ipsilateral lateral LN positive, calcitonin < 200*** | + ***Ipsilateral LCD*** [9] |
-| ***Ipsilateral lateral LN positive, calcitonin > 200*** | + ***Bilateral LCD*** [9] |
-| ***Contralateral LN positive*** | + ***Bilateral LCD*** [9] |
-
-Why is MTC treated so aggressively with neck dissection? Because:
-1. MTC does NOT respond to RAI (no iodine uptake) — surgery is the ONLY curative modality.
-2. MTC is aggressive with early nodal and distant metastasis.
-3. Calcitonin level correlates with tumour burden — ***calcitonin > 200 pg/mL suggests significant bilateral nodal disease*** [9].
+**For MTC**: ***T4 replacement to keep euthyroid only — NOT TSH suppression*** (C cells lack TSH receptors) [1]
 
 ---
 
-### 29. Post-Operative Adjuvant Therapy
+#### C. ***Radioactive Iodine (RAI, ¹³¹I) Ablation***
 
-#### 29.1 Radioactive Iodine (RAI / I-131) Ablation
+This is one of the most important adjuvant therapies and a frequently examined topic.
 
-***WDTC — adjuvant treatment*** [4]:
-- ***Radioiodine ablation (30-100 mCi)***
-- ***Post-therapy scan (5-8 days after ablation)***
-- ***Whole-body scan (6-12 months after ablation)***
-- ***Therapy to distant metastases (100-200 mCi)***
-
-##### Rationale [8]
-
-RAI exploits the ability of differentiated thyroid cancer cells to take up iodine via the sodium-iodide symporter (NIS):
-- ***Ablate remaining normal thyroid tissue (remnant ablation)*** — to make Tg a reliable marker
+**Rationale** [2]:
+- ***Ablate remaining normal thyroid tissue (remnant ablation)*** — eliminates the source of background Tg, making Tg a more sensitive recurrence marker
 - ***Treatment of clinically apparent residual thyroid cancer (residual tumour ablation)***
 - ***Treatment of subclinical micrometastasis***
 - ***Treatment of metastatic thyroid cancer***
 
-***Residual thyroid tissue is actually non-functional (requires T4 supplementation anyway), but it interferes with post-op thyroglobulin monitoring and also cannot rule out residual malignancy*** [9].
+> ***Why does residual thyroid tissue interfere with Tg monitoring?*** Normal thyroid remnant produces thyroglobulin, creating a "background noise" that obscures detection of tumour-derived Tg. By ablating all residual normal thyroid with RAI, any subsequently detectable Tg must come from residual or recurrent cancer [3].
 
-##### Indications for RAI Ablation [5][8][9]
+**Mechanism**: ¹³¹I is taken up by thyroid cells via the sodium-iodide symporter (NIS), just like normal iodine. Once intracellular, ¹³¹I emits **β particles** (primary therapeutic effect — short range, ~0.5 mm tissue penetration → destroys neighbouring cells) and **γ rays** (used for imaging/scanning). The β radiation causes DNA damage → cell death in follicular cells that have concentrated the isotope [1].
 
-***Use of radioiodine (I-131) ablation*** [5]:
-- ***Follow total/near-total thyroidectomy***
-- ***Therapy: high risk (stage III/IV disease)***
-  - ***Gross persistent/residual disease***
-  - ***Nodal or distant metastases***
-- ***Ablation: low-risk (selected stage I and stage II)***
-  - ***Destroy occult microscopic foci***
-  - ***Facilitate disease surveillance***
-  - ***Low dose (30 mCi) as effective as higher dose (100 mCi)***
-  - ***Short and long-term adverse effects***
+**Indications for RAI Ablation After Total Thyroidectomy** [2][3][9]:
 
-| Risk | RAI Ablation | Description |
-|:---|:---|:---|
-| ***Low risk*** | ***Not indicated*** | ***Unifocal cancer < 1 cm without high-risk features; multifocal when all foci < 1 cm without high-risk features*** [8] |
-| ***Intermediate risk*** | ***Selected cases*** | ***Intrathyroidal cancer 1-4 cm without high-risk features; vascular invasion; microscopic invasion into perithyroidal soft tissues; clinically significant LN metastasis outside thyroid bed; aggressive histological subtypes (tall cell, Hürthle cell)*** [8] |
-| ***High risk*** | ***Indicated*** | ***Macroscopic tumour invasion; incomplete tumour resection with gross residual disease; distant metastasis*** [8] |
+| ***Risk*** | ***RAI Recommended?*** | ***Description*** |
+|---|---|---|
+| ***Low*** | ***Not recommended*** | ***Unifocal cancer < 1 cm without high-risk features; Multifocal cancer when all foci < 1 cm without high-risk features*** [2] |
+| ***Intermediate*** | ***Selectively considered*** | ***Intrathyroidal cancer 1–4 cm without high-risk features; Vascular invasion; Microscopic invasion into perithyroidal soft tissues; Clinically significant LN metastasis outside thyroid bed; Aggressive histological subtypes (tall cell variant PTC, Hürthle cell variant FTC)*** [2] |
+| ***High*** | ***Recommended*** | ***Macroscopic tumour invasion; Incomplete tumour resection with gross residual disease; Distant metastasis*** [2] |
 
-RAI ablation indications align with the indications for total thyroidectomy [9]:
+***Indications similar to those for total thyroidectomy*** [3]:
 - ***T3/T4 disease***
 - ***N1/M1 disease***
 - ***Aggressive histology: tall cell, columnar cell, diffuse sclerosing, poorly differentiated PTC***
 
-##### Preparation Before RAI Ablation [8]
+**Preparation Before RAI** [2][3]:
+1. ***Low iodine diet for ≥ 1–2 weeks*** — depletes intrathyroidal iodine stores, maximising subsequent ¹³¹I uptake
+2. ***Withdrawal of T4 for ≥ 4 weeks (or T3 for ≥ 2 weeks)*** — allows TSH to rise ( > 30 mIU/L target), which stimulates NIS expression and promotes RAI uptake by residual tumour [2]
+3. ***Recombinant human TSH (rhTSH/Thyrogen®) injection*** — alternative for patients who ***cannot tolerate prolonged hypothyroidism*** (e.g. CVS disease). Achieves TSH stimulation without thyroid hormone withdrawal [2]
 
-The goal is to **maximise TSH levels** so that residual thyroid/cancer cells are maximally stimulated to take up RAI:
+**After RAI Ablation** [2]:
+- ***Avoid pregnancy for 1 year*** until disease becomes stable (radiation effect on gametes)
+- ***Post-therapy RAI whole-body scan*** — 1 week after ablation → screen for RAI uptake of residual tumour and screen for distant metastasis
+- ***Start TSH suppression therapy*** — supra-physiological dose of T4 to suppress TSH to target level based on risk
+- ***2nd post-RAI whole-body scan at 6–12 months*** → screen for tumour recurrence and distant metastasis [2]
 
-| Preparation | Mechanism |
-|:---|:---|
-| ***Low iodine diet for ≥ 1-2 weeks*** | Depletes the body's iodine stores → thyroid cells become "iodine-hungry" → avidly take up ¹³¹I |
-| ***Withdrawal of T4 for ≥ 4 weeks*** or ***T3 for ≥ 2 weeks*** | ***Allow increase in TSH production by pituitary → promote RAI uptake by residual tumour*** [8]. T4 has a long half-life (~7 days) hence 4-week withdrawal; T3 has a shorter half-life (~1 day) hence only 2-week withdrawal |
-| ***Recombinant human TSH (rhTSH / Thyrogen) injection*** | ***Indicated for those who cannot tolerate prolonged hypothyroidism (cardiovascular disease)*** [8]. Directly stimulates TSH receptors on residual cells without making the patient hypothyroid |
-
-***Thyroxine withdrawal vs Thyrogen (recombinant TSH)*** [5] — both approaches achieve the same goal (high TSH) by different mechanisms.
-
-##### After RAI Ablation [8]
-
-- ***Avoid pregnancy for 1 year until disease becomes stable***
-- ***Post-therapy RAI scan*** (5-8 days after ablation) — to visualise where RAI has been taken up and screen for metastases
-- ***Start TSH suppression therapy*** with ***supra-physiological dose of thyroxine (T4)***
-
-##### Contraindications/Precautions for RAI
-
-| Contraindication | Reason |
-|:---|:---|
-| **Pregnancy** | Teratogenic; crosses placenta → fetal thyroid ablation |
-| **Breastfeeding** | Concentrated in breast milk → infant thyroid damage |
-| **Recent iodinated contrast CT** | Competitive inhibition of ¹³¹I uptake (wait 6-8 weeks) |
-| **MTC or anaplastic carcinoma** | No NIS expression → RAI is ineffective |
-
-##### RAI Adverse Effects
-
-- **Short-term**: Sialadenitis (salivary gland inflammation — NIS is also expressed in salivary glands → RAI damages them), nausea, taste disturbance, neck pain/swelling (radiation thyroiditis), dry mouth
-- **Long-term**: Secondary malignancies (leukaemia, bladder cancer — rare, dose-dependent), infertility (with cumulative high doses), pulmonary fibrosis (with diffuse lung metastases treated with high-dose RAI)
+**Contraindications to RAI:**
+- **Pregnancy and breastfeeding** (¹³¹I crosses the placenta and is concentrated in fetal thyroid after 12 weeks; secreted in breast milk)
+- **Medullary thyroid carcinoma** (C cells lack NIS — no iodine uptake)
+- **Anaplastic carcinoma** (de-differentiated, lost NIS expression)
+- **Recent iodinated contrast administration** (4–8 week washout needed)
 
 ---
 
-#### 29.2 External Beam Radiotherapy (EBRT)
-
-***External beam irradiation*** [4][5][9]:
+#### D. ***External Beam Radiation Therapy (EBRT)***
 
 | Indication | Rationale |
-|:---|:---|
-| ***Positive surgical margins*** [9] | Residual microscopic disease that cannot be re-excised |
-| ***Incomplete resection (residual tumour left)*** [9] | Local control when further surgery is not feasible |
-| ***R2 resection (macroscopic residual)*** | ***External beam irradiation for incomplete resection (R2)*** [4] |
-| **RAI-refractory disease** | When tumour no longer takes up RAI |
-| **Anaplastic carcinoma** | Part of multimodal chemoradiation |
-| **Locally advanced MTC** | MTC cannot be treated with RAI |
+|---|---|
+| ***Positive surgical margins / incomplete resection (R2 — macroscopic residual disease)*** [1][3][9] | RAI may not be sufficient for gross residual disease; EBRT provides local control |
+| ***Inoperable residual disease*** | Cannot be surgically excised |
+| ***Anaplastic carcinoma*** (as part of chemoirradiation) | Palliative; may prolong survival modestly |
+| ***MTC with residual disease*** | No RAI option; EBRT considered for local control |
 
-EBRT is NOT routine — it is reserved for situations where surgery + RAI cannot achieve local control.
-
----
-
-#### 29.3 Thyroxine (T4) Suppressive Therapy
-
-***Thyroxine suppression therapy*** [4][5][9]:
-
-**Dual roles of levothyroxine post-thyroidectomy** [9]:
-1. ***Replacement*** — prevent hypothyroidism and maintain euthyroidism
-2. ***Suppression*** — high TSH stimulates tumour growth; suppressive-dose T4 keeps TSH low, depriving residual tumour of its growth stimulus
-
-***Target TSH depends on risk*** [9][12]:
-
-| Risk Category | Features | TSH Target |
-|:---|:---|:---|
-| ***Low risk*** | ***None of the high-risk features*** | ***No TSH suppression (0.5-2.0 mIU/L)*** [9] |
-| ***Intermediate risk*** | ***T3, N1; aggressive histology; vascular invasion positive*** | ***Low TSH suppression (0.1-0.5 mIU/L)*** [9] |
-| ***High risk*** | ***T4, M1; incomplete resection*** | ***High TSH suppression ( < 0.1 mIU/L)*** [9] |
-
-***Management of high-risk patients***: ***TSH < 0.03*** [4].
-
-**When to start T4** [8]:
-
-| Scenario | Timing |
-|:---|:---|
-| **After hemithyroidectomy** | ***Do NOT start T4 immediately***. Measure TSH at 6 weeks; start if TSH elevated or if cancer confirmed requiring suppression [8] |
-| **After total thyroidectomy — NO RAI planned** | ***Start T4 immediately postoperatively*** [8] |
-| **After total thyroidectomy — RAI planned, CAN tolerate hypothyroidism** | ***Withhold T4; stop 4 weeks prior to RAI*** [8] |
-| **After total thyroidectomy — RAI planned, CANNOT tolerate hypothyroidism** | ***Start T3 (shorter half-life) and stop 2 weeks prior to RAI; OR use recombinant human TSH*** [8] |
-
-##### Precautions of TSH Suppression [8]
-
-- ***Osteoporosis*** → Calcium supplements required (subclinical thyrotoxicosis accelerates bone turnover)
-- ***Atrial fibrillation (AF) and cardiac dysfunction*** → May withhold treatment or accept a less aggressive TSH target in elderly patients with cardiac disease
-
-<Callout title="Why Do Low-Risk Patients NOT Need TSH Suppression?">
-The evidence shows that for truly low-risk differentiated thyroid cancer (small, intrathyroidal, completely excised, no aggressive features), TSH suppression does NOT improve recurrence-free or overall survival. The risks of chronic subclinical thyrotoxicosis (AF, osteoporosis) outweigh the marginal oncological benefit. This is why the ATA 2015 guidelines explicitly state that ***low risk group does NOT require TSH suppression*** — a normal TSH (0.5-2.0) is acceptable [9].
-</Callout>
-
----
-
-#### 29.4 Chemotherapy
-
-***Chemotherapy*** [4][8]:
-
-- ***Doxorubicin*** — the most commonly used agent, often as a ***radiation sensitiser*** [4] rather than a standalone treatment.
-- Indicated primarily for:
-  - **Anaplastic carcinoma** (as part of chemoradiation)
-  - **RAI-refractory differentiated thyroid cancer** (very limited efficacy)
-  - **Advanced MTC not amenable to surgery**
-
-**Tyrosine kinase inhibitors (TKIs)** — the modern era:
-- **Lenvatinib** and **sorafenib** — approved for RAI-refractory differentiated thyroid cancer (target VEGFR, FGFR, RET, and other kinases).
-- **Vandetanib** and **cabozantinib** — approved for advanced MTC (target RET, VEGFR, MET).
-- **Dabrafenib + trametinib** (BRAF + MEK inhibitors) — approved for BRAF V600E-mutant anaplastic carcinoma (the ***target Rx*** referenced in lecture slides [5]).
-- **Selpercatinib** and **pralsetinib** — selective RET inhibitors for RET-mutant MTC and RET-fusion-positive thyroid cancers.
-
----
-
-### 30. Management of High-Risk Patients — Summary
-
-***Management of high risk patients*** [4]:
+***Management of high-risk patients includes*** [9]:
 - ***Total or near-total thyroidectomy***
 - ***Central compartment neck dissection***
-- ***(+/- compartmental neck dissection)***
+- ***(± Compartmental neck dissection)***
 - ***Radioiodine ablation***
 - ***External beam irradiation for incomplete resection (R2)***
 - ***Thyroxine suppression therapy (TSH < 0.03)***
 
 ---
 
-### 31. Post-Operative Surveillance
+#### E. Systemic Therapy — Targeted Therapy and Chemotherapy
 
-***WDTC — adjuvant treatment*** [4]:
-- ***Post-therapy scan (5-8 days after ablation)***
-- ***Whole-body scan (6-12 months after ablation)***
+For **radioiodine-refractory differentiated thyroid cancer** (i.e. tumours that have lost NIS expression and no longer take up iodine), or advanced/metastatic MTC:
 
-| Modality | Frequency | Details |
-|:---|:---|:---|
-| ***1st Post-RAI whole-body scan*** | ***1 week after RAI ablation*** | ***Screen for RAI uptake of residual tumour; screen for distant metastasis*** [8] |
-| ***2nd Post-RAI whole-body scan*** | ***6-12 months after RAI ablation*** | ***Screen for tumour recurrence; screen for distant metastasis*** [8] |
-| **Neck USG** | Every 6 months | Detect local recurrence, suspicious LN [9] |
-| **Serum TSH** | Every 3 months | Ensure target suppression is achieved [9] |
-| **Serum thyroglobulin** | Every 3 months (on T4 suppression) | ***Tg < 0.2 after total thyroidectomy; Tg < 30 after hemithyroidectomy*** [9] |
-| **Anti-TG antibodies** | With each Tg measurement | If present, Tg is unreliable — use Ab trend |
-| **Serum calcitonin and CEA** | For MTC | Monitor for recurrence [8] |
-| **Physical examination** | Regular | Palpation of neck, assessment of voice [8] |
+| Agent | Type | Indication | Notes |
+|---|---|---|---|
+| ***Lenvatinib*** | Multi-kinase inhibitor (VEGFR, FGFR, RET, KIT, PDGFRα) | RAI-refractory DTC | SELECT trial — improved PFS. First-line for progressive, RAI-refractory DTC |
+| ***Sorafenib*** | Multi-kinase inhibitor (VEGFR, RAF, RET) | RAI-refractory DTC | DECISION trial — improved PFS |
+| ***Vandetanib*** | Multi-kinase inhibitor (VEGFR, EGFR, RET) | Advanced MTC | ZETA trial |
+| ***Cabozantinib*** | Multi-kinase inhibitor (MET, VEGFR2, RET) | Advanced MTC | EXAM trial |
+| ***Selpercatinib / Pralsetinib*** | Highly selective RET inhibitors | RET-mutant MTC; RET fusion-positive DTC | LIBRETTO-001 / ARROW trials; excellent response rates with fewer off-target effects |
+| ***Dabrafenib + Trametinib*** | BRAF + MEK inhibitors | BRAF V600E-mutant anaplastic thyroid carcinoma | ***FDA approved 2018 based on ROAR trial*** — first approved combination for anaplastic CA; this is a game-changer for a previously uniformly fatal disease |
+| ***Pembrolizumab*** | Anti-PD-1 immune checkpoint inhibitor | PD-L1+ or MSI-H thyroid cancers | Emerging role in anaplastic CA |
 
-**Prognosis — MACIS scoring system** for differentiated thyroid cancer [8]:
-- ***M — Metastasis***
-- ***A — Age***
-- ***C — Completeness of resection***
-- ***I — Invasion***
-- ***S — Size***
+> **Why are multi-kinase inhibitors effective in thyroid cancer?** Thyroid cancers are driven by the RET-RAS-BRAF-MAPK pathway. Multi-kinase inhibitors block these oncogenic drivers AND the VEGF pathway (anti-angiogenesis). The result is both direct anti-tumour activity and starvation of the tumour blood supply.
 
 ---
 
-### 32. Complete Management Algorithm — Mermaid Diagram
+### 12.6 Long-Term Surveillance and Disease Monitoring
 
-```mermaid
-graph TD
-    A["Thyroid cancer diagnosed\n— by FNAC or post-op histology"] --> B{"Tumour type?"}
-    
-    B -->|"Papillary CA"| C{"Risk assessment:\nSize, ETE, N status, M status,\nmultifocality, familial?"}
-    C -->|"PTMC < 1cm, no risk features"| D["Hemithyroidectomy\nOR Active observation"]
-    C -->|"1-4cm, N0, no ETE"| E["Hemithyroidectomy\nOR Total thyroidectomy\n— shared decision"]
-    C -->|"> 4cm / ETE / N1 / M1\n/ bilateral / familial"| F["Total thyroidectomy\n+ LN dissection"]
-    
-    B -->|"Follicular neoplasm\n— Bethesda IV"| G["Hemithyroidectomy\n— diagnostic"]
-    G --> H{"Paraffin section\n— 5-7 days"}
-    H -->|"Follicular adenoma"| I["No further surgery\n— follow-up"]
-    H -->|"Minimally invasive FTC"| J["Observation\n— no completion surgery"]
-    H -->|"Widely-invasive FTC\nor angio-invasive"| K["Completion total thyroidectomy\n+ RAI ablation"]
-    
-    B -->|"Medullary CA"| L["Total thyroidectomy\n+ Prophylactic CCD\n+/- LCD based on calcitonin"]
-    
-    B -->|"Anaplastic CA"| M{"Resectable?"}
-    M -->|"Yes"| N["Total thyroidectomy\n+ Chemoradiotherapy"]
-    M -->|"No"| O["Chemoirradiation\n+ Targeted Rx\n+ Tracheostomy if needed\n— Palliative"]
-    
-    F --> P["Post-op adjuvant\ntreatment"]
-    K --> P
-    E --> P
-    
-    P --> Q{"ATA Risk\nStratification"}
-    Q -->|"Low risk"| R["T4 replacement only\nTSH 0.5-2.0\nNo RAI needed"]
-    Q -->|"Intermediate risk"| S["T4 suppression\nTSH 0.1-0.5\n+/- RAI ablation"]
-    Q -->|"High risk"| T["T4 suppression\nTSH < 0.1\n+ RAI ablation\n+/- EBRT"]
-    
-    R --> U["Surveillance:\nNeck USG Q6m\nTSH + Tg Q3m\nWBS if RAI given"]
-    S --> U
-    T --> U
-```
+| Modality | Timing | Target/Interpretation |
+|---|---|---|
+| ***Neck USG*** | ***Every 6 months*** [3] | Assess thyroid bed (or remaining lobe) and cervical lymph nodes for recurrence |
+| ***TSH level*** | ***Every 3–6 months*** [3] | Ensure TSH is at target suppression level |
+| ***Serum thyroglobulin (Tg)*** | ***Every 3–6 months*** (on thyroxine suppression) [3] | ***Total thyroidectomy: Tg < 0.2 ng/mL; Hemithyroidectomy: Tg < 30 ng/mL*** [3]. Rising Tg = recurrence |
+| ***Anti-TG antibodies*** | With each Tg measurement | If positive, Tg is unreliable → follow anti-TG antibody trend as surrogate |
+| ***RAI whole-body scan*** | 6–12 months post-RAI ablation (then as needed) | Screen for recurrence, distant metastasis [2] |
+| ***Calcitonin + CEA*** (for MTC) | ***6 months post-op, then periodically*** [1] | ***Rising calcitonin → screen for residual/metastatic disease*** [1] |
+| ***Stimulated Tg test*** | 9–12 months post-treatment | Tg measured after TSH stimulation (rhTSH or T4 withdrawal) — higher sensitivity for detecting residual disease |
+| ***FDG PET-CT*** | When Tg rising but RAI scan negative | "Flip-flop" phenomenon: de-differentiated tumours lose iodine avidity but gain FDG avidity |
 
 ---
 
-### 33. Special Scenarios
+### 12.7 Summary Comparison Table — Management by Cancer Type
 
-#### 33.1 FTC with Distant Metastases at Presentation [4]
+| Feature | ***Papillary CA*** | ***Follicular CA*** | ***Medullary CA*** | ***Anaplastic CA*** | ***Lymphoma*** |
+|---|---|---|---|---|---|
+| **Surgery** | HemiT or TT (based on risk) | Diagnostic HemiT → completion TT if widely invasive | ***TT for ALL*** | TT + debulking if possible | Not primary surgery |
+| **LN dissection** | Therapeutic CCD/LCD; prophylactic CCD for T3–4 | Usually not required | ***Prophylactic CCD for ALL; LCD based on calcitonin*** | If resectable | Not applicable |
+| **RAI** | Based on risk (low = No, intermediate = consider, high = Yes) | Based on risk | ***NO (C cells lack NIS)*** | ***NO (lost NIS)*** | No |
+| **EBRT** | For R2 residual | For R2 residual | For residual disease | Part of chemoirradiation | Part of standard Rx |
+| **T4 therapy** | Replacement ± suppression (risk-based TSH target) | Same | ***Replacement only (euthyroid target)*** | If post-TT | N/A |
+| **Chemo/targeted** | Lenvatinib/sorafenib if RAI-refractory | Same | Vandetanib/cabozantinib/selpercatinib | ***Dabrafenib+trametinib if BRAF+; chemo*** | ***R-CHOP*** |
+| **Tumour marker** | Tg | Tg | ***Calcitonin, CEA*** | None reliable | None specific |
+| **Prognosis** | Excellent | Good | Moderate (5y 60–70%) | ***Dismal ( < 6 months)*** | ***Median 9 years*** |
 
-***FTC with distant metastases*** [4]:
-- ***Histological confirmation of metastases***
-- ***+/- detection of primary tumour***
-- ***Total thyroidectomy***
-- ***Adjuvant therapy: ablation, radioiodine therapy, thyroxine suppression therapy***
-
-Even when FTC presents with distant metastases (e.g., pathological fracture from bone metastasis), total thyroidectomy is still performed because:
-1. It enables effective RAI therapy for metastatic disease (need to remove competing normal thyroid tissue).
-2. It provides local control.
-
-#### 33.2 RAI-Refractory Disease
-
-When differentiated thyroid cancer loses the ability to concentrate iodine (progressive de-differentiation, loss of NIS expression):
-- RAI is no longer effective
-- Often FDG-PET-avid (as glucose metabolism increases with de-differentiation — the "flip-flop phenomenon": RAI-avid tumours tend to be FDG-negative, and vice versa)
-- Treatment: TKIs (lenvatinib, sorafenib), EBRT for local control, clinical trials
-
-#### 33.3 Prophylactic Thyroidectomy in MEN2 [5]
-
-***Prophylactic thyroidectomy (5-10 years)*** [5] — for confirmed RET mutation carriers:
-
-| RET Mutation Risk Category | Timing of Prophylactic Thyroidectomy |
-|:---|:---|
-| **Highest risk** (MEN2B — codon 918) | Within first 6 months of life |
-| **High risk** (MEN2A — codon 634) | By age 5 years |
-| **Moderate risk** (other MEN2A mutations) | Can delay until stimulated calcitonin becomes abnormal or by age 5-10 |
+[1][2][3][4][7][9]
 
 ---
 
 <Callout title="High Yield Summary">
 
-**Surgical extent depends on tumour type and risk**:
-- PTC: Hemithyroidectomy for low-risk; total for high-risk; active observation for selected PTMC.
-- FTC: Always hemithyroidectomy first (diagnostic); completion total thyroidectomy only if widely-invasive on final histology.
-- MTC: Always total thyroidectomy + prophylactic CCD. Prophylactic thyroidectomy in MEN2 carriers.
-- Anaplastic: Total thyroidectomy + chemoRT if resectable; palliative if not.
+**Surgical decision**: HemiT for low-risk DTC ( < 4 cm, no ETE, N0); TT for high-risk DTC ( > 4 cm, ETE, N1, M1, aggressive histology); TT for ALL MTC; palliative for anaplastic.
 
-**LN dissection**:
-- PTC: Therapeutic CCD/LCD; prophylactic CCD debated (for T3-4 or lateral N1).
-- FTC: Usually not needed (haematogenous spread).
-- MTC: Prophylactic CCD always; LCD guided by calcitonin levels.
+**LN dissection**: Papillary — therapeutic CCD/LCD, prophylactic CCD only for advanced disease. MTC — prophylactic CCD for ALL. Follicular — usually not required.
 
-**RAI ablation**: Only for differentiated CA after total thyroidectomy. Not indicated in low-risk, NOT effective in MTC or anaplastic. Prepare with low-iodine diet + T4 withdrawal or rhTSH.
+**Pre-op essentials**: Euthyroid status, laryngoscopy (vocal cords), Ca/VitD, rule out phaeo in MTC.
 
-**T4 suppression targets**: Low risk = no suppression (TSH 0.5-2.0). Intermediate = TSH 0.1-0.5. High = TSH < 0.1.
+**T4 post-op**: Dual role (replacement + TSH suppression). Low risk: TSH 0.5–2.0; Intermediate: 0.1–0.5; High: < 0.1. MTC: euthyroid only, no suppression.
 
-**Monitoring**: Tg (target < 0.2 post-total thyroidectomy), neck USG Q6m, TSH Q3m, WBS post-RAI.
+**RAI**: Exploits NIS expression in DTC. Not for MTC or anaplastic. Preparation: low-iodine diet, T4 withdrawal (or rhTSH), avoid pregnancy 1 year post-RAI. Low-risk DTC does NOT need RAI.
 
-**MACIS** = Metastasis, Age, Completeness of resection, Invasion, Size — predicts prognosis.
+**EBRT**: For R2 (macroscopic residual), incomplete resection, anaplastic CA.
+
+**Targeted therapy**: Lenvatinib/sorafenib for RAI-refractory DTC; selpercatinib/vandetanib/cabozantinib for MTC; dabrafenib+trametinib for BRAF V600E anaplastic CA.
+
+**Surveillance**: USG Q6m, Tg Q3–6m, calcitonin/CEA for MTC, RAI WBS at 6–12m post-RAI.
 
 </Callout>
 
@@ -592,38 +394,38 @@ When differentiated thyroid cancer loses the ability to concentrate iodine (prog
   title="Active Recall - Management of Thyroid Cancer"
   items={[
     {
-      question: "A patient with a 2.5 cm papillary thyroid carcinoma, no extrathyroidal extension, N0M0 — what are the surgical options and what are the arguments for each?",
-      markscheme: "Either hemithyroidectomy OR total thyroidectomy (ATA 2015 guidelines). For total: PTC is commonly multifocal/bilateral; allows RAI ablation; allows thyroglobulin monitoring; prevents progression to anaplastic. For hemi: lower morbidity (parathyroid/RLN); no evidence of inferior prognosis in low-risk; avoids lifelong T4 replacement; RAI usually not needed.",
+      question: "State the ATA 2015 guideline recommendation for surgical extent in a patient with a 2.5 cm papillary thyroid carcinoma without extrathyroidal extension and no clinical lymph node metastasis.",
+      markscheme: "Either hemithyroidectomy (lobectomy) OR total thyroidectomy is acceptable. Lobectomy may be sufficient for low-risk PTC; total thyroidectomy may be chosen to enable RAI therapy or enhance follow-up with Tg monitoring. Decision based on disease features and patient preference. Strong recommendation, moderate-quality evidence.",
     },
     {
-      question: "Describe the two-stage surgical approach for follicular thyroid neoplasm and explain why it exists.",
-      markscheme: "Stage 1: Hemithyroidectomy for all Bethesda IV (follicular neoplasm) — because FNAC cannot distinguish adenoma from carcinoma (needs capsular/vascular invasion on histology). Stage 2: Wait for paraffin section (5-7 days). If widely-invasive or angio-invasive FTC → completion total thyroidectomy. If minimally invasive FTC or adenoma → observe. This avoids unnecessary total thyroidectomy in the 60-70% who have benign adenomas.",
+      question: "Why does medullary thyroid carcinoma NOT respond to radioactive iodine therapy? What adjuvant treatment is used instead?",
+      markscheme: "MTC arises from parafollicular C cells which do not express the sodium-iodide symporter (NIS) and do not organify iodine, so RAI cannot be concentrated in the tumour. No good adjuvant treatment exists. For advanced MTC, targeted therapies (vandetanib, cabozantinib, selpercatinib) are used. T4 is given for replacement only (euthyroid target, not TSH suppression, because C cells lack TSH receptors).",
     },
     {
-      question: "What preparations are needed before radioactive iodine ablation and what is the rationale for each?",
-      markscheme: "Three preparations: (1) Low iodine diet for 1-2 weeks — depletes body iodine stores so residual cells avidly take up I-131. (2) T4 withdrawal for 4 weeks (or T3 withdrawal for 2 weeks) — allows TSH to rise, stimulating NIS expression and RAI uptake by residual tumour. (3) Alternatively, recombinant human TSH injection — for patients who cannot tolerate prolonged hypothyroidism (e.g. cardiovascular disease).",
+      question: "A patient undergoes total thyroidectomy for high-risk papillary thyroid cancer. Describe the preparation steps before RAI ablation and the rationale for each.",
+      markscheme: "1. Low-iodine diet for 1-2 weeks: deplete intrathyroidal iodine stores to maximise I-131 uptake. 2. Withhold T4 for 4 or more weeks (or T3 for 2 or more weeks): allow TSH to rise above 30 to stimulate NIS expression and promote RAI uptake by residual tumour. Alternative: rhTSH (Thyrogen) injection if patient cannot tolerate prolonged hypothyroidism. 3. Avoid iodinated contrast for 4-8 weeks prior.",
     },
     {
-      question: "Why does medullary thyroid carcinoma always require total thyroidectomy with prophylactic central compartment dissection, even without clinical nodal disease?",
-      markscheme: "Because: (1) MTC is aggressive with early nodal and distant metastasis — majority already locally advanced at diagnosis. (2) Risk of multifocality and bilaterality, especially in familial/MEN2 cases. (3) MTC does NOT respond to RAI (C cells lack NIS) and does NOT respond to TSH suppression (C cells lack TSH receptors) — surgery is the ONLY curative modality. (4) Prophylactic CCD is needed because occult central nodal disease is common.",
+      question: "What are the target TSH levels for low, intermediate, and high risk differentiated thyroid cancer patients on thyroxine therapy? Why does the low-risk group NOT require TSH suppression?",
+      markscheme: "Low risk: 0.5-2.0 mIU/L (no suppression). Intermediate: 0.1-0.5 mIU/L. High: less than 0.1 mIU/L. Low risk does not require suppression because the recurrence risk is very low (1-3%) and the long-term side effects of chronic TSH suppression (osteoporosis, atrial fibrillation) outweigh the marginal benefit.",
     },
     {
-      question: "State the TSH suppression targets for low, intermediate, and high-risk differentiated thyroid cancer. Why do low-risk patients NOT need TSH suppression?",
-      markscheme: "Low risk: TSH 0.5-2.0 mIU/L (no suppression). Intermediate: TSH 0.1-0.5 mIU/L. High risk: TSH < 0.1 mIU/L. Low-risk patients do not benefit from TSH suppression — no improvement in recurrence or survival — and the risks of chronic subclinical thyrotoxicosis (atrial fibrillation, osteoporosis) outweigh the marginal benefit.",
+      question: "Name the targeted therapy combination approved for BRAF V600E-mutant anaplastic thyroid carcinoma. Why is this significant?",
+      markscheme: "Dabrafenib (BRAF inhibitor) plus trametinib (MEK inhibitor). FDA approved 2018 based on the ROAR basket trial. This is significant because anaplastic thyroid carcinoma was previously uniformly fatal with median survival less than 6 months and no effective systemic therapy. This combination provides the first targeted option with meaningful clinical responses.",
     },
     {
-      question: "A patient with anaplastic thyroid carcinoma presents with stridor and locally advanced unresectable disease. Outline the management plan.",
-      markscheme: "Immediate: Secure airway — tracheostomy (death usually from airway obstruction). Oncological: Chemoirradiation (doxorubicin as radiosensitiser + EBRT) plus targeted therapy if BRAF V600E-mutant (dabrafenib + trametinib). Palliative: RAI is NOT effective (no NIS), TSH suppression NOT effective (no TSH receptors). Prognosis: Median survival < 6 months. Fundamentally palliative.",
+      question: "Compare the approach to lymph node dissection in papillary thyroid carcinoma versus medullary thyroid carcinoma.",
+      markscheme: "Papillary CA: therapeutic CCD/LCD if respective compartment is confirmed positive; prophylactic CCD is controversial and only recommended for advanced T3-T4 or lateral LN involvement; no prophylactic lateral dissection. Medullary CA: prophylactic CCD for ALL patients regardless of LN status; lateral dissection based on calcitonin level and imaging - ipsilateral LCD if central nodes positive; bilateral LCD if calcitonin above 200.",
     },
   ]}
 />
 
----
-
 ## References
 
-[4] Lecture slides: Management of differentiated thyroid carcinoma.pdf (p7, p8, p9, p11, p14, p16, p17, p22, p23)
-[5] Lecture slides: GC 177. A thyroid nodule benign thyroid nodules; thyroid cancer.pdf (p20, p22, p23, p24, p26, p27, p28)
-[8] Senior notes: felixlai.md (Thyroid Cancer — Treatment sections IX: surgical approach, preoperative preparation, surgical technique, LN dissection, RAI ablation, T4 replacement, postoperative management, prognosis)
-[9] Senior notes: maxim.md (Choice of thyroidectomy, neck dissection, post-operative adjuvant treatments, thyroxine, thyroidectomy indications/terminology, disease monitoring)
-[12] Lecture slides: Management of differentiated thyroid carcinoma.pdf (p11 — ATA risk stratification; p14 — AJCC 8th edition)
+[1] Senior notes: Ryan Ho Endocrine.pdf (Sections 1.6, 1.6.1, 1.6.2, pp. 21, 25, 33–38, 132)
+[2] Senior notes: felixlai.md (Thyroid cancer sections IX–X, pp. 1007–1014)
+[3] Senior notes: maxim.md (Thyroid cancer management, thyroidectomy, post-op adjuvant, thyroxine, surveillance)
+[4] Lecture slides: Management of differentiated thyroid carcinoma.pdf (pp. 8, 9, 11, 16)
+[5] Senior notes: Ryan Ho Fundamentals.pdf (pp. 427–428)
+[7] Lecture slides: GC 177. A thyroid nodule benign thyroid nodules; thyroid cancer.pdf (pp. 20, 22, 27, 28)
+[9] Lecture slides: Management of differentiated thyroid carcinoma.pdf (p. 9 — ATA 2015 guideline statement; p. 11 — ATA risk stratification; p. 16 — high-risk management)
