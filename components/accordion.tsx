@@ -1,11 +1,10 @@
 'use client';
 
 import { Check, Link as LinkIcon } from 'lucide-react';
-import { ComponentProps, type ReactNode, useEffect, useRef, useState } from 'react';
+import { ComponentProps, type ReactNode, useState } from 'react';
 import { cn } from '../lib/cn';
 import { useCopyButton } from 'fumadocs-ui/utils/use-copy-button';
 import { buttonVariants } from './ui/button';
-import { mergeRefs } from '../lib/merge-refs';
 import {
   Accordion as Root,
   AccordionContent,
@@ -21,29 +20,15 @@ export function Accordions({
   defaultValue,
   ...props
 }: ComponentProps<typeof Root>) {
-  const rootRef = useRef<HTMLDivElement>(null);
-  const composedRef = mergeRefs(ref, rootRef);
   const [value, setValue] = useState<string | string[]>(() =>
-    type === 'single' ? (defaultValue ?? '') : (defaultValue ?? []),
+    getInitialAccordionValue({ type, defaultValue }),
   );
-
-  useEffect(() => {
-    const id = window.location.hash.substring(1);
-    const element = rootRef.current;
-    if (!element || id.length === 0) return;
-
-    const selected = document.getElementById(id);
-    if (!selected || !element.contains(selected)) return;
-    const value = selected.getAttribute('data-accordion-value');
-
-    if (value) setValue((prev) => (typeof prev === 'string' ? value : [value, ...prev]));
-  }, []);
 
   return (
     // @ts-expect-error -- Multiple types
     <Root
       type={type}
-      ref={composedRef}
+      ref={ref}
       value={value}
       onValueChange={setValue}
       collapsible={type === 'single' ? true : undefined}
@@ -54,6 +39,36 @@ export function Accordions({
       {...props}
     />
   );
+}
+
+function getInitialAccordionValue({
+  type,
+  defaultValue,
+}: {
+  type: ComponentProps<typeof Root>['type'];
+  defaultValue: ComponentProps<typeof Root>['defaultValue'];
+}) {
+  if (typeof window === 'undefined') {
+    return type === 'single' ? (defaultValue ?? '') : (defaultValue ?? []);
+  }
+
+  const id = window.location.hash.substring(1);
+  if (id.length === 0) {
+    return type === 'single' ? (defaultValue ?? '') : (defaultValue ?? []);
+  }
+
+  const selected = document.getElementById(id);
+  const hashValue = selected?.getAttribute('data-accordion-value');
+  if (!hashValue) {
+    return type === 'single' ? (defaultValue ?? '') : (defaultValue ?? []);
+  }
+
+  if (type === 'single') {
+    return hashValue;
+  }
+
+  const defaults = Array.isArray(defaultValue) ? defaultValue : [];
+  return [hashValue, ...defaults.filter((item) => item !== hashValue)];
 }
 
 export function Accordion({

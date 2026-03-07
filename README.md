@@ -7,6 +7,7 @@ MBBSPedia is a Next.js + Fumadocs medical knowledge base for MBBS revision.
 - Provide structured, searchable revision notes.
 - Keep claims traceable through visible citations.
 - Publish only content derived from permitted public sources.
+- Use end-of-section `ActiveRecallQuestions` accordion prompts for self-testing (no AI grading).
 
 ## Source and Compliance Policy
 
