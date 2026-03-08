@@ -35,17 +35,21 @@ jobs:
         run: npm ci
 
       - name: Validate secrets and resolve store
+        id: config
         shell: bash
         run: |
           set -euo pipefail
           if [[ -z "${MXBAI_API_KEY:-}" ]]; then
-            echo "Missing required secret: MIXEDBREAD_API_KEY"
-            exit 1
+            echo "::notice title=Mixedbread sync skipped::Repository secret MIXEDBREAD_API_KEY is not set. Add it under Settings > Secrets and variables > Actions to enable this workflow."
+            echo "skip_sync=true" >> "$GITHUB_OUTPUT"
+            exit 0
           fi
+          echo "skip_sync=false" >> "$GITHUB_OUTPUT"
           STORE_IDENTIFIER="${MIXEDBREAD_STORE_IDENTIFIER:-mbbspedia}"
           echo "STORE_IDENTIFIER=$STORE_IDENTIFIER" >> "$GITHUB_ENV"
 
       - name: Ensure Mixedbread store exists
+        if: steps.config.outputs.skip_sync != 'true'
         shell: bash
         run: |
           set -euo pipefail
@@ -57,4 +61,5 @@ jobs:
           fi
 
       - name: Sync changed content to Mixedbread
+        if: steps.config.outputs.skip_sync != 'true'
         run: npx mxbai store sync "$STORE_IDENTIFIER" "content/**/*.mdx" --strategy high_quality --yes

@@ -68,6 +68,15 @@ variables are available:
 The UI calls `/api/search`, and the server route queries Mixedbread to avoid
 browser CORS issues and keep API keys server-side.
 
+If you want the GitHub Actions sync workflow to upload content automatically,
+add these repository secrets under Settings > Secrets and variables > Actions:
+
+- `MIXEDBREAD_API_KEY`
+- `MIXEDBREAD_STORE_IDENTIFIER` (optional; defaults to `mbbspedia`)
+
+Without `MIXEDBREAD_API_KEY`, the `Mixedbread Content Sync` workflow now exits
+cleanly with a skip notice instead of failing the whole run.
+
 To upload docs and fragments from repo root:
 
 ```bash
