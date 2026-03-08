@@ -9,8 +9,9 @@ import DxSection from "../../../fragments/general-surgery/acute-appendicitis/dx.
 import MxSection from "../../../fragments/general-surgery/acute-appendicitis/mx.mdx";
 import ComplicationsSection from "../../../fragments/general-surgery/acute-appendicitis/complications.mdx";
 import SummarySection from "../../../fragments/general-surgery/acute-appendicitis/summary.mdx";
+import MemoryPalaceSection from "../../../fragments/general-surgery/acute-appendicitis/memory-palace.mdx";
 
-<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications", "Summary"]}>
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications", "Summary", "Memory Palace"]}>
 
 <Tab value="Etiology">
   <EtiologySection components={props.components} />
@@ -40,6 +41,11 @@ import SummarySection from "../../../fragments/general-surgery/acute-appendiciti
 
 <Tab value="Summary">
   <SummarySection components={props.components} />
+
+</Tab>
+
+<Tab value="Memory Palace">
+  <MemoryPalaceSection components={props.components} />
 
 </Tab>
 

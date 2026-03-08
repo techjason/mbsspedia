@@ -34,6 +34,7 @@ const FRAGMENT_LABELS: Record<string, string> = {
   management: "Management",
   complications: "Complications",
   summary: "Summary",
+  "memory-palace": "Memory Palace",
 };
 
 type PageContext = {

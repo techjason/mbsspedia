@@ -121,6 +121,11 @@ const DEFAULT_SECTION_PLAN = [
   { fileName: "complications", tabName: "Complications" },
 ];
 
+const OPTIONAL_DOC_SECTION_PLAN = [
+  { fileName: "summary", tabName: "Summary" },
+  { fileName: "memory-palace", tabName: "Memory Palace" },
+];
+
 const HISTORY_TAKING_PROMPT_TEMPLATE = `You are a dedicated medical note-curation AI agent preparing HKUMed Clinical Medical School OSCEs.
 
 Task: Generate one-shot, comprehensive "history taking" notes for the chief complaint [{{condition}}].
@@ -2272,6 +2277,46 @@ function ensureTrailingNewline(text) {
   return text.endsWith("\n") ? text : `${text}\n`;
 }
 
+async function fileExists(filePath) {
+  try {
+    await stat(filePath);
+    return true;
+  } catch (error) {
+    if (
+      error &&
+      typeof error === "object" &&
+      "code" in error &&
+      error.code === "ENOENT"
+    ) {
+      return false;
+    }
+
+    throw error;
+  }
+}
+
+async function appendOptionalDocSections({ baseSectionPlan, fragmentsDir }) {
+  const sections = Array.isArray(baseSectionPlan)
+    ? baseSectionPlan.map((section) => ({ ...section }))
+    : [];
+
+  for (const optionalSection of OPTIONAL_DOC_SECTION_PLAN) {
+    if (sections.some((section) => section.fileName === optionalSection.fileName)) {
+      continue;
+    }
+
+    const optionalPath = path.join(
+      fragmentsDir,
+      `${optionalSection.fileName}.mdx`,
+    );
+    if (await fileExists(optionalPath)) {
+      sections.push(optionalSection);
+    }
+  }
+
+  return sections;
+}
+
 async function runWithConcurrency(items, limit, worker) {
   const results = new Array(items.length);
   let cursor = 0;
@@ -2410,7 +2455,7 @@ async function generateTopic({
 
   const messages = [];
 
-  const resolvedSectionPlan =
+  const generationSectionPlan =
     sectionPlan?.length > 0 ? sectionPlan : DEFAULT_SECTION_PLAN;
 
   const prompts = [
@@ -2428,14 +2473,14 @@ async function generateTopic({
     prompts.push(...FOLLOW_UP_PROMPTS);
   }
 
-  if (prompts.length !== resolvedSectionPlan.length) {
+  if (prompts.length !== generationSectionPlan.length) {
     throw new Error(
-      `Prompt/section count mismatch (${prompts.length} prompts vs ${resolvedSectionPlan.length} sections).`,
+      `Prompt/section count mismatch (${prompts.length} prompts vs ${generationSectionPlan.length} sections).`,
     );
   }
 
   for (let i = 0; i < prompts.length; i += 1) {
-    const section = resolvedSectionPlan[i];
+    const section = generationSectionPlan[i];
     const sectionFileName = section.fileName;
     const sectionTabName = section.tabName;
     let sectionPrompt = prompts[i];
@@ -2467,12 +2512,16 @@ async function generateTopic({
 
   console.log(`[${topic}] Generating one-line description...`);
   const description = await generateTopicDescription({ topic, title, model });
+  const docSectionPlan = await appendOptionalDocSections({
+    baseSectionPlan: generationSectionPlan,
+    fragmentsDir,
+  });
   const topicDoc = buildTopicDocMdx({
     title,
     specialty,
     slug,
     description,
-    sectionPlan: resolvedSectionPlan,
+    sectionPlan: docSectionPlan,
   });
   await writeFile(topicDocPath, topicDoc, "utf8");
   console.log(`[${topic}] Wrote ${topicDocPath}`);

@@ -19,7 +19,14 @@ import {
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
-type FragmentTabKey = "etiology" | "ddx" | "dx" | "mx" | "complications";
+type FragmentTabKey =
+  | "etiology"
+  | "ddx"
+  | "dx"
+  | "mx"
+  | "complications"
+  | "summary"
+  | "memory-palace";
 
 const SECTION_IMPORT_TO_TAB_KEY: Record<string, FragmentTabKey> = {
   EtiologySection: "etiology",
@@ -27,6 +34,8 @@ const SECTION_IMPORT_TO_TAB_KEY: Record<string, FragmentTabKey> = {
   DxSection: "dx",
   MxSection: "mx",
   ComplicationsSection: "complications",
+  SummarySection: "summary",
+  MemoryPalaceSection: "memory-palace",
 };
 
 function getGithubUrl(pagePath: string) {

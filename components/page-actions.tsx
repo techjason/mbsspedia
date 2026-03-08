@@ -12,7 +12,14 @@ import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 import { cva } from 'class-variance-authority';
 
 const cache = new Map<string, string>();
-type FragmentTabKey = 'etiology' | 'ddx' | 'dx' | 'mx' | 'complications';
+type FragmentTabKey =
+  | 'etiology'
+  | 'ddx'
+  | 'dx'
+  | 'mx'
+  | 'complications'
+  | 'summary'
+  | 'memory-palace';
 
 function toFragmentTabKey(value: string): FragmentTabKey | null {
   const normalized = value.trim().toLowerCase().replace(/\s+/g, '');
@@ -21,6 +28,8 @@ function toFragmentTabKey(value: string): FragmentTabKey | null {
   if (normalized === 'dx') return 'dx';
   if (normalized === 'mx') return 'mx';
   if (normalized === 'complications' || normalized === 'complication') return 'complications';
+  if (normalized === 'summary') return 'summary';
+  if (normalized === 'memorypalace') return 'memory-palace';
   return null;
 }
 

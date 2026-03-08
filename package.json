@@ -15,7 +15,8 @@
     "generate:notes": "node scripts/generate-notes.mjs",
     "generate:notes:surgery": "node scripts/generate-notes.mjs -surgery",
     "generate:notes:psychiatry": "node scripts/generate-notes.mjs --psychiatry",
-    "generate:notes:family-medicine": "node scripts/generate-notes.mjs --family-medicine"
+    "generate:notes:family-medicine": "node scripts/generate-notes.mjs --family-medicine",
+    "generate:memory-palace": "node scripts/generate-memory-palace.mjs"
   },
   "dependencies": {
     "@ai-sdk/devtools": "^0.0.12",

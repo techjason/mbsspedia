@@ -44,7 +44,7 @@ next-env.d.ts
 
 # fumadocs-mdx generated
 .source/
-scripts/
+scripts/SeniorNotes
 
 # local operator notes
 COMMANDS.local.md
