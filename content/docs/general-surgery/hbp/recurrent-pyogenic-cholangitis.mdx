@@ -8,8 +8,9 @@ import DdxSection from "../../../fragments/general-surgery/recurrent-pyogenic-ch
 import DxSection from "../../../fragments/general-surgery/recurrent-pyogenic-cholangitis/dx.mdx";
 import MxSection from "../../../fragments/general-surgery/recurrent-pyogenic-cholangitis/mx.mdx";
 import ComplicationsSection from "../../../fragments/general-surgery/recurrent-pyogenic-cholangitis/complications.mdx";
+import SummarySection from "../../../fragments/general-surgery/recurrent-pyogenic-cholangitis/summary.mdx";
 
-<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications", "Summary"]}>
 
 <Tab value="Etiology">
   <EtiologySection components={props.components} />
@@ -33,6 +34,12 @@ import ComplicationsSection from "../../../fragments/general-surgery/recurrent-p
 
 <Tab value="Complications">
   <ComplicationsSection components={props.components} />
+
+</Tab>
+
+
+<Tab value="Summary">
+  <SummarySection components={props.components} />
 
 </Tab>
 

@@ -8,8 +8,9 @@ import DdxSection from "../../../fragments/general-surgery/carotid-artery-stenos
 import DxSection from "../../../fragments/general-surgery/carotid-artery-stenosis/dx.mdx";
 import MxSection from "../../../fragments/general-surgery/carotid-artery-stenosis/mx.mdx";
 import ComplicationsSection from "../../../fragments/general-surgery/carotid-artery-stenosis/complications.mdx";
+import SummarySection from "../../../fragments/general-surgery/carotid-artery-stenosis/summary.mdx";
 
-<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications", "Summary"]}>
 
 <Tab value="Etiology">
   <EtiologySection components={props.components} />
@@ -33,6 +34,12 @@ import ComplicationsSection from "../../../fragments/general-surgery/carotid-art
 
 <Tab value="Complications">
   <ComplicationsSection components={props.components} />
+
+</Tab>
+
+
+<Tab value="Summary">
+  <SummarySection components={props.components} />
 
 </Tab>
 

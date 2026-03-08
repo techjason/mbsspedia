@@ -8,8 +8,9 @@ import DdxSection from "../../fragments/family-medicine/numbness-tingling/ddx.md
 import DxSection from "../../fragments/family-medicine/numbness-tingling/dx.mdx";
 import MxSection from "../../fragments/family-medicine/numbness-tingling/mx.mdx";
 import ComplicationsSection from "../../fragments/family-medicine/numbness-tingling/complications.mdx";
+import SummarySection from "../../fragments/family-medicine/numbness-tingling/summary.mdx";
 
-<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications", "Summary"]}>
 
 <Tab value="Etiology">
   <EtiologySection components={props.components} />
@@ -33,6 +34,12 @@ import ComplicationsSection from "../../fragments/family-medicine/numbness-tingl
 
 <Tab value="Complications">
   <ComplicationsSection components={props.components} />
+
+</Tab>
+
+
+<Tab value="Summary">
+  <SummarySection components={props.components} />
 
 </Tab>
 

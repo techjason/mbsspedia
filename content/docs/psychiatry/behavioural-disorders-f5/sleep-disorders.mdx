@@ -8,8 +8,9 @@ import DdxSection from "../../../fragments/psychiatry/sleep-disorders/ddx.mdx";
 import DxSection from "../../../fragments/psychiatry/sleep-disorders/dx.mdx";
 import MxSection from "../../../fragments/psychiatry/sleep-disorders/mx.mdx";
 import ComplicationsSection from "../../../fragments/psychiatry/sleep-disorders/complications.mdx";
+import SummarySection from "../../../fragments/psychiatry/sleep-disorders/summary.mdx";
 
-<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications", "Summary"]}>
 
 <Tab value="Etiology">
   <EtiologySection components={props.components} />
@@ -33,6 +34,12 @@ import ComplicationsSection from "../../../fragments/psychiatry/sleep-disorders/
 
 <Tab value="Complications">
   <ComplicationsSection components={props.components} />
+
+</Tab>
+
+
+<Tab value="Summary">
+  <SummarySection components={props.components} />
 
 </Tab>
 

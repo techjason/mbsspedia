@@ -8,8 +8,9 @@ import DdxSection from "../../../fragments/general-surgery/prostate-cancer/ddx.m
 import DxSection from "../../../fragments/general-surgery/prostate-cancer/dx.mdx";
 import MxSection from "../../../fragments/general-surgery/prostate-cancer/mx.mdx";
 import ComplicationsSection from "../../../fragments/general-surgery/prostate-cancer/complications.mdx";
+import SummarySection from "../../../fragments/general-surgery/prostate-cancer/summary.mdx";
 
-<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications", "Summary"]}>
 
 <Tab value="Etiology">
   <EtiologySection components={props.components} />
@@ -33,6 +34,12 @@ import ComplicationsSection from "../../../fragments/general-surgery/prostate-ca
 
 <Tab value="Complications">
   <ComplicationsSection components={props.components} />
+
+</Tab>
+
+
+<Tab value="Summary">
+  <SummarySection components={props.components} />
 
 </Tab>
 
