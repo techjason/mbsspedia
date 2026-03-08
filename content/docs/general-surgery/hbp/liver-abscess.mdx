@@ -8,8 +8,9 @@ import DdxSection from "../../../fragments/general-surgery/liver-abscess/ddx.mdx
 import DxSection from "../../../fragments/general-surgery/liver-abscess/dx.mdx";
 import MxSection from "../../../fragments/general-surgery/liver-abscess/mx.mdx";
 import ComplicationsSection from "../../../fragments/general-surgery/liver-abscess/complications.mdx";
+import SummarySection from "../../../fragments/general-surgery/liver-abscess/summary.mdx";
 
-<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications", "Summary"]}>
 
 <Tab value="Etiology">
   <EtiologySection components={props.components} />
@@ -33,6 +34,12 @@ import ComplicationsSection from "../../../fragments/general-surgery/liver-absce
 
 <Tab value="Complications">
   <ComplicationsSection components={props.components} />
+
+</Tab>
+
+
+<Tab value="Summary">
+  <SummarySection components={props.components} />
 
 </Tab>
 

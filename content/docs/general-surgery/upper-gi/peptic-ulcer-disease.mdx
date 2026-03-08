@@ -8,8 +8,9 @@ import DdxSection from "../../../fragments/general-surgery/peptic-ulcer-disease/
 import DxSection from "../../../fragments/general-surgery/peptic-ulcer-disease/dx.mdx";
 import MxSection from "../../../fragments/general-surgery/peptic-ulcer-disease/mx.mdx";
 import ComplicationsSection from "../../../fragments/general-surgery/peptic-ulcer-disease/complications.mdx";
+import SummarySection from "../../../fragments/general-surgery/peptic-ulcer-disease/summary.mdx";
 
-<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications", "Summary"]}>
 
 <Tab value="Etiology">
   <EtiologySection components={props.components} />
@@ -33,6 +34,12 @@ import ComplicationsSection from "../../../fragments/general-surgery/peptic-ulce
 
 <Tab value="Complications">
   <ComplicationsSection components={props.components} />
+
+</Tab>
+
+
+<Tab value="Summary">
+  <SummarySection components={props.components} />
 
 </Tab>
 

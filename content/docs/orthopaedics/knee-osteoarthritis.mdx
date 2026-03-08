@@ -8,8 +8,9 @@ import DdxSection from "../../fragments/orthopaedics/knee-osteoarthritis/ddx.mdx
 import DxSection from "../../fragments/orthopaedics/knee-osteoarthritis/dx.mdx";
 import MxSection from "../../fragments/orthopaedics/knee-osteoarthritis/mx.mdx";
 import ComplicationsSection from "../../fragments/orthopaedics/knee-osteoarthritis/complications.mdx";
+import SummarySection from "../../fragments/orthopaedics/knee-osteoarthritis/summary.mdx";
 
-<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications", "Summary"]}>
 
 <Tab value="Etiology">
   <EtiologySection components={props.components} />
@@ -33,6 +34,12 @@ import ComplicationsSection from "../../fragments/orthopaedics/knee-osteoarthrit
 
 <Tab value="Complications">
   <ComplicationsSection components={props.components} />
+
+</Tab>
+
+
+<Tab value="Summary">
+  <SummarySection components={props.components} />
 
 </Tab>
 

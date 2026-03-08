@@ -8,8 +8,9 @@ import DdxSection from "../../fragments/orthopaedics/infective-tenosynovitis/ddx
 import DxSection from "../../fragments/orthopaedics/infective-tenosynovitis/dx.mdx";
 import MxSection from "../../fragments/orthopaedics/infective-tenosynovitis/mx.mdx";
 import ComplicationsSection from "../../fragments/orthopaedics/infective-tenosynovitis/complications.mdx";
+import SummarySection from "../../fragments/orthopaedics/infective-tenosynovitis/summary.mdx";
 
-<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications", "Summary"]}>
 
 <Tab value="Etiology">
   <EtiologySection components={props.components} />
@@ -33,6 +34,12 @@ import ComplicationsSection from "../../fragments/orthopaedics/infective-tenosyn
 
 <Tab value="Complications">
   <ComplicationsSection components={props.components} />
+
+</Tab>
+
+
+<Tab value="Summary">
+  <SummarySection components={props.components} />
 
 </Tab>
 

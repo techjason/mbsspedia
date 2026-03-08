@@ -8,8 +8,9 @@ import DdxSection from "../../fragments/ent/benign-lesions-of-vocal-cord/ddx.mdx
 import DxSection from "../../fragments/ent/benign-lesions-of-vocal-cord/dx.mdx";
 import MxSection from "../../fragments/ent/benign-lesions-of-vocal-cord/mx.mdx";
 import ComplicationsSection from "../../fragments/ent/benign-lesions-of-vocal-cord/complications.mdx";
+import SummarySection from "../../fragments/ent/benign-lesions-of-vocal-cord/summary.mdx";
 
-<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications", "Summary"]}>
 
 <Tab value="Etiology">
   <EtiologySection components={props.components} />
@@ -33,6 +34,12 @@ import ComplicationsSection from "../../fragments/ent/benign-lesions-of-vocal-co
 
 <Tab value="Complications">
   <ComplicationsSection components={props.components} />
+
+</Tab>
+
+
+<Tab value="Summary">
+  <SummarySection components={props.components} />
 
 </Tab>
 

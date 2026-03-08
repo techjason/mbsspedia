@@ -8,8 +8,9 @@ import DdxSection from "../../../fragments/psychiatry/assessment-in-child-psychi
 import DxSection from "../../../fragments/psychiatry/assessment-in-child-psychiatry/dx.mdx";
 import MxSection from "../../../fragments/psychiatry/assessment-in-child-psychiatry/mx.mdx";
 import ComplicationsSection from "../../../fragments/psychiatry/assessment-in-child-psychiatry/complications.mdx";
+import SummarySection from "../../../fragments/psychiatry/assessment-in-child-psychiatry/summary.mdx";
 
-<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications"]}>
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications", "Summary"]}>
 
 <Tab value="Etiology">
   <EtiologySection components={props.components} />
@@ -33,6 +34,12 @@ import ComplicationsSection from "../../../fragments/psychiatry/assessment-in-ch
 
 <Tab value="Complications">
   <ComplicationsSection components={props.components} />
+
+</Tab>
+
+
+<Tab value="Summary">
+  <SummarySection components={props.components} />
 
 </Tab>
 
