@@ -9,8 +9,9 @@ import DxSection from "../../../fragments/general-surgery/ca-stomach/dx.mdx";
 import MxSection from "../../../fragments/general-surgery/ca-stomach/mx.mdx";
 import ComplicationsSection from "../../../fragments/general-surgery/ca-stomach/complications.mdx";
 import SummarySection from "../../../fragments/general-surgery/ca-stomach/summary.mdx";
+import MemoryPalaceSection from "../../../fragments/general-surgery/ca-stomach/memory-palace.mdx";
 
-<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications", "Summary"]}>
+<Tabs items={["Etiology", "DDx", "Dx", "Mx", "Complications", "Summary", "Memory Palace"]}>
 
 <Tab value="Etiology">
   <EtiologySection components={props.components} />
@@ -39,6 +40,11 @@ import SummarySection from "../../../fragments/general-surgery/ca-stomach/summar
 
 <Tab value="Summary">
   <SummarySection components={props.components} />
+
+</Tab>
+
+<Tab value="Memory Palace">
+  <MemoryPalaceSection components={props.components} />
 
 </Tab>
 

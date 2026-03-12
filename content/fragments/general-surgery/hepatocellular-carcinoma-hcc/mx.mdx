@@ -48,31 +48,51 @@ The **Hong Kong Liver Cancer (HKLC) Staging System** is the locally preferred st
 flowchart TD
     A["HCC Diagnosed"] --> B{"ECOG PS and\nChild-Pugh Class?"}
     B -->|"ECOG 0-1\nChild A/B"| C{"Extrahepatic Vascular\nInvasion / Metastasis?"}
-    B -->|"ECOG 2-4\nChild C"| D{"Tumour Status?"}
-    
+    B -->|"ECOG 2-4\nor Child C"| D{"Tumour Status?"}
+
     C -->|"No EVM"| E{"Tumour Classification?"}
     C -->|"EVM present"| F{"Child-Pugh?"}
-    
-    E -->|"Early tumour"| G["Stage I\nResection / LT / Ablation"]
-    E -->|"Intermediate tumour"| H["Stage IIa\nResection / TACE"]
-    E -->|"Locally advanced tumour"| I["Stage IIb\nResection"]
-    
-    F -->|"Child A"| J["Stage IIIa\nTACE"]
-    F -->|"Child B"| K["Stage IIIb\nSystemic therapy"]
-    
-    D -->|"Early tumour, No EVM"| L["Stage IVa\nLiver Transplantation"]
-    D -->|"Other tumours or EVM"| M["Stage IVb / Vb\nSupportive care"]
+
+    E -->|"Early tumour"| G{"Patient status?"}
+    E -->|"Intermediate tumour"| H{"Child-Pugh?"}
+    E -->|"Locally advanced tumour"| I["Stage 3B\nTACE"]
+
+    G -->|"ECOG 0 + Child A"| J["Stage 1\nResection / Ablation / Transplant"]
+    G -->|"ECOG 1 or Child B"| K["Stage 2A\nResection / Ablation / Transplant"]
+
+    H -->|"Child A"| L["Stage 2B\nResection"]
+    H -->|"Child B"| M["Stage 3A\nTACE"]
+
+    F -->|"Child A"| N["Stage 4A\nSystemic therapy"]
+    F -->|"Child B"| O["Stage 4B\nSystemic therapy / Palliative"]
+
+    D -->|"Early tumour + No EVM"| P["Stage 5A\nTransplant"]
+    D -->|"Intermediate / Locally advanced\nor EVM"| Q["Stage 5B\nPalliative"]
 ```
 
 ***The HKLC classification of liver tumour status*** [1]:
 
-| Tumour Status | Size | Number of Nodules | Intrahepatic Venous Invasion |
-|---|---|---|---|
-| ***Early*** | ***≤ 5 cm*** | ***≤ 3*** | ***No*** |
-| ***Intermediate*** | ≤ 5 cm AND > 3 nodules OR > 5 cm AND ≤ 3 nodules OR ≤ 5 cm, ≤ 3 with venous invasion | Various combinations with 1 adverse factor | Various |
-| ***Locally advanced*** | > 5 cm AND > 3 OR diffuse | ≥ 2 adverse factors | Any |
+| Tumour Status | Published Definition |
+|---|---|
+| ***Early*** | ***≤ 5 cm***, ***≤ 3 nodules***, and ***no intrahepatic venous invasion*** |
+| ***Intermediate*** | ***≤ 5 cm*** with ***either > 3 nodules or intrahepatic venous invasion***, **or** ***> 5 cm*** with ***≤ 3 nodules*** and ***no intrahepatic venous invasion*** |
+| ***Locally advanced*** | ***≤ 5 cm*** with ***> 3 nodules + intrahepatic venous invasion***, **or** ***> 5 cm*** with ***> 3 nodules or intrahepatic venous invasion***, **or** ***diffuse tumour*** |
 
-**Key difference from BCLC**: The HKLC system offers **resection** as an option even for intermediate and locally advanced tumours (Stage IIa and IIb), whereas BCLC would recommend only TACE for intermediate (BCLC-B) and systemic therapy for advanced (BCLC-C) disease. This reflects the fact that ***multiple tumours and intrahepatic vascular invasion (e.g. main hepatic vein, left/right portal vein) are NOT considered absolute contraindications for liver resection*** [2] in Hong Kong practice.
+***Published HKLC preferred-treatment allocation*** [1][3][11]:
+
+| HKLC Stage | Profile | Preferred Treatment |
+|---|---|---|
+| ***Stage 1*** | Early tumour, no EVM, ***ECOG 0 + Child A*** | ***Resection / Ablation / Transplant*** |
+| ***Stage 2A*** | Early tumour, no EVM, ***ECOG 1 or Child B*** | ***Resection / Ablation / Transplant*** |
+| ***Stage 2B*** | Intermediate tumour, no EVM, ***Child A*** | ***Resection*** |
+| ***Stage 3A*** | Intermediate tumour, no EVM, ***Child B*** | ***TACE*** |
+| ***Stage 3B*** | Locally advanced tumour, no EVM | ***TACE*** |
+| ***Stage 4A*** | EVM present, ***Child A*** | ***Systemic therapy*** |
+| ***Stage 4B*** | EVM present, ***Child B*** | ***Systemic therapy / Palliative*** |
+| ***Stage 5A*** | ***ECOG 2-4 or Child C***, early tumour, no EVM | ***Transplant*** |
+| ***Stage 5B*** | ***ECOG 2-4 or Child C*** with intermediate / locally advanced tumour or EVM | ***Palliative*** |
+
+**Key difference from BCLC**: HKLC is more aggressive in selected patients. It still offers ***resection*** for ***Stage 2B*** intermediate tumours (Child A, no EVM) and ***TACE*** for ***Stage 3B*** locally advanced tumours without EVM, whereas BCLC would usually channel these groups toward non-surgical therapy earlier. This reflects the fact that ***multiple tumours and limited intrahepatic vascular invasion are NOT always treated as absolute contraindications to resection*** [2] in Hong Kong practice.
 
 #### 3.2 BCLC Treatment Algorithm (For Reference)
 
@@ -446,7 +466,7 @@ Acute management principles [2]:
 
 ### 8. Best Supportive Care
 
-For ***BCLC Stage D (Child-Pugh C, ECOG 3–4)*** or ***HKLC Stage Vb***.
+For ***BCLC Stage D (Child-Pugh C, ECOG 3–4)***, ***HKLC Stage 5B***, or selected ***HKLC Stage 4B*** patients who are not fit for systemic therapy.
 
 - **Symptom management**: pain control (WHO analgesic ladder), management of ascites (diuretics, paracentesis), encephalopathy (lactulose, rifaximin), nutritional support
 - **Palliative care referral**
@@ -471,6 +491,8 @@ For ***BCLC Stage D (Child-Pugh C, ECOG 3–4)*** or ***HKLC Stage Vb***.
 **TARE (Y-90)**: Preferred over TACE when portal vein thrombosis is present (smaller particles → less ischaemia).
 
 **Systemic therapy**: 1st line = Atezolizumab + Bevacizumab (2026 standard). 2nd line = Sorafenib/Lenvatinib. 3rd line = Regorafenib/Cabozantinib.
+
+**HKLC stage-treatment map**: ***1/2A = resection/ablation/transplant; 2B = resection; 3A/3B = TACE; 4A = systemic therapy; 4B = systemic therapy/palliative; 5A = transplant; 5B = palliative.***
 
 **Ruptured HCC**: Emergency. First-choice = TAE. If fails → laparotomy (packing, HAL, staged resection).
 
